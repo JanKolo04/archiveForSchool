@@ -174,13 +174,6 @@
 
 		}
 
-		/*
-			--------TO DO-------
-			1.Stworzyć zabezpieczenie jeśli dane zostaną wprowadzone niepoprawnie to wtedy zwróci alert 'Dane zostały wprowadzone niepoprawnie',
-			
-			2.Stworzyć metode pobierania pojeduńczych zdjęć (wrzucenie do ścieżki nazwe pliku i stworzenie zdjecia)
-
-		*/
 
 	?>
 
