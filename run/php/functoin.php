@@ -54,10 +54,10 @@
 
 			$arrayText = explode(" ", $data);
 			
-			//jesli uzytkownik nie wpisze 3 wyrazów to pokaże sie alert
+			//jesli uzytkownik nie wpisze 3 wyrazów i nie wybierze klasy to pokaże sie alert
 			//z Error
-			if(sizeof($arrayText) != 3) {
-				echo "<script>alert('Error')</script>";
+			if(sizeof($arrayText) != 3 && $class=='--Select--') {
+				echo "<script>alert('Błąd')</script>";
 			}
 			//jesli wpisał 3 to wykonuje sie kod dalej
 			else {
@@ -125,9 +125,10 @@
 								//przypisywanie wartości do klucza
 								$arrayCheck['work_name'] = $arrayText[$y];
 							}
-							//tutaj dodajemy Profil i Klase
+							//tutaj dodajemy Profil
 							$arrayCheck["Profil"] = $arrayAll[$i]['Profil'];
-							$arrayCheck["Klasa"] = $arrayAll[$i]['Klasa'];
+							//dodawanie klasy
+							$arrayCheck["Klasa"] = $class;
 						}
 					}
 				}
@@ -135,7 +136,10 @@
 				//jesli dane nie zostały dopasowane to wtedy pokazuje
 				//sie alert ze nie ma takiego uzytkownika
 				if(empty($arrayCheck)) {
-					echo "<script>alert('User dosen't exist')</script>";
+					echo "<script>alert('Taki użytkownik nie istnieje');</script>";
+				}
+				else if(empty($arrayCheck['Imie']) || empty($arrayCheck['Nazwisko']) || empty($arrayCheck['Klasa']) || empty($arrayCheck['Profil']) || empty($arrayCheck['work_name'])) {
+					echo "<script>alert('Dane zostały źle wpisane');</script>";
 				}
 				else {
 					//wyświetlanie wszytskich zdjec ucznia
