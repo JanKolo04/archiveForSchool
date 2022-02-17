@@ -8,7 +8,7 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="input">
+		<input type="text" name="input" required>
 		<select name="select">
 			<option>--Select--</option>
 			<option>3b</option>
@@ -56,7 +56,7 @@
 			
 			//jesli uzytkownik nie wpisze 3 wyrazów i nie wybierze klasy to pokaże sie alert
 			//z Error
-			if(sizeof($arrayText) != 3 && $class=='--Select--') {
+			if(sizeof($arrayText) != 3 || $class=='--Select--') {
 				echo "<script>alert('Błąd')</script>";
 			}
 			//jesli wpisał 3 to wykonuje sie kod dalej
