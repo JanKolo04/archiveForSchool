@@ -3,54 +3,69 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Add user</title>
+	<title>Add file</title>
 </head>
 <body>
 
 	<form method="post">
-		<input type="text" name="imie">
-		<input type="text" name="nazwisko">
-		<select name="klasa">
+		<select name="users" id="users">
 			<option>--Select--</option>
-			<option>3a</option>
-			<option>3b</option>
 		</select>
-		<select name="sepcjalizacja">
-			<option>--Select--</option>
-			<option>Informatyka</option>
-			<option>Grafika</option>
-		</select>
-
-		<button type="submit" name="add">Add</button>
+		<button name="submit" type="submit">Get</button>
 	</form>
 
 	<?php
 
 		include("../connection.php");
 
-		if(isset($_POST['add'])) {
-			add();
+		function get_user() {
+			global $con, $arrayAll;
+
+			$get = "SELECT * FROM users";
+			$queryGet = mysqli_query($con, $get);
+
+			$arrayAll = [""];
+			$i = 0;
+			while($row = mysqli_fetch_array($queryGet)) {
+				foreach($queryGet as $key=>$value) {
+					$arrayAll[$i] = $value;
+					$i++;
+				}
+			}
 		}
+		
+		/*
 
-		function add() {
-			global $con;
+			-----TOD DO-----
+			1.Pobranie pierwszej wartości z optin czyli !!!ID!!!
 
-			//name
-			$name = $_POST['imie'];
-			//lastname
-			$lastname = $_POST['nazwisko'];
-			//class
-			$class = $_POST['klasa'];
-			//profile
-			$profil = $_POST['sepcjalizacja'];
+		*/
 
-			//insert data into user
-			$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$profil')";
-			//quert add user
-			$insertQuery = mysqli_query($con, $insertSQL);
-		}
+		get_user();
 
 	?>
+
+	<script type="text/javascript">
+		
+		function print_all_data() {
+			const arrayAll = <?php echo json_encode($arrayAll); ?>;
+
+			const select = document.querySelector('#users');
+
+			let len = arrayAll.length;
+			for(let i=0; i<len; ++i) {
+				let text = arrayAll[i]["id"]+" "+arrayAll[i]['Imie']+" "+arrayAll[i]['Nazwisko']+" "+arrayAll[i]['Klasa']+" "+arrayAll[i]['Profil'];
+
+				let option = document.createElement("option");
+				option.class = "option";
+				option.innerHTML = text;
+				select.appendChild(option);
+			}
+		}
+
+		print_all_data();
+
+	</script>
 
 </body>
 </html>
