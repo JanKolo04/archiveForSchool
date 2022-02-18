@@ -8,10 +8,15 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="input" required>
-		<select name="select">
+		<input type="text" name="text">
+		<select name="klasa">
 			<option>--Select--</option>
 			<option>3b</option>
+		</select>
+		<select name="profil">
+			<option>--Select--</option>
+			<option>Grafika</option>
+			<option>Informatyka</option>
 		</select>
 		<button type="submit" name="submit">Search</button>
 	</form>
@@ -25,7 +30,7 @@
 
 		//jesli klikniemy przycisk Search to funckja run sie uruchomi
 		if(isset($_POST['submit'])) {
-			search();
+			run2();
 		}
 
 		function search() {
@@ -172,6 +177,44 @@
 
 
 
+		}
+
+		function run2() {
+			global $con;
+			$searchValue = $_POST['text'];
+			$profil = $_POST['profil'];
+			$class = $_POST['klasa'];
+
+			if(!empty($profil)) {
+				$searchProfil = "SELECT * FROM works WHERE Profil='$profil'";
+				$querySerachProfil = mysqli_query($con, $searchProfil);
+
+				//append to array $row elements from query
+				while ($row = mysqli_fetch_array($querySerachProfil)) {
+					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+				}	
+			}
+
+
+			else if(!empty($class)) {
+				$searchClass = "SELECT * FROM works WHERE Klasa='$class'";
+				$querySerachClass = mysqli_query($con, $searchClass);
+
+				//append to array $row elements from query
+				while ($row = mysqli_fetch_array($querySerachClass)) {
+					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+				}	
+			}
+
+			else {
+				$search = "SELECT * FROM works WHERE Imie LIKE '%$searchValue%' OR Nazwisko LIKE '%$searchValue%' OR work_name LIKE '%$searchValue%'";
+				$querySearch = mysqli_query($con, $search);
+
+				//append to array $row elements from query
+				while ($row = mysqli_fetch_array($querySearch)) {
+					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+				}
+			}
 		}
 
 
