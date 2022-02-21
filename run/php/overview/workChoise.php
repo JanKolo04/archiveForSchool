@@ -26,7 +26,7 @@
 			$queryAll = mysqli_query($con, $all);
 
 			while($row = mysqli_fetch_array($queryAll)) {
-				echo ("<tr><td>".$row['Imie']." </td><td>".$row['Nazwisko']." </td><td>".$row['Klasa']." </td><td><a href='art.php?work=".$row['id']."'>Podgląd</a></tr><br>");
+				echo ("<tr><td>".$row['Imie']." </td><td>".$row['Nazwisko']." </td><td>".$row['Klasa']." </td><td><a href='work.php?work=".$row['id']."'>Podgląd</a></tr><br>");
 			}
 		}
 
