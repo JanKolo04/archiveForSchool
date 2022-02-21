@@ -85,11 +85,11 @@
 						}
 						//tutaj do nazwy pracy
 						else if($arrayAll[$i]['work_name'] == $arrayText[$y]) {
-							/*
-								---------FUNCKJA PODMIANY ROZSZERZEN-------
-								ta funkcja jest potrzebna poniewaz php nie obsługuje 
-								rozszerzen JPEG wiec jest potrzebna ta funkcja
-							*/
+							
+								//---------FUNCKJA PODMIANY ROZSZERZEN-------
+								//ta funkcja jest potrzebna poniewaz php nie obsługuje 
+								//rozszerzen JPEG wiec jest potrzebna ta funkcja
+							
 							//zniemnne do zmiany rozszerzenia gdy zdjecie jest jpeg
 							//zmienna rozszerzenie
 							$roz = "";
