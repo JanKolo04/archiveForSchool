@@ -79,8 +79,8 @@
 				    }
 
 	      			else if($fileSize > $maxSize) {
-	        			$errors[] = 'File is biger than 3MB';
-	        			echo("<script>alert('File is biger than 3MB');</script>");
+	        			$errors[] = 'File is biger than 5MB';
+	        			echo("<script>alert('File is biger than 5MB');</script>");
 	        			echo $fileSize;
 	        			break;
 	      			}
