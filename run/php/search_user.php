@@ -30,7 +30,7 @@
 
 		//jesli klikniemy przycisk Search to funckja run sie uruchomi
 		if(isset($_POST['submit'])) {
-			search_user();
+			searchUser();
 		}
 
 		/*
