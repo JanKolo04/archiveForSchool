@@ -30,9 +30,10 @@
 
 		//jesli klikniemy przycisk Search to funckja run sie uruchomi
 		if(isset($_POST['submit'])) {
-			run2();
+			search_user();
 		}
 
+		/*
 		function search() {
 			global $con;
 			//dane z inputa
@@ -155,7 +156,7 @@
 			}
 
 
-			/*
+		
 			//wyświetlanie każdego zdjęcia z folderu ucznia
 			//funkcja sprawdzająca czy otworzy sie folder
 			if($d = opendir($path)) {
@@ -173,13 +174,14 @@
 				closedir($d);
 			}
 
-			*/
+			
 
 
 
 		}
+		*/
 
-		function run2() {
+		function searchUser() {
 			global $con;
 			$searchValue = $_POST['text'];
 			$profil = $_POST['profil'];
