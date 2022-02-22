@@ -28,11 +28,6 @@
 
 		include("connection.php");
 
-		//jesli klikniemy przycisk Search to funckja run sie uruchomi
-		if(isset($_POST['submit'])) {
-			searchUser();
-		}
-
 		/*
 		function search() {
 			global $con;
@@ -181,43 +176,100 @@
 		}
 		*/
 
-		function searchUser() {
+		function search_from_input() {
 			global $con;
 			$searchValue = $_POST['text'];
-			$profil = $_POST['profil'];
-			$class = $_POST['klasa'];
+			if(strlen($searchValue) > 0) {
+				$arraySplit = explode(" ", $searchValue);
 
-			if(!empty($profil)) {
-				$searchProfil = "SELECT * FROM works WHERE Profil='$profil'";
-				$querySerachProfil = mysqli_query($con, $searchProfil);
+				$searchValue = "";
+				for($i=0; $i<sizeof($arraySplit); $i++) { 
+					$searchValue .= $arraySplit[$i];
+					if($i != sizeof($arraySplit)-1) {
+						$searchValue .= "','";
+					}
+				}
 
-				//append to array $row elements from query
-				while ($row = mysqli_fetch_array($querySerachProfil)) {
-					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
-				}	
-			}
-
-
-			else if(!empty($class)) {
-				$searchClass = "SELECT * FROM works WHERE Klasa='$class'";
-				$querySerachClass = mysqli_query($con, $searchClass);
-
-				//append to array $row elements from query
-				while ($row = mysqli_fetch_array($querySerachClass)) {
-					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
-				}	
-			}
-
-			else {
-				$search = "SELECT * FROM works WHERE Imie LIKE '%$searchValue%' OR Nazwisko LIKE '%$searchValue%' OR work_name LIKE '%$searchValue%'";
-				$querySearch = mysqli_query($con, $search);
-
-				//append to array $row elements from query
-				while ($row = mysqli_fetch_array($querySearch)) {
-					echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+				$search = "SELECT * FROM works WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue') OR work_name IN ('$searchValue')";
+				if($querySearch = mysqli_query($con, $search)) {
+					if($querySearch->num_rows > 0) {
+						//append to array $row elements from query
+						while ($row = mysqli_fetch_array($querySearch)) {
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+						}
+					}
+					else {
+						echo "<script>alert('Error');</script>";
+					}
+				}
+				else {
+					echo "<script>alert('Error');</script>";
 				}
 			}
 		}
+
+		function search_from_class_select() {
+			global $con;
+			$class = $_POST['klasa'];
+
+			if($class != "--Select--") {
+				$searchClass = "SELECT * FROM works WHERE Klasa='$class'";
+				if($querySerachClass = mysqli_query($con, $searchClass)) {
+					if($querySerachClass->num_rows > 0) {
+						//append to array $row elements from query
+						while ($row = mysqli_fetch_array($querySerachClass)) {
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+						}	
+					}
+					else {
+						echo "<script>alert('Error');</script>";
+					}
+				}
+			}
+			else {
+				echo "<script>alert('Error');</script>";
+			}
+			
+		}
+
+
+		function search_from_profile_select() {
+			global $con;
+			$profil = $_POST['profil'];
+
+			if($profil != "--Select--") {
+				$searchProfil = "SELECT * FROM works WHERE Profil='$profil'";
+				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
+					if($querySerachProfil->num_rows > 0) {
+						//append to array $row elements from query
+						while ($row = mysqli_fetch_array($querySerachProfil)) {
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+						}
+					}
+					else {
+						echo "<script>alert('Error');</script>";
+					}
+				}
+			}
+			else {
+				echo "<script>alert('Error');</script>";
+			}
+		}
+
+
+
+		if(isset($_POST['text'])) {
+			search_from_input();
+		}
+
+		if(isset($_POST['klasa'])) {
+			search_from_class_select();
+		}
+
+		if(isset($_POST['profil'])) {
+			search_from_profile_select();
+		}
+
 
 
 	?>
