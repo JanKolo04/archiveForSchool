@@ -23,7 +23,7 @@
 			//get id from url
 			$id_work = $_GET['work'];
 			//get all data from row where id=id_work
-			$findUser = "SELECT * FROM works WHERE id='$id_work'";
+			$findUser = "SELECT * FROM user_works WHERE id='$id_work'";
 			$findUserQuery = mysqli_query($con, $findUser);
 
 			//loop to push data to arrayData

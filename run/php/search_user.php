@@ -190,7 +190,7 @@
 					}
 				}
 
-				$search = "SELECT * FROM works WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue') OR work_name IN ('$searchValue')";
+				$search = "SELECT * FROM user_works WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue') OR work_name IN ('$searchValue')";
 				if($querySearch = mysqli_query($con, $search)) {
 					if($querySearch->num_rows > 0) {
 						//append to array $row elements from query
@@ -213,7 +213,7 @@
 			$class = $_POST['klasa'];
 
 			if($class != "--Select--") {
-				$searchClass = "SELECT * FROM works WHERE Klasa='$class'";
+				$searchClass = "SELECT * FROM user_works WHERE Klasa='$class'";
 				if($querySerachClass = mysqli_query($con, $searchClass)) {
 					if($querySerachClass->num_rows > 0) {
 						//append to array $row elements from query
@@ -238,7 +238,7 @@
 			$profil = $_POST['profil'];
 
 			if($profil != "--Select--") {
-				$searchProfil = "SELECT * FROM works WHERE Profil='$profil'";
+				$searchProfil = "SELECT * FROM user_works WHERE Profil='$profil'";
 				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
 					if($querySerachProfil->num_rows > 0) {
 						//append to array $row elements from query

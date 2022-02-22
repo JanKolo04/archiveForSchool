@@ -88,7 +88,7 @@
 					else if(empty($errors)) {
 						move_uploaded_file($fileTmp,$dir.$fileName);
 
-						$sendSQL = "INSERT INTO works(Imie, Nazwisko, Klasa, id_user, work_name, Profil) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil')";
+						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, work_name, Profil) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil')";
 						$queryInsertWork = mysqli_query($con, $sendSQL);
 						break;
 

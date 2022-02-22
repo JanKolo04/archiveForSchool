@@ -22,7 +22,7 @@
 		function run() {
 			global $con;
 
-			$all = "SELECT * FROM works";
+			$all = "SELECT * FROM user_works";
 			$queryAll = mysqli_query($con, $all);
 
 			while($row = mysqli_fetch_array($queryAll)) {
