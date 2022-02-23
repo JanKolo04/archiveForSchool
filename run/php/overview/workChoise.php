@@ -21,10 +21,12 @@
 
 		function run() {
 			global $con;
-
+			//sql select data from users_work
 			$all = "SELECT * FROM user_works";
+			//query sql
 			$queryAll = mysqli_query($con, $all);
 
+			//show searched user
 			while($row = mysqli_fetch_array($queryAll)) {
 				echo ("<tr><td>".$row['Imie']." </td><td>".$row['Nazwisko']." </td><td>".$row['Klasa']." </td><td><a href='work.php?work=".$row['id']."'>Podgląd</a></tr><br>");
 			}

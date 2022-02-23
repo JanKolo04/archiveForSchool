@@ -10,6 +10,7 @@
 	<div id="holder">
 		<h2 class="work_name"></h2>	
 		<p class="student"></p>
+		<p class="description"></p>
 		<img class="img">
 
 	</div>
@@ -33,40 +34,15 @@
 			}
 
 			//path where we have our image
-			$path = "../all/{$arrayData[0]['Profil']}/{$arrayData[0]['Klasa']}/{$arrayData[0]['Imie']} {$arrayData[0]['Nazwisko']}/{$arrayData[0]['work_name']}";
+			$path = "../all/{$arrayData[0]['Profil']}/{$arrayData[0]['Klasa']}/{$arrayData[0]['Imie']} {$arrayData[0]['Nazwisko']}/{$arrayData[0]['file_name']}";
 
-			/*
-				-------INFOR ABOUT THIS LOOP-----
-				this loop is for get file name.
-				Yes we can use expload but if 
-				student use dot in file name so code won't
-				get correct file name
-
-			*/
-			$fileName = "";
-			//length of file name
-			$lenWorkName = strlen($arrayData[0]['work_name']);
-			//last fot variable 
-			$lastDot;
-			for($i=$lenWorkName - 1; $i>=0; $i--) {
-				//when loop will encounter dot break the loop and
-				//save dot position 
-				if($arrayData[0]['work_name'][$i] == '.') {
-					$lastDot = $i;
-					break;
-				}
-			}
-
-			//and last loop append other chars into var
-			for($i=0; $i<$lastDot; $i++) {
-				$fileName .= $arrayData[0]['work_name'][$i];
-			}
 
 			//this array is importing to JS for better show 
 			//data in website
 			$arrayImportDataToJS = [
 				"path"=>$path,
-				"work_name"=>$fileName,
+				"work_name"=>$arrayData[0]['work_name'],
+				"description"=>$arrayData[0]['description'],
 				"studentName"=>$arrayData[0]['Imie'],
 				"studentLastname"=>$arrayData[0]['Nazwisko']
 			];
@@ -88,6 +64,9 @@
 			//student p
 			let student = document.querySelector('.student');
 			student.innerHTML = arrayImportDataFromPHP['studentName']+" "+arrayImportDataFromPHP['studentLastname'];
+			//description
+			let description = document.querySelector('.description');
+			description.innerHTML = arrayImportDataFromPHP['description'];
 			//set src for img
 			let img = document.querySelector(".img");
 			img.src = arrayImportDataFromPHP["path"];
@@ -108,6 +87,10 @@
 
 		.work_name {
 			text-align: center;
+		}
+
+		.description {
+			margin-top: 30px;
 		}
 
 		.img {

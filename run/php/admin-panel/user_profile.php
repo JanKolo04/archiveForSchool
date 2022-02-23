@@ -10,6 +10,8 @@
 	<h2 id="nameSurname"></h2>
 
 	<form method='post' enctype="multipart/form-data">
+		<input type="text" name="work_name" placeholder="Work name...">
+		<input type="text" name="description" placeholder="Description...">
 		<input type="file" name="file">
 		<button type="submit" name="submit">Add</button>
 	</form>
@@ -73,6 +75,7 @@
 						//append data into array
 						$arrayWithWorks[$counter] = [
 							"id_work"=>$row['id'],
+							"description"=>$row['description'],
 							"work_name"=>$row['work_name']
 						];
 						$counter++;
@@ -82,7 +85,7 @@
 			else {
 				echo "<script>alert('Error');</script>";
 			}
-
+			//return array with data for other function
 			return $arrayWithDataFromQuery;
 		}	
 
@@ -93,6 +96,12 @@
 			global $con;
 			//get return value form prevous function
 			$arrayWithDataFromQuery = get_id();
+
+			//get work name
+			$work_name = $_POST['work_name'];
+			//get description for work
+			$description = $_POST['description'];
+
 			//id from returned array
 			$id = $arrayWithDataFromQuery['id'];
 			//user nam
@@ -143,9 +152,11 @@
 	      			//if code didn't return any alert upload file to direcotry and insert data to database
 					else {
 						move_uploaded_file($fileTmp,$dir.$fileName);
-
-						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, work_name, Profil) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil')";
+						//insert data into data base
+						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil', '$work_name', '$description')";
 						$queryInsertWork = mysqli_query($con, $sendSQL);
+						//uset file name	
+						unset($fileName);
 					}
 				}
 				//if any file didn't been selected return alert
