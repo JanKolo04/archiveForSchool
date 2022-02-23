@@ -13,14 +13,14 @@
 		<form method='post' enctype="multipart/form-data">
 			<div id="inputsDiv">
 				<div id="inputsEditsDiv">
-					<input type="text" name="editWork_name" placeholder="Change work name">
-					<input type="text" name="editDescription" placeholder="Change description">
+					<input type="text" name="editWork_name" id="editWork_name" placeholder="Change work name">
+					<input type="text" name="editDescription" id="editDescription" placeholder="Change description">
 				</div>
 
 				<div id="selectFileDiv">
 					<div id="selectDiv">
-						<select name="selectWorkToEdit" id="selectWorkToEdit">
-							<option>--Select--</option>
+						<select name="selectWorkToEdit" id="selectWorkToEdit" onchange="set_value_for_input(event)">
+							<option disabled selected>Select user work</option>
 						</select>
 					</div>
 					<div id="submitEditButtonDiv">
@@ -269,13 +269,26 @@
 			//add name and lastname into header
 			headerText.innerHTML = arrayData['Name']+" "+arrayData['Lastname'];
 
+			//get select 
+			let select = document.querySelector("#selectWorkToEdit");
+
 			if(arrayWorks != null) {
 				//array works len
 				let arrayWorksLen = arrayWorks.length;
 				//loop exist for adding data into table
 				for(let i=0; i<arrayWorksLen; ++i) {
+					//create option
+					let option = document.createElement("option");
+					option.id = "option";
+					option.value = arrayWorks[i]['id_work'];
+					option.innerHTML = arrayWorks[i]['work_name'];
+					select.appendChild(option);
+
+					//crete recodr
 					let record = document.createElement('tr');
+					//set class name for record
 					record.className = "record";
+					//append record into table
 					table.appendChild(record);
 
 					//data with name
@@ -348,7 +361,30 @@
 			}
 		}
 
+
+		function set_value_for_input(event) {
+			//get array with work data
+			const worksArray = <?php echo json_encode($arrayWithWorks);?>;
+			//value from target
+			let optionValue = event.target.value;
+			//inputs
+			let editWork_name = document.querySelector('#editWork_name');
+			let editDescription = document.querySelector('#editDescription');
+
+			//this loop is for checking wich option has cliked
+			for(let i=0; i<worksArray.length; ++i) {
+				//if option isn't --Select-- set value for inputs	
+				if(optionValue == worksArray[i]['id_work']) {
+					//set value for input work name
+					editWork_name.value = worksArray[i]['work_name'];
+					//set value for input description
+					editDescription.value = worksArray[i]['description'];
+				}
+			}
+		}
+		
 		set_data();
+		
 
 	</script>
 
