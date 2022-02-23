@@ -7,8 +7,14 @@
 </head>
 <body>
 
+	<h2 id="nameSurname"></h2>
+
+	<form method='post' enctype="multipart/form-data">
+		<input type="file" name="file">
+		<button type="submit" name="submit">Add</button>
+	</form>
+
 	<div id="div">
-		<h2 id="nameSurname"></h2>
 		<table id="table">
 			<tboody>
 			</tboody>
@@ -17,9 +23,14 @@
 
 
 
+
 	<?php
 
 		include("../connection.php");
+
+		if(isset($_POST['submit'])) {
+			add_file_into_database_and_directory();
+		}
 
 		function get_id() {
 			global $con, $arrayWithDataFromQuery, $arrayWithWorks;
@@ -32,19 +43,16 @@
 				//if query return zero record code will return error
 				if($queryData->num_rows > 0) {
 					//array for data from query
-					$arrayWithDataFromQuery = [];
 					while($row = mysqli_fetch_array($queryData)) {
 						//append data into array
 						$arrayWithDataFromQuery = [
+							"id"=>$row['id'],
 							"Name"=>$row['Imie'],
 							"Lastname"=>$row['Nazwisko'],
 							"Class"=>$row['Klasa'],
 							"Profile"=>$row['Profil']
 						];
 					}
-				}
-				else {
-					echo "<script>alert('Error');</script>";
 				}
 			}
 			else {
@@ -70,38 +78,84 @@
 						$counter++;
 					}
 				}
-				else {
-					echo "<script>alert('Error');</script>";
-				}
 			}
 			else {
 				echo "<script>alert('Error');</script>";
 			}
 
-			/*
-			//path to direcotry
-			$pathToDirectory = "../all/{$arrayWithDataFromQuery['Profile']}/{$arrayWithDataFromQuery['Class']}/{$arrayWithDataFromQuery['Name']} {$arrayWithDataFromQuery['Lastname']}";
-
-			//array with paths to works
-			$arrayWorks = [];
-			if($d = opendir($pathToDirectory)) {
-				//wczytywanie zdjec dopóki nie wczyta wszystkich
-				while($file = readdir($d)) {
-					//jesli zdjecie nie ma nazwy . lub .. to twórz
-					if($file != '.' && $file != '..' && $file != '.DS_Store') {
-						//dodawanie nazwy zdjecia do scieżki
-						$exist = $pathToDirectory."/".$file;
-						//tworzenie zdjęcia
-						$arrayWorks[] = $exist;
-					}
-				}
-				//zamykanie folderu
-				closedir($d);
-			}
-			*/
+			return $arrayWithDataFromQuery;
 		}	
 
 		get_id();
+
+
+		function add_file_into_database_and_directory() {
+			global $con;
+			//get return value form prevous function
+			$arrayWithDataFromQuery = get_id();
+			//id from returned array
+			$id = $arrayWithDataFromQuery['id'];
+			//user nam
+			$name = $arrayWithDataFromQuery['Name'];
+			//user last name
+			$lastname = $arrayWithDataFromQuery['Lastname'];
+			//user class
+			$class = $arrayWithDataFromQuery['Class'];
+			//and user profile
+			$profil = $arrayWithDataFromQuery['Profile'];
+
+			//if isset file
+		   	if(isset($_FILES['file'])) {
+		   		//arry for erorrs
+				$errors = [];
+				//get name form file
+				$fileName = $_FILES['file']['name'];
+				//get file size
+				$fileSize = $_FILES['file']['size'];
+				//tmp file
+				$fileTmp = $_FILES['file']['tmp_name'];
+				//path to dircetory
+				$dir = "../all/$profil/$class/$name $lastname/";
+				//split file name 
+				$explode = explode('.',$_FILES['file']['name']);
+				//get file extension
+				$fileExt = end($explode);
+
+				//max file size 1048576 is a 1MB in bits
+				$maxSize = 5*(1048576);
+				//possible extensions
+			    $extensions= array("jpg","png");
+
+			    //if filename dosen't empty do code 
+			    if(!empty($fileName)) {
+			    	//if file exist show alert
+				    if(file_exists($dir.$fileName)) {
+				     	echo("<script>alert('File exist');</script>");
+				    }
+				    //if upload file extension dosen't be in extensions array return alert 
+				    else if(!in_array($fileExt,$extensions)) {
+				        echo("<script>alert('Different extensions, use JPG or PNG');</script>");
+				    }
+				    //if file size is bigger than max size return alert
+	      			else if($fileSize > $maxSize) {
+	        			echo("<script>alert('File is biger than 5MB');</script>");
+	      			}
+	      			//if code didn't return any alert upload file to direcotry and insert data to database
+					else {
+						move_uploaded_file($fileTmp,$dir.$fileName);
+
+						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, work_name, Profil) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil')";
+						$queryInsertWork = mysqli_query($con, $sendSQL);
+					}
+				}
+				//if any file didn't been selected return alert
+				else {
+					echo("<script>alert('No files has been selected');</script>");
+				}
+
+		   	}
+
+		}
 
 
 	?>
@@ -120,82 +174,83 @@
 			//add name and lastname into header
 			headerText.innerHTML = arrayData['Name']+" "+arrayData['Lastname'];
 
-			//len of array with works
-			let arrayWorksLen = arrayWorks.length;
-			for(let i=0; i<arrayWorksLen; ++i) {
-				let record = document.createElement('tr');
-				record.className = "record";
-				table.appendChild(record);
+			if(arrayWorks != null) {
+				//array works len
+				let arrayWorksLen = arrayWorks.length;
+				//loop exist for adding data into table
+				for(let i=0; i<arrayWorksLen; ++i) {
+					let record = document.createElement('tr');
+					record.className = "record";
+					table.appendChild(record);
 
-				//data with name
-				let dataName = document.createElement('td');
-				//set class name
-				dataName.className = 'data';
-				//set text
-				dataName.innerHTML = arrayData['Name'];
-				//append data to rwo
-				record.appendChild(dataName);
+					//data with name
+					let dataName = document.createElement('td');
+					//set class name
+					dataName.className = 'data';
+					//set text
+					dataName.innerHTML = arrayData['Name'];
+					//append data to rwo
+					record.appendChild(dataName);
 
-				//data with Lastname
-				let dataLastName = document.createElement('td');
-				//set class name
-				dataLastName.className = 'data';
-				//set text
-				dataLastName.innerHTML = arrayData['Lastname'];
-				//append data to rwo
-				record.appendChild(dataLastName);
-
-
-				//data with Class
-				let dataClass = document.createElement('td');
-				//set class name
-				dataClass.className = 'data';
-				//set text
-				dataClass.innerHTML = arrayData['Class'];
-				//append data to rwo
-				record.appendChild(dataClass);
+					//data with Lastname
+					let dataLastName = document.createElement('td');
+					//set class name
+					dataLastName.className = 'data';
+					//set text
+					dataLastName.innerHTML = arrayData['Lastname'];
+					//append data to rwo
+					record.appendChild(dataLastName);
 
 
-				//data with profile
-				let dataProfile = document.createElement('td');
-				//set class name
-				dataProfile.className = 'data';
-				//set text
-				dataProfile.innerHTML = arrayData['Profile'];
-				//append data to rwo
-				record.appendChild(dataProfile);
+					//data with Class
+					let dataClass = document.createElement('td');
+					//set class name
+					dataClass.className = 'data';
+					//set text
+					dataClass.innerHTML = arrayData['Class'];
+					//append data to rwo
+					record.appendChild(dataClass);
 
 
-				//data with work name
-				let dataWorkName = document.createElement('td');
-				//set class name
-				dataWorkName.className = 'data';
-				//set text
-				dataWorkName.innerHTML = arrayWorks[i]['work_name'];
-				//append data to rwo
-				record.appendChild(dataWorkName);
+					//data with profile
+					let dataProfile = document.createElement('td');
+					//set class name
+					dataProfile.className = 'data';
+					//set text
+					dataProfile.innerHTML = arrayData['Profile'];
+					//append data to rwo
+					record.appendChild(dataProfile);
 
-				//data with work name
-				let dataButton = document.createElement('td');
-				//set class name
-				dataButton.className = 'data';
-				//append data to rwo
-				record.appendChild(dataButton);
 
-				//view button
-				let viewButton = document.createElement('a');
-				//set class name
-				viewButton.className = "viewButton";
-				//set href for button
-				viewButton.href = "../overview/work.php?work="+arrayWorks[i]['id_work'];
-				//set text
-				viewButton.innerHTML = "View";
-				//append button to data for button
-				dataButton.appendChild(viewButton);
+					//data with work name
+					let dataWorkName = document.createElement('td');
+					//set class name
+					dataWorkName.className = 'data';
+					//set text
+					dataWorkName.innerHTML = arrayWorks[i]['work_name'];
+					//append data to rwo
+					record.appendChild(dataWorkName);
 
+					//data with work name
+					let dataButton = document.createElement('td');
+					//set class name
+					dataButton.className = 'data';
+					//append data to rwo
+					record.appendChild(dataButton);
+
+					//view button
+					let viewButton = document.createElement('a');
+					//set class name
+					viewButton.className = "viewButton";
+					//set href for button
+					viewButton.href = "../podglad/art.php?work="+arrayWorks[i]['id_work'];
+					//set text
+					viewButton.innerHTML = "View";
+					//append button to data for button
+					dataButton.appendChild(viewButton);
+
+				}
 			}
-
-
 		}
 
 		set_data();
