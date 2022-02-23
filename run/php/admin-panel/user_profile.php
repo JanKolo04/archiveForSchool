@@ -206,10 +206,8 @@
 
 					//if work is different or description then data in db do update db
 					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit) {
-						echo $arrayWithCheckData['work_name']." ".$workNameEdit;
 						//update data
 						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit' WHERE id='$optionValue'";
-						echo $sqlChange;
 						$queryChange = mysqli_query($con, $sqlChange);
 					}
 
@@ -224,6 +222,9 @@
 						echo "<script>alert('Error');</script>";
 					}
 				}
+			}
+			else {
+				echo "<script>alert('Error');</script>";
 			}
 
 		}
