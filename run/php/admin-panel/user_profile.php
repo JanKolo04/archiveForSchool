@@ -7,21 +7,105 @@
 </head>
 <body>
 
-	<h2 id="nameSurname"></h2>
+	<div id="allStuff">
+		<h2 id="nameSurname"></h2>
 
-	<form method='post' enctype="multipart/form-data">
-		<input type="text" name="work_name" placeholder="Work name...">
-		<input type="text" name="description" placeholder="Description...">
-		<input type="file" name="file">
-		<button type="submit" name="submit">Add</button>
-	</form>
+		<form method='post' enctype="multipart/form-data">
+			<div id="inputsDiv">
+				<div id="inputsEditsDiv">
+					<input type="text" name="editWork_name" placeholder="Change work name">
+					<input type="text" name="editDescription" placeholder="Change description">
+				</div>
 
-	<div id="div">
-		<table id="table">
-			<tboody>
-			</tboody>
-		</table>
+				<div id="selectFileDiv">
+					<div id="selectDiv">
+						<select name="selectWorkToEdit" id="selectWorkToEdit">
+							<option>--Select--</option>
+						</select>
+					</div>
+					<div id="submitEditButtonDiv">
+						<button type="submit" name="editSubmit">Edit</button>
+					</div>
+				</div>
+
+				<div id="inputsFileTextDiv">
+					<input type="text" name="work_name" placeholder="Work name...">
+					<input type="text" name="description" placeholder="Description...">
+				</div>
+				<div id="inputFileSelectDiv">
+					<input type="file" name="file">
+					<button type="submit" name="submit">Add</button>
+				</div>
+			</div>
+		</form>
+
+		<div id="divTable">
+			<table id="table">
+				<tboody>
+				</tboody>
+			</table>
+		</div>
 	</div>
+
+
+
+	<style type="text/css">
+
+		/*-----STYLE FOR MAIN DIVS-------*/
+		#allStuff {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		#inputsDiv {
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+
+		/*-----STYLE FOR EDITS INPUTS-------*/
+		#selectFileDiv  {
+			width: 100%;
+			margin: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#selectDiv {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#submitEditButtonDiv {
+			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+
+		/*-----STYLE FOR ADD INPUTS-------*/
+
+		#inputsFileTextDiv {
+			margin-top: 30px;
+		}
+
+		#inputFileSelectDiv {
+			margin-top: 10px;
+		}
+
+		#divTable {
+			margin-top: 40px;
+		}
+
+	</style>
 
 
 
