@@ -11,12 +11,12 @@
 		<input type="text" name="imie">
 		<input type="text" name="nazwisko">
 		<select name="klasa">
-			<option>--Select--</option>
+			<option disabled selected value>--Select--</option>
 			<option>3a</option>
 			<option>3b</option>
 		</select>
 		<select name="sepcjalizacja">
-			<option>--Select--</option>
+			<option disabled selected value>--Select--</option>
 			<option>Informatyka</option>
 			<option>Grafika</option>
 		</select>

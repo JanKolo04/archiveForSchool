@@ -10,6 +10,10 @@
 		change_work_name_or_descriptoin();
 	}
 
+	else if(isset($_POST['submitChange'])) {
+		chnage_user_data();
+	}
+
 	function user_profile_page() {
 		echo "
 			<div id='allStuff'>
@@ -20,24 +24,28 @@
 						<div id='changeDiv'>
 							<div id='chnageInputsDiv'>
 								<div id='nameInputDiv'>
-									<input type='text' name='chnageName' placeholder='Chnage name...'>
+									<input type='text' name='changeName' id='changeName' placeholder='Chnage name...'>
 								</div>
 								<div id='lastnameInputDiv'>
-									<input type='text' name='chnageLastame' placeholder='Chnage Lastname...'>
+									<input type='text' name='changeLastname' id='changeLastname' placeholder='Chnage Lastname...'>
 								</div>
 							</div>
 
 							<div id='changeSelectDiv'>
 								<div id='selectClassDiv'>
-									<select name='selectClass'>
-										<option>--Select--</option>
+									<select name='changeClass' id='changeClass'>
+										<option disabled selected value>Select class</option>
 									</select>
 								</div>
 								<div id='selectProfileDiv'>
-									<select>
-										<option>--Select--</option>
+									<select name='changeProfile' id='changeProfile'>
+										<option disabled selected value>Select profile</option>
 									</select>
 								</div>
+							</div>
+
+							<div id='submitChangeDiv'>
+								<button type='submit' name='submitChange'>Change</button>
 							</div>
 						</div>
 
@@ -126,6 +134,10 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
+				}
+
+				#submitChangeDiv {
+					margin-top: 10px;
 				}
 
 				/*-----STYLE FOR EDITS INPUTS-------*/
@@ -351,6 +363,26 @@
 			}
 
 	   	}
+
+	}
+
+
+	function chnage_user_data() {
+		global $con;
+		//get user id
+		$user_id = $_GET['user_id'];
+		//name
+		$name = $_POST['changeName'];
+		//lastname
+		$lastname = $_POST['changeLastname'];
+		//class
+		$class = $_POST['changeClass'];
+		//profile
+		$profile = $_POST['changeProfile'];
+
+		$updateSQL = "UPDATE users SET Imie='$name', Nazwisko='$lastname', Klasa='$class', Profil='$profile' WHERE id='$user_id'";
+		//quert add user
+		$updateQuery = mysqli_query($con, $updateSQL);
 
 	}
 

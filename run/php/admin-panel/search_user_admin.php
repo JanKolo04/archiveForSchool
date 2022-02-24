@@ -83,7 +83,7 @@
 	<script type="text/javascript">
 		
 		function set_data() {
-			//array with data
+			//array with data about user
 			const arrayData = <?php echo json_encode($arrayWithDataFromQuery);?>;
 			const arrayWorks = <?php echo json_encode($arrayWithWorks);?>;
 			//table
@@ -220,8 +220,61 @@
 			}
 		}
 
-		
+		function append_data_into_chnage_user_data() {
+			//array with data about user
+			const arrayData = <?php echo json_encode($arrayWithDataFromQuery);?>;
+
+			//get input with change name
+			let nameChangeInput = document.querySelector('#changeName');
+			//set value for input name
+			nameChangeInput.value = arrayData['Name'];
+
+			//get input with change lastname
+			let lastnameChangeInput = document.querySelector('#changeLastname');
+			//set value for input lasname
+			lastnameChangeInput.value = arrayData['Lastname'];
+
+
+
+
+			//get select with class
+			let selectClass = document.querySelector('#changeClass');
+			//get select with profile
+			let selectProfile = document.querySelector('#changeProfile');
+
+			//create optoin class
+			let optionClass = document.createElement('option');
+			//set class
+			optionClass.className = "optionClass";
+			//set text
+			optionClass.innerHTML = arrayData['Class'];
+			//set value
+			optionClass.value = arrayData['Class'];
+			//append optoin class to select class
+			selectClass.appendChild(optionClass);
+			//select this value
+			selectClass.value = arrayData['Class'];
+
+
+			//create optoin profile
+			let optionProfile = document.createElement('option');
+			//set class
+			optionProfile.className = "optionProfile";
+			//set text
+			optionProfile.innerHTML = arrayData['Profile'];
+			//set value
+			optionProfile.value = arrayData['Profile'];
+			//append optoin Profile to select Profile
+			selectProfile.appendChild(optionProfile);
+			//select this value
+			selectProfile.value = arrayData['Profile'];
+
+
+		}
+
+	
 		set_data();
+		append_data_into_chnage_user_data();
 		
 
 	</script>
