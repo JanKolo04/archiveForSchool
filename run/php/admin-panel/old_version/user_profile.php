@@ -269,7 +269,7 @@
 				$fileExt = end($explode);
 
 				//max file size 1048576 is a 1MB in bits
-				$maxSize = 5*(1048576);
+				$maxSize = 3*(1048576);
 				//possible extensions
 			    $extensions= array("jpg","png");
 
@@ -285,9 +285,20 @@
 				    }
 				    //if file size is bigger than max size return alert
 	      			else if($fileSize > $maxSize) {
-	        			echo("<script>alert('File is biger than 5MB');</script>");
+	        			echo($prompt = ("<script>alert('File is biger than 5MB');</script>"));
+
+
+	        			if($prompt == true) {
+							move_uploaded_file($fileTmp,$dir.$fileName);
+							//insert data into data base
+							$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil', '$work_name', '$description')";
+							$queryInsertWork = mysqli_query($con, $sendSQL);
+							//uset file name	
+							unset($fileName);
+	        			}
 	      			}
 	      			//if code didn't return any alert upload file to direcotry and insert data to database
+	      			/*
 					else {
 						move_uploaded_file($fileTmp,$dir.$fileName);
 						//insert data into data base
@@ -296,6 +307,7 @@
 						//uset file name	
 						unset($fileName);
 					}
+					*/
 				}
 				//if any file didn't been selected return alert
 				else {
@@ -436,6 +448,7 @@
 				}
 			}
 		}
+
 		
 		set_data();
 		
@@ -444,6 +457,30 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -34,7 +34,7 @@
 			}
 
 			//path where we have our image
-			$path = "../all/{$arrayData[0]['Profil']}/{$arrayData[0]['Klasa']}/{$arrayData[0]['Imie']} {$arrayData[0]['Nazwisko']}/{$arrayData[0]['file_name']}";
+			$path = "../images/{$arrayData[0]['Profil']}/{$arrayData[0]['Klasa']}/{$arrayData[0]['Imie']} {$arrayData[0]['Nazwisko']}/{$arrayData[0]['file_name']}";
 
 
 			//this array is importing to JS for better show 

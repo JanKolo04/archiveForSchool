@@ -195,11 +195,8 @@
 					if($querySearch->num_rows > 0) {
 						//append to array $row elements from query
 						while ($row = mysqli_fetch_array($querySearch)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
 						}
-					}
-					else {
-						echo "<script>alert('Error');</script>";
 					}
 				}
 				else {
@@ -218,16 +215,13 @@
 					if($querySerachClass->num_rows > 0) {
 						//append to array $row elements from query
 						while ($row = mysqli_fetch_array($querySerachClass)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
 						}	
 					}
-					else {
-						echo "<script>alert('Error');</script>";
-					}
 				}
-			}
-			else {
-				echo "<script>alert('Error');</script>";
+				else {
+					echo "<script>alert('Error');</script>";
+				}
 			}
 			
 		}
@@ -243,16 +237,13 @@
 					if($querySerachProfil->num_rows > 0) {
 						//append to array $row elements from query
 						while ($row = mysqli_fetch_array($querySerachProfil)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']."<br>");
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
 						}
 					}
-					else {
-						echo "<script>alert('Error');</script>";
-					}
 				}
-			}
-			else {
-				echo "<script>alert('Error');</script>";
+				else {
+					echo "<script>alert('Error');</script>";
+				}
 			}
 		}
 
