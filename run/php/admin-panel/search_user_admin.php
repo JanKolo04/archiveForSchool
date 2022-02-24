@@ -80,6 +80,8 @@
 
 	?>
 
+
+	<!---SCRIPTS FOR USER PROFILE --->
 	<script type="text/javascript">
 		
 		function set_data() {
@@ -220,7 +222,7 @@
 			}
 		}
 
-		function append_data_into_chnage_user_data() {
+		function append_data_into_chnage_inputs_user_data() {
 			//array with data about user
 			const arrayData = <?php echo json_encode($arrayWithDataFromQuery);?>;
 
@@ -233,8 +235,6 @@
 			let lastnameChangeInput = document.querySelector('#changeLastname');
 			//set value for input lasname
 			lastnameChangeInput.value = arrayData['Lastname'];
-
-
 
 
 			//get select with class
@@ -269,14 +269,7 @@
 			//select this value
 			selectProfile.value = arrayData['Profile'];
 
-
 		}
-
-	
-		set_data();
-		append_data_into_chnage_user_data();
-		
-
 	</script>
 
 </body>

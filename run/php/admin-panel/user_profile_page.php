@@ -15,7 +15,15 @@
 	}
 
 	function user_profile_page() {
+		//run function with data arrays
 		echo "
+			<script>
+				window.onload = function() {
+					set_data();
+					append_data_into_chnage_inputs_user_data();
+				}
+			</script>
+
 			<div id='allStuff'>
 				<h2 id='nameSurname'></h2>
 
@@ -233,9 +241,12 @@
 		else {
 			echo "<script>alert('Error');</script>";
 		}
+
+
 		//return array with data for other function
 		return $arrayWithDataFromQuery;
 	}
+
 
 	function change_work_name_or_descriptoin() {
 		global $con;
@@ -290,7 +301,7 @@
 
 	function add_file_into_database_and_directory() {
 		global $con;
-		//get return value form prevous function
+		//get return value from get_id function
 		$arrayWithDataFromQuery = get_id();
 
 		//get work name
@@ -386,7 +397,5 @@
 
 	}
 
-
 ?>
-
 
