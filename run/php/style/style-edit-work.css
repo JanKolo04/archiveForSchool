@@ -1,0 +1,39 @@
+/*-----STYLE FOR MAIN DIVS-------*/
+#allStuff {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#inputsDiv {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+
+/*-----STYLE FOR EDITS INPUTS-------*/
+#submitAndback {
+	margin-top: 10px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;			
+}
+
+#backButtonDiv {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#submitEditButtonDiv {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

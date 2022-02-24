@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../style/style-work-view.css">
 	<title>Main</title>
 </head>
 <body>
@@ -75,30 +76,6 @@
 		show_img();
 
 	</script>
-
-	<style type="text/css">
-		#holder {
-			display: flex;
-			justify-content: center;
-			text-align: center;
-			flex-direction: column;
-			width: 100%;
-		}
-
-		.work_name {
-			text-align: center;
-		}
-
-		.description {
-			margin-top: 30px;
-		}
-
-		.img {
-			margin: auto;
-			width: 300px;
-		}
-
-	</style>
 
 </body>
 </html>

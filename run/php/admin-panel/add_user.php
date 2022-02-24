@@ -42,12 +42,23 @@
 			//class
 			$class = $_POST['klasa'];
 			//profile
-			$profil = $_POST['sepcjalizacja'];
+			$profile = $_POST['sepcjalizacja'];
 
-			//insert data into user
-			$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$profil')";
-			//quert add user
-			$insertQuery = mysqli_query($con, $insertSQL);
+			//path to user directory
+			$path = "../images/$profile/$class/$name $lastname";
+			//if directory dosen't exist create user and create directory
+			if(!file_exists($path)) {
+				//insert data into user
+				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$profile')";
+				//quert add user
+				$insertQuery = mysqli_query($con, $insertSQL);
+
+				mkdir($path, 0777);
+			}
+			//else show alert
+			else {
+				echo "<script>alert('User exist!');</script>";
+			}
 		}
 
 	?>

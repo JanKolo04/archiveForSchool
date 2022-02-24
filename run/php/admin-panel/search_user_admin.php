@@ -3,6 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!---STYLE FOR USER PAGE----->
+	<link rel="stylesheet" type="text/css" href="../style/style-user-page.css">
+	<!---STYLE FOR EDIT WORK----->
 	<title>Search</title>
 </head>
 <body>
@@ -222,6 +225,9 @@
 			}
 		}
 
+
+		//--------!!!!!DANE BEDA DODAWANIE Z PLIKU JSON!!!!!--------
+		//zosatnie to zaimplementowane później
 		function append_data_into_chnage_inputs_user_data() {
 			//array with data about user
 			const arrayData = <?php echo json_encode($arrayWithDataFromQuery);?>;

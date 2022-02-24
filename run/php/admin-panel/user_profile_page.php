@@ -43,11 +43,14 @@
 								<div id='selectClassDiv'>
 									<select name='changeClass' id='changeClass'>
 										<option disabled selected value>Select class</option>
+										<option>3a</option>
+										<option>3c</option>
 									</select>
 								</div>
 								<div id='selectProfileDiv'>
 									<select name='changeProfile' id='changeProfile'>
 										<option disabled selected value>Select profile</option>
+										<option>Grafika</option>
 									</select>
 								</div>
 							</div>
@@ -77,115 +80,6 @@
 					</table>
 				</div>
 			</div>
-
-
-
-			<style type='text/css'>
-
-				/*-----STYLE FOR MAIN DIVS-------*/
-				#allStuff {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					flex-direction: column;
-				}
-
-				#allInputs {
-					width: 100%;
-				}
-
-				#inputsDiv {
-					margin-top: 20px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					flex-direction: column;
-				}
-
-
-				/*-----STYLE FOR CHANGE DATA IN USER----*/
-				#changeDiv {
-					margin-top: 30px;
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					flex-direction: column;
-				}
-
-				#chnageInputsDiv {
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					flex-direction: row;
-				}
-
-				#chnageInputsDiv div {
-					width: 50%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-
-				#changeSelectDiv {
-					margin-top: 10px;
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					flex-direction: row;	
-				}
-
-				#changeSelectDiv div {
-					width: 50%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-
-				#submitChangeDiv {
-					margin-top: 10px;
-				}
-
-				/*-----STYLE FOR EDITS INPUTS-------*/
-				#selectFileDiv  {
-					width: 100%;
-					margin: 10px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-
-				#selectDiv {
-					width: 50%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-				#submitEditButtonDiv {
-					width: 50%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-
-
-				/*-----STYLE FOR ADD INPUTS-------*/
-
-				#inputsFileTextDiv {
-					margin-top: 30px;
-				}
-
-				#inputFileSelectDiv {
-					margin-top: 10px;
-				}
-
-				#divTable {
-					margin-top: 40px;
-				}
-
-			</style>
 
 		";
 	}
@@ -342,35 +236,45 @@
 			//possible extensions
 		    $extensions= array("jpg","png");
 
-		    //if filename dosen't empty do code 
-		    if(!empty($fileName)) {
-		    	//if file exist show alert
-			    if(file_exists($dir.$fileName)) {
-			     	echo("<script>alert('File exist');</script>");
-			    }
-			    //if upload file extension dosen't be in extensions array return alert 
-			    else if(!in_array($fileExt,$extensions)) {
-			        echo("<script>alert('Different extensions, use JPG or PNG');</script>");
-			    }
-			    //if file size is bigger than max size return alert
-      			else if($fileSize > $maxSize) {
-        			echo("<script>alert('File is biger than 5MB');</script>");
-        		}
-      			
-      			//if code didn't return any alert upload file to direcotry and insert data to database
-				else {
-					move_uploaded_file($fileTmp,$dir.$fileName);
-					//insert data into data base
-					$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil', '$work_name', '$description')";
-					$queryInsertWork = mysqli_query($con, $sendSQL);
-					//uset file name	
-					unset($fileName);
-				}
+		    $counter = 0;
+		    while($counter < 1) {
+			    //if filename dosen't empty do code 
+			    if(!empty($fileName)) {
+			    	//if file exist show alert
+				    if(file_exists($dir.$fileName)) {
+				     	echo("<script>alert('File exist');</script>");
+				     	break;
+				    }
 				
-			}
-			//if any file didn't been selected return alert
-			else {
-				echo("<script>alert('No files has been selected');</script>");
+				    //if upload file extension dosen't be in extensions array return alert 
+				    else if(!in_array($fileExt,$extensions)) {
+				        echo("<script>alert('Different extensions, use JPG or PNG');</script>");
+				        break;
+				    }
+				    //if file size is bigger than max size return alert
+	      			else if($fileSize > $maxSize) {
+	        			echo("<script>alert('File is biger than 5MB');</script>");
+	        			break;
+	        		}
+	      			
+	      			//if code didn't return any alert upload file to direcotry and insert data to database
+					else {
+						move_uploaded_file($fileTmp,$dir.$fileName);
+						//insert data into data base
+						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil', '$work_name', '$description')";
+						$queryInsertWork = mysqli_query($con, $sendSQL);
+						//add counter
+						//uset file name	
+						unset($fileName);
+						break;
+					}
+					
+				}
+				//if any file didn't been selected return alert
+				else {
+					echo("<script>alert('No files has been selected');</script>");
+					break;
+				}
 			}
 
 	   	}
