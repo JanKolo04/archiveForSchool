@@ -101,12 +101,6 @@
 				let arrayWorksLen = arrayWorks.length;
 				//loop exist for adding data into table
 				for(let i=0; i<arrayWorksLen; ++i) {
-					//create option
-					let option = document.createElement("option");
-					option.className = "option";
-					option.value = arrayWorks[i]['id_work'];
-					option.innerHTML = arrayWorks[i]['work_name'];
-					select.appendChild(option);
 
 					//crete recodr
 					let record = document.createElement('tr');
@@ -121,7 +115,7 @@
 					dataName.className = 'data';
 					//set text
 					dataName.innerHTML = arrayData['Name'];
-					//append data to rwo
+					//append data to row
 					record.appendChild(dataName);
 
 					//data with Lastname
@@ -130,7 +124,7 @@
 					dataLastName.className = 'data';
 					//set text
 					dataLastName.innerHTML = arrayData['Lastname'];
-					//append data to rwo
+					//append data to row
 					record.appendChild(dataLastName);
 
 
@@ -140,7 +134,7 @@
 					dataClass.className = 'data';
 					//set text
 					dataClass.innerHTML = arrayData['Class'];
-					//append data to rwo
+					//append data to row
 					record.appendChild(dataClass);
 
 
@@ -150,7 +144,7 @@
 					dataProfile.className = 'data';
 					//set text
 					dataProfile.innerHTML = arrayData['Profile'];
-					//append data to rwo
+					//append data to row
 					record.appendChild(dataProfile);
 
 
@@ -160,15 +154,15 @@
 					dataWorkName.className = 'data';
 					//set text
 					dataWorkName.innerHTML = arrayWorks[i]['work_name'];
-					//append data to rwo
+					//append data to row
 					record.appendChild(dataWorkName);
 
-					//data with work name
-					let dataButton = document.createElement('td');
+					//data with view button
+					let dataButtonView = document.createElement('td');
 					//set class name
-					dataButton.className = 'data';
-					//append data to rwo
-					record.appendChild(dataButton);
+					dataButtonView.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonView);
 
 					//view button
 					let viewButton = document.createElement('a');
@@ -179,7 +173,26 @@
 					//set text
 					viewButton.innerHTML = "View";
 					//append button to data for button
-					dataButton.appendChild(viewButton);
+					dataButtonView.appendChild(viewButton);
+
+
+					//data with edit button 
+					let dataButtonEdit = document.createElement('td');
+					//set class name
+					dataButtonEdit.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonEdit);
+
+					//view button
+					let editButton = document.createElement('a');
+					//set class name
+					editButton.className = "editButton";
+					//set href for button
+					editButton.href = "edit_work.php?work="+arrayWorks[i]['id_work'];
+					//set text
+					editButton.innerHTML = "Edit";
+					//append button to data for button
+					dataButtonEdit.appendChild(editButton);
 
 				}
 			}

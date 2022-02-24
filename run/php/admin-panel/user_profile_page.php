@@ -16,30 +16,40 @@
 				<h2 id='nameSurname'></h2>
 
 				<form method='post' enctype='multipart/form-data'>
-					<div id='inputsDiv'>
-						<div id='inputsEditsDiv'>
-							<input type='text' name='editWork_name' id='editWork_name' placeholder='Change work name'>
-							<input type='text' name='editDescription' id='editDescription' placeholder='Change description'>
+					<div id='allInputs'>
+						<div id='changeDiv'>
+							<div id='chnageInputsDiv'>
+								<div id='nameInputDiv'>
+									<input type='text' name='chnageName' placeholder='Chnage name...'>
+								</div>
+								<div id='lastnameInputDiv'>
+									<input type='text' name='chnageLastame' placeholder='Chnage Lastname...'>
+								</div>
+							</div>
+
+							<div id='changeSelectDiv'>
+								<div id='selectClassDiv'>
+									<select name='selectClass'>
+										<option>--Select--</option>
+									</select>
+								</div>
+								<div id='selectProfileDiv'>
+									<select>
+										<option>--Select--</option>
+									</select>
+								</div>
+							</div>
 						</div>
 
-						<div id='selectFileDiv'>
-							<div id='selectDiv'>
-								<select name='selectWorkToEdit' id='selectWorkToEdit' onchange='set_value_for_input(event)'>
-									<option disabled selected>Select user work</option>
-								</select>
+						<div id='inputsDiv'>
+							<div id='inputsFileTextDiv'>
+								<input type='text' name='work_name' placeholder='Work name...'>
+								<input type='text' name='description' placeholder='Description...'>
 							</div>
-							<div id='submitEditButtonDiv'>
-								<button type='submit' name='editSubmit'>Edit</button>
+							<div id='inputFileSelectDiv'>
+								<input type='file' name='file'>
+								<button type='submit' name='submitAddFile'>Add</button>
 							</div>
-						</div>
-
-						<div id='inputsFileTextDiv'>
-							<input type='text' name='work_name' placeholder='Work name...'>
-							<input type='text' name='description' placeholder='Description...'>
-						</div>
-						<div id='inputFileSelectDiv'>
-							<input type='file' name='file'>
-							<button type='submit' name='submitAddFile'>Add</button>
 						</div>
 					</div>
 				</form>
@@ -64,6 +74,10 @@
 					flex-direction: column;
 				}
 
+				#allInputs {
+					width: 100%;
+				}
+
 				#inputsDiv {
 					margin-top: 20px;
 					display: flex;
@@ -72,6 +86,47 @@
 					flex-direction: column;
 				}
 
+
+				/*-----STYLE FOR CHANGE DATA IN USER----*/
+				#changeDiv {
+					margin-top: 30px;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+				}
+
+				#chnageInputsDiv {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: row;
+				}
+
+				#chnageInputsDiv div {
+					width: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				#changeSelectDiv {
+					margin-top: 10px;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: row;	
+				}
+
+				#changeSelectDiv div {
+					width: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
 
 				/*-----STYLE FOR EDITS INPUTS-------*/
 				#selectFileDiv  {
