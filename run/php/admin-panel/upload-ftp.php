@@ -8,35 +8,39 @@
 <body>
 
 	<?php
-		//get name form file
-		$fileName = "add_user.php";
-		//path to dircetory
-		$dir = "test/".$fileName;
-		
-		//username
-		$usernameFtp = "username";
-		//password
-		$passwordFtp = "***";
-		//sername
-		$servername = "servername";
+		function upload_file() {
+			//get name form file
+			$fileName = "add_user.php";
+			//path to dircetory
+			$dir = "test/".$fileName;
+			
+			//username
+			$usernameFtp = "admin@olciak.webd.pro";
+			//password
+			$passwordFtp = "Kobie098!";
+			//sername
+			$servername = "ftp.olciak.webd.pro";
 
-		//set up basic connection
-		$ftp = ftp_connect($servername);
+			//set up basic connection
+			$ftp = ftp_connect($servername);
 
-		//login with username and password
-		$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
+			//login with username and password
+			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
 
 
 
-		// upload a file
-		if (ftp_put($ftp, $dir, $fileName, FTP_ASCII)) {
-		 echo "successfully uploaded $fileName\n";
-		} else {
-		 echo "There was a problem while uploading $fileName\n";
+			//upload a file
+			if (ftp_put($ftp, $dir, $fileName, FTP_ASCII)) {
+				echo "successfully uploaded $fileName\n";
+			} 
+			else {
+				echo "There was a problem while uploading $fileName\n";
+			}
+
+			//close the connection
+			ftp_close($ftp);
 		}
 
-		// close the connection
-		ftp_close($ftp);
 	?>
 
 </body>

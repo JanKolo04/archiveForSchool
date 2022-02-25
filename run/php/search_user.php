@@ -26,7 +26,7 @@
 
 	<?php
 
-		include("connection.php");
+		include("connection-user.php");
 
 		/*
 		function search() {

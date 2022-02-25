@@ -53,7 +53,10 @@
 				//quert add user
 				$insertQuery = mysqli_query($con, $insertSQL);
 
+				//create direcotry in local
 				mkdir($path, 0777);
+				//create folder on hosting
+				//create_directory_ftp($path);
 			}
 			//else show alert
 			else {
@@ -61,7 +64,42 @@
 			}
 		}
 
+
+		function create_directory_ftp($path) {
+			//username
+			$usernameFtp = "admin@olciak.webd.pro";
+			//password
+			$passwordFtp = "Kobie098!";
+			//sername
+			$servername = "ftp.olciak.webd.pro";
+
+			//set up basic connection
+			$ftp = ftp_connect($servername);
+
+			//login with username and password
+			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
+
+			//if directory create echo Sucessfully
+			if(ftp_mkdir($ftp, $path)) {
+				echo "Successfully";
+			}
+			//else echo error
+			else {
+				echo "Error";
+			}
+
+		}
+
 	?>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
