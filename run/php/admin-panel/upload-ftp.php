@@ -14,11 +14,11 @@
 		$dir = "test/".$fileName;
 		
 		//username
-		$usernameFtp = "admin@olciak.webd.pro";
+		$usernameFtp = "username";
 		//password
-		$passwordFtp = "Kobie098!";
+		$passwordFtp = "***";
 		//sername
-		$servername = "ftp.olciak.webd.pro";
+		$servername = "servername";
 
 		//set up basic connection
 		$ftp = ftp_connect($servername);
