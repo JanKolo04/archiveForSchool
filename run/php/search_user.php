@@ -189,13 +189,15 @@
 						$searchValue .= "','";
 					}
 				}
-
-				$search = "SELECT * FROM user_works WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue') OR work_name IN ('$searchValue')";
+				//search works
+				$search = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue')";
+				//if query is correct 
 				if($querySearch = mysqli_query($con, $search)) {
 					if($querySearch->num_rows > 0) {
 						//append to array $row elements from query
 						while ($row = mysqli_fetch_array($querySearch)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+							//show results
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");	
 						}
 					}
 				}
