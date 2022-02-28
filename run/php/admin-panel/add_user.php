@@ -8,8 +8,8 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="imie">
-		<input type="text" name="nazwisko">
+		<input type="text" name="imie" placeholder="Name" required>
+		<input type="text" name="nazwisko" placeholder="Lastname" required>
 		<select name="klasa">
 			<option disabled selected value>--Select--</option>
 			<option>3a</option>
@@ -55,8 +55,24 @@
 
 				//create direcotry in local
 				mkdir($path, 0777);
+
 				//create folder on hosting
-				//create_directory_ftp($path);
+				//create_directory_for_user_in_ftp_server($path);
+
+				/*---------APPEND LOGS TO .adminLogs.txt---------*/
+				//set default timezone for date
+				date_default_timezone_set("Europe/Warsaw");
+				//set current date
+				$date = date("d.m.y h:i:s");
+
+				//open file to write
+				$file = fopen(".adminLogs.txt", "w");
+				//data to append
+				$data = "Admin created user $name $lastname $class $profile at $date\n";
+				//write file
+				fwrite($file, $data);
+				//clode file
+				fclose($file);
 			}
 			//else show alert
 			else {
@@ -65,13 +81,13 @@
 		}
 
 
-		function create_directory_ftp($path) {
+		function create_directory_for_user_in_ftp_server($path) {
 			//username
-			$usernameFtp = "admin@olciak.webd.pro";
+			$usernameFtp = "***";
 			//password
-			$passwordFtp = "Kobie098!";
+			$passwordFtp = "**";
 			//sername
-			$servername = "ftp.olciak.webd.pro";
+			$servername = "**";
 
 			//set up basic connection
 			$ftp = ftp_connect($servername);

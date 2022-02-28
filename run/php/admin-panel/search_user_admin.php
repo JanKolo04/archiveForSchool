@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!---STYLE FOR USER PAGE----->
 	<link rel="stylesheet" type="text/css" href="../style/style-user-page.css">
-	<!---STYLE FOR EDIT WORK----->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>Search</title>
 </head>
 <body>
@@ -248,35 +248,29 @@
 			//get select with profile
 			let selectProfile = document.querySelector('#changeProfile');
 
-			//create optoin class
-			let optionClass = document.createElement('option');
-			//set class
-			optionClass.className = "optionClass";
-			//set text
-			optionClass.innerHTML = arrayData['Class'];
-			//set value
-			optionClass.value = arrayData['Class'];
-			//append optoin class to select class
-			selectClass.appendChild(optionClass);
 			//select this value
 			selectClass.value = arrayData['Class'];
 
-
-			//create optoin profile
-			let optionProfile = document.createElement('option');
-			//set class
-			optionProfile.className = "optionProfile";
-			//set text
-			optionProfile.innerHTML = arrayData['Profile'];
-			//set value
-			optionProfile.value = arrayData['Profile'];
-			//append optoin Profile to select Profile
-			selectProfile.appendChild(optionProfile);
 			//select this value
 			selectProfile.value = arrayData['Profile'];
 
 		}
+
+		set_data();
+		append_data_into_chnage_inputs_user_data();
+
 	</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="text">
+		<input type="text" name="text" placeholder="Search user...">
 		<select name="klasa">
 			<option>--Select--</option>
 			<option>3b</option>

@@ -17,12 +17,6 @@
 	function user_profile_page() {
 		//run function with data arrays
 		echo "
-			<script>
-				window.onload = function() {
-					set_data();
-					append_data_into_chnage_inputs_user_data();
-				}
-			</script>
 
 			<div id='allStuff'>
 				<h2 id='nameSurname'></h2>
@@ -43,14 +37,16 @@
 								<div id='selectClassDiv'>
 									<select name='changeClass' id='changeClass'>
 										<option disabled selected value>Select class</option>
-										<option>3a</option>
-										<option>3c</option>
+										<option value='3a'>3a</option>
+										<option value='3b'>3b</option>
+										<option value='3c'>3c</option>
 									</select>
 								</div>
 								<div id='selectProfileDiv'>
 									<select name='changeProfile' id='changeProfile'>
 										<option disabled selected value>Select profile</option>
-										<option>Grafika</option>
+										<option value='Informatyka'>Informatyka</option>
+										<option value='Grafika'>Grafika</option>
 									</select>
 								</div>
 							</div>
@@ -234,7 +230,7 @@
 			//max file size 1048576 is a 1MB in bits
 			$maxSize = 3*(1048576);
 			//possible extensions
-		    $extensions= array("jpg","png");
+		    $extensions = array("jpg","png");
 
 		    $counter = 0;
 		    while($counter < 1) {
@@ -253,7 +249,7 @@
 				    }
 				    //if file size is bigger than max size return alert
 	      			else if($fileSize > $maxSize) {
-	        			echo("<script>alert('File is biger than 5MB');</script>");
+	        			echo ("<script>alert('File is biger than 3MB');</script>");
 	        			break;
 	        		}
 	      			
@@ -264,8 +260,6 @@
 						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profil', '$work_name', '$description')";
 						$queryInsertWork = mysqli_query($con, $sendSQL);
 						//add counter
-						//uset file name	
-						unset($fileName);
 						break;
 					}
 					
@@ -278,7 +272,6 @@
 			}
 
 	   	}
-
 	}
 
 
@@ -302,4 +295,3 @@
 	}
 
 ?>
-
