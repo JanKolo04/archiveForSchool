@@ -64,7 +64,8 @@
 			//if isset user_id show user profile
 			if(isset($_GET['user_id'])) {
 				user_profile_page();
-				get_id();
+				get_data_about_user();
+				get_all_user_works();
 			}
 			//if user_id dosent exist show search page
 			else {

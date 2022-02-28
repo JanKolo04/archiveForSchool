@@ -24,28 +24,42 @@
 			global $con, $arrayImportDataToJS;
 			//get id from url
 			$id_work = $_GET['work'];
-			//get all data from row where id=id_work
-			$findUser = "SELECT * FROM user_works WHERE id='$id_work'";
-			$findUserQuery = mysqli_query($con, $findUser);
 
-			//loop to push data to arrayData
-			$arrayData = [];
-			foreach($findUserQuery as $key=>$value) {
-				$arrayData[$key] = $value;
+			//get all data from row where id=id_work
+			$findWorks = "SELECT * FROM user_works WHERE id='$id_work'";
+			$findWorksQuery = mysqli_query($con, $findWorks);
+
+			//loop to push works to arrayWorks
+			$arrayWorks = [];
+			foreach($findWorksQuery as $key=>$value) {
+				$arrayWorks[] = $value;
 			}
 
+			//user id
+			$user_id = $arrayWorks[0]['id_user'];
+			//find user woth id=user_id
+			$findUser = "SELECT * FROM users WHERE id='$user_id'";
+			$findUserQuery = mysqli_query($con, $findUser);
+
+			//loop to push user data to arrayUser
+			$arrayUser = [];
+			foreach($findUserQuery as $key=>$value) {
+				$arrayUser[] = $value;
+			}
+
+
 			//path where we have our image
-			$path = "../images/{$arrayData[0]['Profil']}/{$arrayData[0]['Klasa']}/{$arrayData[0]['Imie']} {$arrayData[0]['Nazwisko']}/{$arrayData[0]['file_name']}";
+			$path = "../images/{$arrayUser[0]['Profil']}/{$arrayUser[0]['Klasa']}/{$arrayUser[0]['Imie']} {$arrayUser[0]['Nazwisko']}/{$arrayWorks[0]['file_name']}";
 
 
 			//this array is importing to JS for better show 
 			//data in website
 			$arrayImportDataToJS = [
 				"path"=>$path,
-				"work_name"=>$arrayData[0]['work_name'],
-				"description"=>$arrayData[0]['description'],
-				"studentName"=>$arrayData[0]['Imie'],
-				"studentLastname"=>$arrayData[0]['Nazwisko']
+				"work_name"=>$arrayWorks[0]['work_name'],
+				"description"=>$arrayWorks[0]['description'],
+				"studentName"=>$arrayUser[0]['Imie'],
+				"studentLastname"=>$arrayUser[0]['Nazwisko']
 			];
 
 		}

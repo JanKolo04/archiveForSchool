@@ -80,8 +80,8 @@
 		";
 	}
 
-	function get_id() {
-		global $con, $arrayWithDataFromQuery, $arrayWithWorks;
+	function get_data_about_user() {
+		global $con, $arrayWithDataFromQuery;
 		//get user id from url
 		$user_id = $_GET['user_id'];
 		//select all data from user table where id is user_id
@@ -107,8 +107,14 @@
 			echo "<script>alert('Error');</script>";
 		}
 
+		//return array with data for other function
+		return $arrayWithDataFromQuery;
+	}
 
-
+	function get_all_user_works() {
+		global $con, $arrayWithWorks;
+		//get user id from url
+		$user_id = $_GET['user_id'];
 		$getDataFromSQLWorks = "SELECT * FROM user_works WHERE id_user='$user_id'";
 		//if query data == true do code else return error
 		if($queryDataWorks = mysqli_query($con, $getDataFromSQLWorks)) {
@@ -131,18 +137,14 @@
 		else {
 			echo "<script>alert('Error');</script>";
 		}
-
-
-		//return array with data for other function
-		return $arrayWithDataFromQuery;
 	}
 
 
 
 	function add_file_into_database_and_directory() {
 		global $con;
-		//get return value from get_id function
-		$arrayWithDataFromQuery = get_id();
+		//get return value from get_data_about_user function
+		$arrayWithDataFromQuery = get_data_about_user();
 
 		//get work name
 		$work_name = $_POST['work_name'];
@@ -205,7 +207,7 @@
 					else {
 						move_uploaded_file($fileTmp,$dir.$fileName);
 						//insert data into data base
-						$sendSQL = "INSERT INTO user_works(Imie, Nazwisko, Klasa, id_user, file_name, Profil, work_name, description) VALUES('$name', '$lastname', '$class', '$id', '$fileName', '$profile', '$work_name', '$description')";
+						$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, description) VALUES('$id', '$fileName', '$work_name', '$description')";
 						$queryInsertWork = mysqli_query($con, $sendSQL);
 						
 						/*---------APPEND LOGS TO .adminLogs.txt---------*/
@@ -241,7 +243,7 @@
 	function chnage_user_data() {
 		global $con;
 		//array with old user data
-		$arrayOldData = get_id();
+		$arrayOldData = get_data_about_user();
 
 		//get user id
 		$user_id = $_GET['user_id'];
@@ -278,11 +280,29 @@
 	//function to remove work
 	function remove_work() {
 		global $con;
+		//array with data about user
+		$arrayWithUserData = get_data_about_user();
 		//get value from button
 		$removeButton = $_POST['removeButton'];
+
+		//get work name
+		$getWorkNameSQL = "SELECT file_name FROM user_works WHERE id='$removeButton'";
+		$getWorkNameQuery = mysqli_query($con, $getWorkNameSQL);
+		//append reslut to variable
+		$arrayWithFile_name = mysqli_fetch_array($getWorkNameQuery);
+
 		//remove work
 		$removeSQL = "DELETE FROM user_works WHERE id='$removeButton'";
 		$removeQuery = mysqli_query($con, $removeSQL);
+
+
+		//path to file
+		$pathToFile = "../images/".$arrayWithUserData["Profile"]."/".$arrayWithUserData['Class']."/".$arrayWithUserData['Name']." ".$arrayWithUserData['Lastname']."/".$arrayWithFile_name['file_name'];
+
+		//if code cant delete file return error
+		if(!unlink($pathToFile)) {
+			echo "<script> alert('Error'); </script>";
+		}
 	}
 
 ?>
