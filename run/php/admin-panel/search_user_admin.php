@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!---STYLE FOR USER PAGE----->
 	<link rel="stylesheet" type="text/css" href="../style/style-user-page.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>Search</title>
 </head>
 <body>
@@ -113,6 +112,28 @@
 					record.className = "record";
 					//append record into table
 					table.appendChild(record);
+
+
+					//data with remove button
+					let dataButtonRemove = document.createElement('td');
+					//set class name
+					dataButtonRemove.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonRemove);
+
+					//remove button
+					let removeButton = document.createElement('BUTTON');
+					//set class name
+					removeButton.className = "removeButton";
+					//set text
+					removeButton.innerHTML = "X";
+					//set name
+					removeButton.name = "removeButton";
+					//set value
+					removeButton.value = arrayWorks[i]['id_work'];
+					//append button to data for button
+					dataButtonRemove.appendChild(removeButton);
+
 
 					//data with name
 					let dataName = document.createElement('td');
@@ -255,6 +276,7 @@
 			selectProfile.value = arrayData['Profile'];
 
 		}
+
 
 		set_data();
 		append_data_into_chnage_inputs_user_data();

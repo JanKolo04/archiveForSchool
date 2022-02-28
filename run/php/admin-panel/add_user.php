@@ -63,10 +63,10 @@
 				//set default timezone for date
 				date_default_timezone_set("Europe/Warsaw");
 				//set current date
-				$date = date("d.m.y h:i:s");
+				$date = date("d.m.y h:i:sa");
 
 				//open file to write
-				$file = fopen(".adminLogs.txt", "w");
+				$file = fopen(".adminLogs.txt", "a");
 				//data to append
 				$data = "Admin created user $name $lastname $class $profile at $date\n";
 				//write file

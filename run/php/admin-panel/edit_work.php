@@ -106,6 +106,21 @@
 						//update data
 						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit' WHERE id='$work_id'";
 						$queryChange = mysqli_query($con, $sqlChange);
+
+						/*---------APPEND LOGS TO .adminLogs.txt---------*/
+						//set default timezone for date
+						date_default_timezone_set("Europe/Warsaw");
+						//set current date
+						$date = date("d.m.y h:i:sa");
+
+						//open file to write
+						$file = fopen(".adminLogs.txt", "a");
+						//data to append
+						$data = "Admin edited work for $name $lastname $class $profile at $date\n";
+						//write file
+						fwrite($file, $data);
+						//clode file
+						fclose($file);
 					}
 
 

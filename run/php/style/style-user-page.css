@@ -32,20 +32,18 @@
 #chnageInputsDiv {
 	width: 100%;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	flex-direction: row;
 }
 
-#chnageInputsDiv div {
-	width: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+#chnageInputsDiv input {
+	width: 49%;
+	margin: 5px;
 }
 
 #changeSelectDiv {
-	margin-top: 10px;
+	margin-top: 5px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -91,12 +89,42 @@
 
 #inputsFileTextDiv {
 	margin-top: 30px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+#inputsFileTextDiv input {
+	width: 49%;
+	margin: 5px;
 }
 
 #inputFileSelectDiv {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
+/*--------STYLE FOR TABLE--------*/
 #divTable {
-	margin-top: 40px;
+	margin-top: 50px;
 }
+
+/*--------STYLE FOR BUTTON--------*/
+.removeButton {
+	margin-right: 10px;
+	color: red;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
