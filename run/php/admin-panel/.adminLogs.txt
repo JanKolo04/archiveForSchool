@@ -1,1 +1,49 @@
-Admin created user Piotr Kolodziej 3b Grafika at 28.02.22 01:08:44
+Admin chnaged user data Wiktor Kolodziej 3b Grafika at 28.02.22 02:03:07
+	Chnages:
+		Wiktor => Jan,
+		Kolodziej => Kolodziej,
+		3b => 3b, 
+		Grafika => Grafika
+Admin added work for user Jan Kolodziej 3b  at 28.02.22 02:41:47pm
+Admin created user Igor Jaworski 3b Informatyka at 28.02.22 03:03:13pm
+Admin chnaged user data Igor Jaworski 3b Informatyka at 28.02.22 03:03:30
+	Chnages:
+		Igor => tet,
+		Jaworski => Jaworski,
+		3b => 3b, 
+		Informatyka => Informatyka
+Admin chnaged user data tet Jaworski 3b Informatyka at 28.02.22 03:03:34
+	Chnages:
+		tet => Igor,
+		Jaworski => Jaworski,
+		3b => 3b, 
+		Informatyka => Informatyka
+Admin added work for user Igor Jaworski 3b Informatyka at 28.02.22 03:03:45pm
+Admin edited work for     at 28.02.22 03:03:55pm
+Admin edited work for     at 28.02.22 03:07:59pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 04:50:15pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 04:51:37pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 04:52:24pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 04:53:14pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:04:50pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:05:11pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:05:40pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:05:53pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:06:51pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:07:59pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:09:10pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:09:38pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:14:58pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:17:22pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:21:40pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:24:23pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:27:00pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:30:11pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:33:51pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:34:11pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:34:57pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:38:37pm
+Admin added work for user     at 28.02.22 05:41:26pm
+Admin added work for user Jan Kolodziej 3b Grafika at 28.02.22 05:41:54pm
+Admin added work for user Antoni Walburg 3a Informatyka at 01.03.22 09:23:29am
+Admin added work for user Michał Śmieszniak 3b Grafika at 01.03.22 09:26:24am

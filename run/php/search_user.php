@@ -8,17 +8,16 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="text" placeholder="Search user...">
-		<select name="klasa">
-			<option>--Select--</option>
-			<option>3b</option>
+		<input type="text" name="searchInput" placeholder="Search user...">
+		<select name="class" id="class">
+			<option disabled selected>Select class</option>
 		</select>
-		<select name="profil">
-			<option>--Select--</option>
+		<select name="profile">
+			<option disabled selected>Select Profile</option>
 			<option>Grafika</option>
 			<option>Informatyka</option>
 		</select>
-		<button type="submit" name="submit">Search</button>
+		<button type="submit" name="search">Search</button>
 	</form>
 
 	<div id="div"></div>
@@ -176,15 +175,21 @@
 		}
 		*/
 
+		//function to search by input value
 		function search_from_input() {
 			global $con;
-			$searchValue = $_POST['text'];
+			//get value from input POST
+			$searchValue = $_POST['searchInput'];
 			if(strlen($searchValue) > 0) {
+				//split value from input
 				$arraySplit = explode(" ", $searchValue);
 
 				$searchValue = "";
-				for($i=0; $i<sizeof($arraySplit); $i++) { 
+				//loop to add values to clear value
+				for($i=0; $i<sizeof($arraySplit); $i++) {
+					//append vlue to variable 
 					$searchValue .= $arraySplit[$i];
+					//if i isn't last value add comma after append value to var 
 					if($i != sizeof($arraySplit)-1) {
 						$searchValue .= "','";
 					}
@@ -201,65 +206,73 @@
 						}
 					}
 				}
+				//if in mysqli_query is error reutrn alert(error)
 				else {
 					echo "<script>alert('Error');</script>";
 				}
 			}
 		}
 
+		//function to search works by class
 		function search_from_class_select() {
 			global $con;
-			$class = $_POST['klasa'];
-
-			if($class != "--Select--") {
-				$searchClass = "SELECT * FROM user_works WHERE Klasa='$class'";
-				if($querySerachClass = mysqli_query($con, $searchClass)) {
-					if($querySerachClass->num_rows > 0) {
-						//append to array $row elements from query
-						while ($row = mysqli_fetch_array($querySerachClass)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
-						}	
-					}
-				}
-				else {
-					echo "<script>alert('Error');</script>";
+			//get value from select POST
+			$class = $_POST['class'];
+			
+			//search works by class
+			$searchClass = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Klasa='$class'";
+			//if query is true do code
+			if($querySerachClass = mysqli_query($con, $searchClass)) {
+				//if rows in query is bigger tahn 0 do code
+				if($querySerachClass->num_rows > 0) {
+					//get all elements from query
+					while ($row = mysqli_fetch_array($querySerachClass)) {
+						//schow results
+						echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+					}	
 				}
 			}
-			
+			//if query is flase return aler(error)
+			else {
+				echo "<script>alert('Error');</script>";
+			}
 		}
 
-
+		//search works by porfiles
 		function search_from_profile_select() {
 			global $con;
-			$profil = $_POST['profil'];
-
-			if($profil != "--Select--") {
-				$searchProfil = "SELECT * FROM user_works WHERE Profil='$profil'";
-				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
-					if($querySerachProfil->num_rows > 0) {
-						//append to array $row elements from query
-						while ($row = mysqli_fetch_array($querySerachProfil)) {
-							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
-						}
+			//get porfile form select POST
+			$profile = $_POST['profile'];
+			//search works by profile
+			$searchProfil = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Profil='$profile'";
+			//if query is true do code
+			if($querySerachProfil = mysqli_query($con, $searchProfil)) {
+				//if query have more rows than 0 do code
+				if($querySerachProfil->num_rows > 0) {
+					//get all elemts from query
+					while ($row = mysqli_fetch_array($querySerachProfil)) {
+						//show results
+						echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
 					}
 				}
-				else {
-					echo "<script>alert('Error');</script>";
-				}
 			}
+			//if query is false reutrn alert(error)
+			else {
+				echo "<script>alert('Error');</script>";
+			}	
 		}
 
 
 
-		if(isset($_POST['text'])) {
+		if(isset($_POST['searchInput'])) {
 			search_from_input();
 		}
 
-		if(isset($_POST['klasa'])) {
+		if(isset($_POST['class'])) {
 			search_from_class_select();
 		}
 
-		if(isset($_POST['profil'])) {
+		if(isset($_POST['profile'])) {
 			search_from_profile_select();
 		}
 
@@ -273,6 +286,76 @@
 			width: 50px;
 		}
 	</style>
+
+
+	<script type="text/javascript">
+		
+
+		function insert_class_to_select() {
+			//select
+			let select = document.querySelector('#class');
+			let jsonFile = new Request("class.json");
+			//get data from JSON file
+			fetch(jsonFile)
+				.then(function(resp) {
+					//return JS Object
+					return resp.json();
+				})
+				//get data from Object
+				.then(function(data) {
+					for(keys in data) {
+						//create disabled option
+						let disabledOption = document.createElement('option');
+						//set class name
+						disabledOption.className = 'disabledOption';
+						//set attribute
+						disabledOption.setAttribute('disabled', 'disabled');
+						//set innerHTML
+						disabledOption.innerHTML = keys;
+						//append disabledOption to select
+						select.appendChild(disabledOption);
+
+						for(value in keys) {
+							if(data[keys][value]!== undefined) {
+								//create option
+								let option = document.createElement('option');
+								//set class name
+								option.className = 'option';
+								//set innerHTML
+								option.innerHTML = data[keys][value];
+								//append option to select
+								select.appendChild(option);	
+							}		
+						}
+					}
+
+
+					/*
+					let objectLength = Object.keys(data).length;
+					
+					for(let i=0; i<objectLength; ++i) {
+						console.log(data[i]);
+						for(let y=0; y<data[i].length; ++y) {
+							//create option
+							let option = document.createElement('option');
+							//set class name
+							option.className = 'option';
+							//set innerHTML
+							option.innerHTML = " "+data[i][y];
+							//append option to select
+							select.appendChild(option);
+
+						}
+					}
+					*/
+					
+				});
+		}
+
+
+		insert_class_to_select();
+
+	</script>
 
 
 
