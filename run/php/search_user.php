@@ -180,6 +180,7 @@
 			global $con;
 			//get value from input POST
 			$searchValue = $_POST['searchInput'];
+
 			if(strlen($searchValue) > 0) {
 				//split value from input
 				$arraySplit = explode(" ", $searchValue);
@@ -195,7 +196,20 @@
 					}
 				}
 				//search works
-				$search = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue')";
+				$search = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE (users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue'))";
+
+				//if class and profile isnt empty add commands with search in class and profile to sql query  
+				if(!empty($_POST['class']) && !empty($_POST['profile'])) {
+					$search .= " AND (users.Klasa='{$_POST['class']}' OR users.Profil='{$_POST['profile']}')";
+				}
+				//if class isn't empty add to search query command with search in class
+				else if(!empty($_POST['class'])) {
+					$search .= " AND users.Klasa='{$_POST['class']}'";
+				}
+				//if profile isn't empty add to search query command with search in profile
+				else if(!empty($_POST['profile'])) {
+					$search .= " AND users.Profil='{$_POST['profile']}'";
+				}
 				//if query is correct 
 				if($querySearch = mysqli_query($con, $search)) {
 					if($querySearch->num_rows > 0) {
@@ -219,22 +233,24 @@
 			//get value from select POST
 			$class = $_POST['class'];
 			
-			//search works by class
-			$searchClass = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Klasa='$class'";
-			//if query is true do code
-			if($querySerachClass = mysqli_query($con, $searchClass)) {
-				//if rows in query is bigger tahn 0 do code
-				if($querySerachClass->num_rows > 0) {
-					//get all elements from query
-					while ($row = mysqli_fetch_array($querySerachClass)) {
-						//schow results
-						echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
-					}	
+			if(strlen($_POST['searchInput']) == 0) {
+				//search works by class
+				$searchClass = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Klasa='$class'";
+				//if query is true do code
+				if($querySerachClass = mysqli_query($con, $searchClass)) {
+					//if rows in query is bigger tahn 0 do code
+					if($querySerachClass->num_rows > 0) {
+						//get all elements from query
+						while ($row = mysqli_fetch_array($querySerachClass)) {
+							//schow results
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+						}	
+					}
 				}
-			}
-			//if query is flase return aler(error)
-			else {
-				echo "<script>alert('Error');</script>";
+				//if query is flase return aler(error)
+				else {
+					echo "<script>alert('Error');</script>";
+				}
 			}
 		}
 
@@ -243,23 +259,26 @@
 			global $con;
 			//get porfile form select POST
 			$profile = $_POST['profile'];
-			//search works by profile
-			$searchProfil = "SELECT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Profil='$profile'";
-			//if query is true do code
-			if($querySerachProfil = mysqli_query($con, $searchProfil)) {
-				//if query have more rows than 0 do code
-				if($querySerachProfil->num_rows > 0) {
-					//get all elemts from query
-					while ($row = mysqli_fetch_array($querySerachProfil)) {
-						//show results
-						echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+
+			if(strlen($_POST['searchInput']) == 0) {
+				//search works by profile
+				$searchProfil = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Profil='$profile'";
+				//if query is true do code
+				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
+					//if query have more rows than 0 do code
+					if($querySerachProfil->num_rows > 0) {
+						//get all elemts from query
+						while ($row = mysqli_fetch_array($querySerachProfil)) {
+							//show results
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+						}
 					}
 				}
+				//if query is false reutrn alert(error)
+				else {
+					echo "<script>alert('Error');</script>";
+				}	
 			}
-			//if query is false reutrn alert(error)
-			else {
-				echo "<script>alert('Error');</script>";
-			}	
 		}
 
 
@@ -267,14 +286,13 @@
 		if(isset($_POST['searchInput'])) {
 			search_from_input();
 		}
-
 		if(isset($_POST['class'])) {
 			search_from_class_select();
 		}
-
 		if(isset($_POST['profile'])) {
 			search_from_profile_select();
 		}
+
 
 
 
