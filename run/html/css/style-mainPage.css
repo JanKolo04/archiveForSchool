@@ -1,4 +1,5 @@
 body {
+	overflow: auto;
 	background-color: #e9ebee !important;
 }
 
@@ -33,6 +34,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: row;
 	width: 100%;
 	height: 80px;
 }
@@ -45,17 +47,107 @@ body {
 }
 
 #searchInput {
-	width: 97%;
-	height: 40px;
-	margin-left: 20px;
-	margin-right: 8px;
-	border-radius: 6px;
-	border: none;
-	outline: none;
-	font-size: 20px;
-	padding: 0px 10px;
+	min-width: 100px;
+    -webkit-transition: 0.5s;
+    font-size: 18px;
+    height: 48px;
+    line-height: 48px;
+    width: 97%;
+    margin-left: 20px;
+    margin-right: 8px;
+    padding-left: 50px;
+    border: none;
+    border-radius: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: white;
+    color: black;
+	background: url("../images/searchIcon.png") no-repeat scroll 7px 7px;
+	background-size: 30px;
+	background-color: white;
 }
 
+
+/*----------STYLE FOR SELECTOR DIV------------*/
+#selectClassDiv {
+	padding: 0px 5px;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#selectProfileDiv {
+	padding: 0px 5px;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*----------STYLE FOR SELECTOR------------*/
+#selectClassDiv .dropdown {
+	width: 150px !important;
+	outline: none !important;	
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;	
+}
+
+#selectClassDiv .btn {
+	width: 150px !important;
+	height: 35px;
+	border: 1px solid #bfbfbf;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	outline: none !important;	
+}
+
+
+#selectProfileDiv .dropdown {
+	width: 210px !important;
+	outline: none !important;	
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;	
+}
+
+#selectProfileDiv .btn {
+	width: 210px !important;
+	height: 35px;
+	border: 1px solid #bfbfbf;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	outline: none !important;	
+}
+
+
+.filter-option {
+	display: flex;
+	align-items: center;
+}
+
+.text {
+	font-size: 16px !important;	
+}
+
+#selectClassDiv.show {
+	width: 150px !important;
+}
+
+#selectProfileDiv.show {
+	width: 210px !important;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+	outline: none !important;
+}
+
+/*-------STYLE FOR SEARCH BUTTON-----*/
 #buttonSearchDiv {
 	width: 230px;
 	height: 80px;
@@ -65,15 +157,16 @@ body {
 }
 
 #searchButton {
-	width: 110px;
+	padding: 0px 20px;
 	height: 40px;
 	font-size: 22px;
 	margin-right: 30px;
+	margin-left: 20px;
 	border-radius: 6px;
 	border: none;
 	color: white;
 	cursor: pointer;
-	background-color: #0066ff;
+	background-color: #007bff;
 }
 
 #holderDiv {
@@ -84,12 +177,10 @@ body {
 	height: 670px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 
 .container {
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
@@ -97,21 +188,23 @@ body {
 .row {
 	width: 80%;
 	display: flex;
+	margin-top: 10px;
 	justify-content: center;
 	align-items: center;
 }
 
-.row a {
+body a {
 	font-size: 18px;
 	color: black;
 	text-decoration: none;
 }
-.row a:hover {
+body a:hover {
 	color: black;
 	text-decoration: underline;
 }
 
 .col-sm-width {
+	text-align: center;
 	margin: 10px;
 	height: 220px;
 	width: 400px;
@@ -123,6 +216,7 @@ body {
 }
 
 #sienceDiv {
+	text-align: center;
 	height: 100px;
 	width: 95%;
 	margin: 10px;
@@ -133,6 +227,49 @@ body {
 	background-color: white;
 }
 
+#footer {
+	position: absolute;
+	top: 829px;
+	left: 0;
+	height: 114px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #bfbfbf;
+}
+
+#infoDiv {
+	text-align: center;
+	width: 50%;
+	height: 114px;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#infoDiv p {
+	margin: 0px;
+	margin-left: 30px;
+}
+
+
+#adminDiv {
+	text-align: center;
+	width: 50%;
+	height: 114px;
+}
+
+#admin {
+	margin: 0px;
+	margin-right: 30px;
+}
+
+#footer i {
+	font-size: 19px;
+}
+.fa-facebook-square {
+	color: #007bff;
+}
+
 @media screen and (max-width: 1200px) {
 	.col-sm-width {
 		height: 100px;
@@ -140,6 +277,26 @@ body {
 	#sienceDiv {
 		height: 100px;
 		width: 400px;
+	}
+}
+
+@media screen and (max-width: 455px) {
+	#infoDiv {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	#adminDiv {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#footer p {
+		text-align: center;
+		margin: 5px;
 	}
 }
 
