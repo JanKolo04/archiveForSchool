@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!---------------JS ANS CSS FILES--------------->
-	<link rel="stylesheet" type="text/css" href="css/style-mainPage.css">
-	<script type="text/javascript" src="js/script-mainPage.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style-search.css">
+	<script type="text/javascript" src="js/script-search.js"></script>
 	<!-------AJAX------>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -19,7 +19,7 @@
 
 	<!-------ICON------>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Main Page</title>
+	<title>Search</title>
 </head>
 <body>
 
@@ -77,29 +77,68 @@
 	</div>
 
 
-	<div id="holderDiv">
-		<div class="container">
-			<div class="row d-flex justify-content-around">
-		    	<div class="col-sm-width">
-		      		<a href="">Prace fotograficzne</a>
-		    	</div>
-		    	<div class="col-sm-width">
-		      		<a href="">Prace graficzne</a>
-		    	</div>
-		  	
-		    	<div class="col-sm-width">
-		      		<a href="">Gry i aplikacje</a>
-		    	</div>
-		    	<div class="col-sm-width">
-		      		<a href="">Strony internetowe</a>
-		    	</div>
-		  	
-		    	<div class="col-sm-width" id="sienceDiv">
-		      		<a href="">Projekty przedmiotowe</a>
-		    	</div>
-		  	</div>
-		</div>
+	<div id="tableDiv">
+		<!---
+		<table id="table" border="1">
+			<tr class="record">
+				<td class="data">Jan</td>
+				<td class="data">Kolodziej</td>
+				<td id="classData" class="data">3b</td>
+				<td class="data">Grafika</td>
+				<td class="data">msbhv.png</td>
+				<td class="data" id="buttonData">
+					<a href="" id="viewButton">View</a>
+				</td>
+			</tr>
+		</table>
+		--->
+
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">Name</th>
+		      <th scope="col">Lastname</th>
+		      <th scope="col">Class</th>
+		      <th scope="col">Profile</th>
+		      <th scope="col">Work</th>
+		      <th scope="coll">View</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>Jan</td>
+		      <td>Kołodziej</td>
+		      <td class="classData">3b</td>
+		      <td>Grafika</td>
+		      <td>msbhv.png</td>
+		      <td class="viewData">
+		      	<a href="" class="viewButton">View</a>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td>Michał</td>
+		      <td>Śmieszniak</td>
+		      <td class="classData">3b</td>
+		      <td>Grafika</td>
+		      <td>photo.png</td>
+		      <td class="viewData">
+		      	<a href="" class="viewButton">View</a>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td>Wiktor</td>
+		      <td>Kusztykiewicz</td>
+		      <td class="classData">3b</td>
+		      <td>Grafika</td>
+		      <td>michal.png</td>
+		      <td class="viewData">
+		      	<a href="" class="viewButton">View</a>
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
 	</div>
+
 
 	<footer id="footer">
 		<div id="infoDiv">
@@ -112,35 +151,5 @@
 		</div>
 	</footer>
 
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -72,9 +72,8 @@ select {
 	border-right: 1px solid #ced4da !important;
 }
 
-
-/*--------------GRID MENU--------------*/
-#holderDiv {
+/*---------TABLE DIV--------*/
+#tableDiv {
 	position: absolute;
 	top: 160px;
 	left: 0;
@@ -82,55 +81,70 @@ select {
 	height: 670px;
 	display: flex;
 	justify-content: center;
+	align-items: flex-start;
 }
 
-#holderDiv .container {
+#table {
+	width: auto;
+}
+
+.record {
+	height: 100px;
+}
+
+.data {
+	min-width: 200px;
+	padding: 5px 20px;
+	text-align: center;
+}
+
+#classData {
+	min-width: 50px;
+}
+
+#buttonData {
 	display: flex;
+	justify-content: end;
 	align-items: center;
-	flex-direction: column;
+	border: none;
 }
 
-#holderDiv .row {
-	width: 80%;
-	display: flex;
-	margin-top: 20px;
-	justify-content: center;
-	align-items: center;
+
+
+/*------test table-----*/
+
+.table {
+	margin-top: 40px;
+	width: 90% !important;
 }
 
-body a {
-	font-size: 18px;
-	color: black;
+tr {
+	background-color: white;
+}
+
+
+
+.viewData {
+	width: 0px !important;
+	padding: 10px 20px !important;
+	background-color: red;
+}
+
+.viewButton {
+	background-color: #007bff;
+	padding: 4px 20px;
+	border-radius: 6px;
+	cursor: pointer;
+	color: white;
+	text-decoration: none;
+	border: 1px solid #ced4da;
+}
+
+.viewButton:hover {
+	color: white;
 	text-decoration: none;
 }
-body a:hover {
-	color: black;
-	text-decoration: underline;
-}
 
-#holderDiv .col-sm-width {
-	text-align: center;
-	margin: 10px;
-	height: 220px;
-	width: 400px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 6px;
-	background-color: white;
-}
-
-#holderDiv #sienceDiv {
-	text-align: center;
-	height: 100px;
-	width: 95%;
-	margin: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 6px;
-	background-color: white;
-}
 
 /*-----------FOOTER---------*/
 
@@ -173,21 +187,23 @@ body a:hover {
 #footer i {
 	font-size: 19px;
 }
+
+#footer a {
+	font-size: 18px;
+	color: black;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
 .fa-facebook-square {
 	color: #007bff;
 }
 
 /*-------MEDIA--------*/
-@media screen and (max-width: 1200px) {
-	#holderDiv .col-sm-width {
-		height: 100px;
-	}
-	#holderDiv #sienceDiv {
-		height: 100px;
-		width: 400px;
-	}
-}
-
 @media screen and (max-width: 455px) {
 	#infoDiv {
 		display: flex;
@@ -207,15 +223,3 @@ body a:hover {
 		margin: 5px;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
