@@ -1,0 +1,157 @@
+body {
+	overflow: auto;
+	background-color: #e9ebee !important;
+}
+/*----------BANER----------*/
+#baner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	box-shadow: 10px 6px 5px #d9d9d9;
+}
+
+#divLogo {
+	width: 280px;
+	height: 80px;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+#logo {
+	margin-left: 20px;
+}
+
+/*---------MAIN---------*/
+#main {
+	position: absolute;
+	top: 80px;
+	left: 0;
+	height: 789px;
+	width: 100%;
+	overflow: auto;
+}
+
+#workNameDiv {
+	width: 100%;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#nameLastnameDiv {
+	width: 100%;
+	height: auto;
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#descriptionDiv {
+	height: auto;
+	width: 100%;
+	padding: 10px 100px;
+	text-align: center;
+}
+
+#workDiv {
+	height: auto;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 30px;
+}
+
+#work {
+	width: 340px;
+}
+
+/*-----------FOOTER---------*/
+
+#footer {
+	position: absolute;
+	top: 869px;
+	left: 0;
+	height: 104px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #bfbfbf;
+}
+
+#infoDiv {
+	text-align: center;
+	width: 50%;
+	height: 114px;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#infoDiv p {
+	margin: 0px;
+	margin-left: 30px;
+}
+
+
+#adminDiv {
+	text-align: center;
+	width: 50%;
+	height: 114px;
+}
+
+#admin {
+	margin: 0px;
+	margin-right: 30px;
+}
+
+#footer i {
+	font-size: 19px;
+}
+
+#footer a {
+	font-size: 18px;
+	color: black;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+.fa-facebook-square {
+	color: #007bff;
+}
+
+/*-------------MEDIA--------------*/
+/*---media footer---*/
+@media screen and (max-width: 455px) {
+	#infoDiv {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	#adminDiv {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#footer p {
+		text-align: center;
+		margin: 5px;
+	}
+}

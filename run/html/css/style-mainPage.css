@@ -2,7 +2,7 @@ body {
 	overflow: auto;
 	background-color: #e9ebee !important;
 }
-
+/*----------BANER----------*/
 #baner {
 	position: absolute;
 	left: 0;
@@ -177,7 +177,8 @@ body a:hover {
 	color: #007bff;
 }
 
-/*-------MEDIA--------*/
+/*-----------MEDIA------------*/
+/*---media main---*/
 @media screen and (max-width: 1200px) {
 	#holderDiv .col-sm-width {
 		height: 100px;
@@ -188,6 +189,7 @@ body a:hover {
 	}
 }
 
+/*---media footer---*/
 @media screen and (max-width: 455px) {
 	#infoDiv {
 		display: flex;
