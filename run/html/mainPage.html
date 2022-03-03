@@ -31,68 +31,85 @@
 	</div>
 
 	<div id="searchMenu">
-		<div id="inputDiv">
-			<input id="searchInput" type="text" name="searchInput" placeholder="Search student...">
-		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+		            <div class="input-group" id="boot-search-box">
+				      	<div class="input-group">
+				        	<div class="input-group-prepend">
+				          		<div class="input-group-text"><i class="fa fa-search"></i></div>
+				        	</div>
+				        	<input type="text" name="searchInput" class="form-control" id="inlineFormInputGroupUsername" placeholder="Search user...">
+				      	
+			                <div class="input-group-btn">
+			                    <div class="btn-group" role="group">
+			                        <div class="dropdown dropdown-lg">
+			                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style=""><span class="caret"></span></button>
+			                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+			                                <form class="form-horizontal" role="form" method="POST">
+			                                  	<div class="form-group">
+			                                    	<label style="margin-top: 5px;" for="filter">Select sutdent class:</label>
+			                                    	<select class="form-control" id="class" name="class">
+												        <option selected>Select class</option>
+												        <optgroup label="Klasy 1">
+												        	<option>1a</option>
+												        	<option>1b</option>
+												        	<option>1c</option>
+												        </optgroup>
 
-		<div id="selectClassDiv">
-		    <select class="selectpicker" name="class" id="class">
-		        <option selected>Select class</option>
-		        <optgroup label="Klasy 1">
-		        	<option>1a</option>
-		        	<option>1b</option>
-		        	<option>1c</option>
-		        </optgroup>
+												        <optgroup label="Klasy 2">
+												        	<option>2a</option>
+												        	<option>2b</option>
+												        	<option>2c</option>
+												        </optgroup>
 
-		        <optgroup label="Klasy 2">
-		        	<option>2a</option>
-		        	<option>2b</option>
-		        	<option>2c</option>
-		        </optgroup>
+												        <optgroup label="Klasy 3">
+												        	<option>3a</option>
+												        	<option>3b</option>
+												        	<option>3c</option>
+												        	<option>3d</option>
+												        	<option>3e</option>
+												        	<option>3f</option>
+												        	<option>3g</option>
+												        	<option>3h</option>
+												        </optgroup>
 
-		        <optgroup label="Klasy 3">
-		        	<option>3a</option>
-		        	<option>3b</option>
-		        	<option>3c</option>
-		        	<option>3d</option>
-		        	<option>3e</option>
-		        	<option>3f</option>
-		        	<option>3g</option>
-		        	<option>3h</option>
-		        </optgroup>
+												        <optgroup label="Klasy 4">
+												        	<option>4a</option>
+												        	<option>4b</option>
+												        	<option>4c</option>
+												        </optgroup>
 
-		        <optgroup label="Klasy 4">
-		        	<option>4a</option>
-		        	<option>4b</option>
-		        	<option>4c</option>
-		        </optgroup>
+												        <optgroup label="Absolwenci">
+												        	<option>Absolwenci</option>
+												        </optgroup>
+			                                    	</select>
 
-		        <optgroup label="Absolwenci">
-		        	<option>Absolwenci</option>
-		        </optgroup>
-		    </select>
-	    </div>
-
-
-		<div id="selectProfileDiv">
-			<select name="profile" class="selectpicker" id="profile">
-				<option selected>Select profile</option>
-				<option>Grafika komputerowa</option>
-				<option>Tworzenie gier</option>
-				<option>Fotografia kreatywna</option>
-				<option>Animacja komputerowa</option>
-			</select>
-		</div>
-
-		<div id="buttonSearchDiv">
-			<button id="searchButton" type="submit" name="search">Search</button>
+			                                    	<br>
+			                                    	<label for="filter">Select student profile:</label>
+														<select name="profile" class="form-control" id="profile">
+															<option selected>Select profile</option>
+															<option>Grafika komputerowa</option>
+															<option>Tworzenie gier</option>
+															<option>Fotografia kreatywna</option>
+															<option>Animacja komputerowa</option>
+														</select>
+			                                  	</div>
+			                                </form>
+			                        	</div>
+			                        <button type="submit" class="btn btn-primary" name="search">Search</button>
+			                    </div>
+			                </div>
+			            </div>
+		            </div>
+		          </div>
+		        </div>
+			</div>
 		</div>
 	</div>
 
+
 	<div id="holderDiv">
-
-
-
 		<div class="container">
 			<div class="row d-flex justify-content-around">
 		    	<div class="col-sm-width">
