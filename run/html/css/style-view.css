@@ -1,12 +1,15 @@
 body {
-	overflow: auto;
+	height: 100vh;
+	width: 100vw;
 	background-color: #e9ebee !important;
 }
+
+#scroll {
+	overflow: auto;
+}
+
 /*----------BANER----------*/
 #baner {
-	position: absolute;
-	left: 0;
-	top: 0;
 	width: 100%;
 	height: 80px;
 	display: flex;
@@ -29,21 +32,51 @@ body {
 
 /*---------MAIN---------*/
 #main {
-	position: absolute;
 	top: 80px;
 	left: 0;
-	height: 789px;
+	height: calc(100vh - 80px);
 	width: 100%;
-	overflow: auto;
 }
 
-#workNameDiv {
+#headerDiv {
 	width: 100%;
 	padding-top: 30px;
 	padding-bottom: 10px;
 	display: flex;
 	justify-content: center;
+	flex-direction: row;
+}
+
+#backDiv {
+	display: flex;
+	min-width: 100px;
+}
+
+#backDiv i {
+	font-size: 17px;
+}
+
+#backButton {
+	margin-left: 30%;
+	text-decoration: none;
+	color: black;
+}
+
+#backButton:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+#workNameDiv {
+	text-align: center;
+	width: calc(100% - 100px);
+	display: flex;
+	justify-content: center;
 	align-items: center;
+}
+
+#work_name {
+	margin-left: -100px;
 }
 
 #nameLastnameDiv {
@@ -80,7 +113,6 @@ body {
 /*-----------FOOTER---------*/
 
 #footer {
-	position: absolute;
 	top: 869px;
 	left: 0;
 	height: 104px;
@@ -134,9 +166,22 @@ body {
 	color: #007bff;
 }
 
+
 /*-------------MEDIA--------------*/
-/*---media footer---*/
+@media screen and (max-width: 700px) {
+	/*----media main---*/
+	#descriptionDiv {
+		padding: 10px 20px;
+	}
+}
+
 @media screen and (max-width: 455px) {
+	/*----media main---*/
+	#backButton {
+		margin-left: 10%;	
+	}
+
+	/*---media footer---*/
 	#infoDiv {
 		display: flex;
 		justify-content: center;
