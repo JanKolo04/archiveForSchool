@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="script.js"></script>
 	<title>Main</title>
 </head>
 <body>
@@ -19,8 +20,6 @@
 		</select>
 		<button type="submit" name="search">Search</button>
 	</form>
-
-	<div id="div"></div>
 
 
 	<?php
@@ -197,6 +196,7 @@
 				}
 				//search works
 				$search = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE (users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue'))";
+				echo $search;
 
 				//if class and profile isnt empty add commands with search in class and profile to sql query  
 				if(!empty($_POST['class']) && !empty($_POST['profile'])) {
@@ -306,74 +306,6 @@
 	</style>
 
 
-	<script type="text/javascript">
-		
-
-		function insert_class_to_select() {
-			//select
-			let select = document.querySelector('#class');
-			let jsonFile = new Request("class.json");
-			//get data from JSON file
-			fetch(jsonFile)
-				.then(function(resp) {
-					//return JS Object
-					return resp.json();
-				})
-				//get data from Object
-				.then(function(data) {
-					for(keys in data) {
-						//create disabled option
-						let disabledOption = document.createElement('option');
-						//set class name
-						disabledOption.className = 'disabledOption';
-						//set attribute
-						disabledOption.setAttribute('disabled', 'disabled');
-						//set innerHTML
-						disabledOption.innerHTML = keys;
-						//append disabledOption to select
-						select.appendChild(disabledOption);
-
-						for(value in keys) {
-							if(data[keys][value]!== undefined) {
-								//create option
-								let option = document.createElement('option');
-								//set class name
-								option.className = 'option';
-								//set innerHTML
-								option.innerHTML = data[keys][value];
-								//append option to select
-								select.appendChild(option);	
-							}		
-						}
-					}
-
-
-					/*
-					let objectLength = Object.keys(data).length;
-					
-					for(let i=0; i<objectLength; ++i) {
-						console.log(data[i]);
-						for(let y=0; y<data[i].length; ++y) {
-							//create option
-							let option = document.createElement('option');
-							//set class name
-							option.className = 'option';
-							//set innerHTML
-							option.innerHTML = " "+data[i][y];
-							//append option to select
-							select.appendChild(option);
-
-						}
-					}
-					*/
-					
-				});
-		}
-
-
-		insert_class_to_select();
-
-	</script>
 
 
 

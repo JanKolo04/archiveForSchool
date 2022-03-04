@@ -37,7 +37,7 @@
 						$searchValue .= "','";
 					}
 				}
-				//
+				//search user sql
 				$search = "SELECT * FROM users WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue')";
 				if($querySearch = mysqli_query($con, $search)) {
 					if($querySearch->num_rows > 0) {

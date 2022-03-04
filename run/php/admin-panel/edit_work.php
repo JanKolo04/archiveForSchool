@@ -48,7 +48,7 @@
 			//get works id from 
 			$works_id = $_GET['work'];
 
-			$getDataFromSQLWorks = "SELECT * FROM user_works WHERE id='$works_id'";
+			$getDataFromSQLWorks = "SELECT work_name, description, id_user FROM user_works WHERE id='$works_id'";
 			//if query data == true do code else return error
 			if($queryDataWorks = mysqli_query($con, $getDataFromSQLWorks)) {
 				//if query return zero record code will return error
@@ -59,7 +59,6 @@
 					while($row = mysqli_fetch_array($queryDataWorks)) {
 						//append data into array
 						$arrayWithWorks[$counter] = [
-							"id_work"=>$row['id'],
 							"description"=>$row['description'],
 							"work_name"=>$row['work_name'],
 							"user_id"=>$row['id_user']
@@ -88,7 +87,8 @@
 			$work_id = $_GET['work'];
 
 			//sql query
-			$sqlCheck = "SELECT work_name, description FROM user_works WHERE id='$work_id'";
+			$sqlCheck = "SELECT user_works.work_name, user_works.description, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
+
 			if($queryCheck = mysqli_query($con, $sqlCheck)) {
 				if($queryCheck->num_rows > 0) {
 					//array for data from sqlCheck
@@ -97,7 +97,11 @@
 						//append data
 						$arrayWithCheckData = [
 							"work_name"=>$row['work_name'],
-							"description"=>$row['description']
+							"description"=>$row['description'],
+							"Name"=>$row['Imie'],
+							"Lastname"=>$row['Nazwisko'],
+							"Profile"=>$row['Profil'],
+							"Class"=>$row['Klasa']
 						];
 					}
 
@@ -116,7 +120,7 @@
 						//open file to write
 						$file = fopen(".adminLogs.txt", "a");
 						//data to append
-						$data = "Admin edited work for $name $lastname $class $profile at $date\n";
+						$data = "Admin edited work for {$arrayWithCheckData['Name']} {$arrayWithCheckData['Lastname']} {$arrayWithCheckData['Class']} {$arrayWithCheckData['Profile']} at $date\n\tChnages:\n\t\tWork name: {$arrayWithCheckData['work_name']} => $workNameEdit,\n\t\tDescription: {$arrayWithCheckData['description']} => $descriptionEdit\n\n";
 						//write file
 						fwrite($file, $data);
 						//clode file
@@ -127,7 +131,7 @@
 					//if data is same code will return alert
 					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit)) {
 						//alert
-						echo "<script>alert('Data is same');</script>";
+						echo "<script>alert('Data are same');</script>";
 					}
 					//if error return alert with error
 					else {

@@ -41,6 +41,16 @@ body {
 	height: 80px;
 }
 
+#searchMenu .container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#searchMenu .row {
+	width: 100%;
+}
+
 .dropdown-menu {
     margin-top: 5px;
     padding: 4px 15px !important;
@@ -93,7 +103,7 @@ select {
 
 #table {
 	margin: auto;
-	width: 90% !important;
+	width: 60% !important;
 }
 
 tr {
@@ -128,6 +138,10 @@ th {
 .viewButton:hover {
 	color: white;
 	text-decoration: none;
+}
+
+.classData {
+	width: 100px !important;
 }
 
 

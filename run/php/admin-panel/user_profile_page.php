@@ -144,7 +144,7 @@
 	function add_file_into_database_and_directory() {
 		global $con;
 		//get return value from get_data_about_user function
-		$arrayWithDataFromQuery = get_data_about_user();
+		$userDataArray = get_data_about_user();
 
 		//get work name
 		$work_name = $_POST['work_name'];
@@ -152,15 +152,15 @@
 		$description = $_POST['description'];
 
 		//id from returned array
-		$id = $arrayWithDataFromQuery['id'];
+		$id = $userDataArray['id'];
 		//user nam
-		$name = $arrayWithDataFromQuery['Name'];
+		$name = $userDataArray['Name'];
 		//user last name
-		$lastname = $arrayWithDataFromQuery['Lastname'];
+		$lastname = $userDataArray['Lastname'];
 		//user class
-		$class = $arrayWithDataFromQuery['Class'];
+		$class = $userDataArray['Class'];
 		//and user profile
-		$profile = $arrayWithDataFromQuery['Profile'];
+		$profile = $userDataArray['Profile'];
 
 		//if isset file
 	   	if(isset($_FILES['file'])) {
@@ -260,6 +260,11 @@
 		//quert add user
 		$updateQuery = mysqli_query($con, $updateSQL);
 
+		$path = "../images/{$arrayOldData['Profile']}/{$arrayOldData['Class']}/{$arrayOldData['Name']} {$arrayOldData['Lastname']}";
+		/*---------CHANGE DIRECTORY SETTINGS---------*/
+		//move to other directory or rename directory
+		rename($path, "../images/$profile/$class/$name $lastname");
+
 		/*---------APPEND LOGS TO .adminLogs.txt---------*/
 		//set default timezone for date
 		date_default_timezone_set("Europe/Warsaw");
@@ -269,7 +274,7 @@
 		//open file to write
 		$file = fopen(".adminLogs.txt", "a");
 		//data to append
-		$data = "Admin chnaged user data ".$arrayOldData['Name']." ".$arrayOldData['Lastname']." ".$arrayOldData['Class']." ".$arrayOldData['Profile']." at $date\n\tChnages:\n\t\t".$arrayOldData['Name']." => $name,\n\t\t".$arrayOldData['Lastname']." => $lastname,\n\t\t".$arrayOldData['Class']." => $class, \n\t\t".$arrayOldData['Profile']." => $profile\n";
+		$data = "Admin chnaged user data {$arrayOldData['Name']} {$arrayOldData['Lastname']} {$arrayOldData['Class']} {$arrayOldData['Profile']} at $date\n\tChnages:\n\t\tName: {$arrayOldData['Name']} => $name,\n\t\tLastname: {$arrayOldData['Lastname']} => $lastname,\n\t\tClass: {$arrayOldData['Class']} => $class, \n\t\tProfile: {$arrayOldData['Profile']} => $profile\n\n";
 		//write file
 		fwrite($file, $data);
 		//clode file
