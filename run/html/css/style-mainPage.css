@@ -89,15 +89,13 @@ select {
 	top: 160px;
 	left: 0;
 	width: 100%;
-	height: 670px;
-	display: flex;
-	justify-content: center;
 }
 
 #holderDiv .container {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	margin-bottom: 40px;
 }
 
 #holderDiv .row {
@@ -118,7 +116,7 @@ body a:hover {
 	text-decoration: underline;
 }
 
-#holderDiv .col-sm-width {
+#holderDiv .col-sm-width, .col {
 	text-align: center;
 	margin: 10px;
 	height: 220px;
@@ -130,7 +128,7 @@ body a:hover {
 	background-color: white;
 }
 
-#holderDiv #sienceDiv {
+#holderDiv .longCol {
 	text-align: center;
 	height: 100px;
 	width: 95%;
@@ -146,7 +144,6 @@ body a:hover {
 
 #footer {
 	position: absolute;
-	top: 829px;
 	left: 0;
 	height: 114px;
 	width: 100%;
@@ -214,7 +211,7 @@ body a:hover {
 	#holderDiv .col-sm-width {
 		height: 100px;
 	}
-	#holderDiv #sienceDiv {
+	#holderDiv .longCol {
 		height: 100px;
 		width: 400px;
 	}

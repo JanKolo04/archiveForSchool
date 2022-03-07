@@ -1,12 +1,8 @@
 body {
-	height: 100vh;
-	width: 100vw;
+	overflow: auto;
 	background-color: #e9ebee !important;
 }
 
-#scroll {
-	overflow: auto;
-}
 
 /*----------BANER----------*/
 #baner {
@@ -34,7 +30,6 @@ body {
 #main {
 	top: 80px;
 	left: 0;
-	height: calc(100vh - 80px);
 	width: 100%;
 }
 
@@ -103,7 +98,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 30px;
+	margin-bottom: 40px;
 }
 
 #work {
@@ -113,7 +108,6 @@ body {
 /*-----------FOOTER---------*/
 
 #footer {
-	top: 869px;
 	left: 0;
 	height: 104px;
 	width: 100%;
