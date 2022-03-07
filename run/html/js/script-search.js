@@ -37,6 +37,33 @@ function insert_class_to_select() {
 		});
 }
 
+function insert_tags_to_select() {
+	//select
+	let select = document.querySelector('#tags');
+	let jsonFile = new Request("JSON-files/tag.json");
+	//get data from JSON file
+	fetch(jsonFile)
+		.then(function(resp) {
+			//return JS Object
+			return resp.json();
+		})
+		//get data from Object
+		.then(function(data) {
+			for(value in data) {
+				//create option
+				let option = document.createElement('option');
+				//set class name
+				option.className = 'option';
+				//set innerHTML
+				option.innerHTML = data[value];
+				//append option to select
+				select.appendChild(option);
+			}
+			
+		});
+}
+
 window.onload = function() {
 	insert_class_to_select();
+	insert_tags_to_select();
 }

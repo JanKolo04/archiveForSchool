@@ -44,21 +44,28 @@
 			                            <div class="dropdown-menu dropdown-menu-right" role="menu">
 			                                <form class="form-horizontal" role="form" method="POST">
 			                                  	<div class="form-group">
-			                                    	<label style="margin-top: 5px;" for="filter">Select sutdent class:</label>
+			                                    	<label style="margin-top: 5px;" for="filter">Wybierz klase ucznia:</label>
 			                                    	<select class="form-control" id="class" name="class">
-												        <option selected>Select class</option>
+												        <option selected>Wybierz</option>
 
 			                                    	</select>
 
 			                                    	<br>
-			                                    	<label for="filter">Select student profile:</label>
-														<select name="profile" class="form-control" id="profile">
-															<option selected>Select profile</option>
+			                                    	<label for="filter">Wybierz specjalizację ucznia:</label>
+													<select name="profile" class="form-control" id="profile">
+															<option selected>Wybierz</option>
 															<option>Grafika komputerowa</option>
 															<option>Tworzenie gier</option>
 															<option>Fotografia kreatywna</option>
 															<option>Animacja komputerowa</option>
-														</select>
+													</select>
+
+			                                    	<br>
+			                                    	<label for="filter">Wybierz typ pracy:</label>
+													<select name="profile" class="form-control" id="tags">
+															<option selected>Wybierz</option>
+																
+													</select>
 			                                  	</div>
 			                                </form>
 			                        	</div>
@@ -76,171 +83,76 @@
 
 
 	<div id="mainDiv">
-		<!---
-		<table id="table" border="1">
-			<tr class="record">
-				<td class="data">Jan</td>
-				<td class="data">Kolodziej</td>
-				<td id="classData" class="data">3b</td>
-				<td class="data">Grafika</td>
-				<td class="data">msbhv.png</td>
-				<td class="data" id="buttonData">
-					<a href="" id="viewButton">View</a>
-				</td>
-			</tr>
-		</table>
-		--->
 		<div id="tableDiv">
-			<table id="table" class="table-striped">
-			  <thead>
-			    <tr>
-			      <th scope="col">Name</th>
-			      <th scope="col">Lastname</th>
-			      <th scope="col">Work</th>
-			      <th scope="col">Class</th>
-			      <th scope="col">Profile</th>
-			      <th scope="coll">View</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <td>Jan</td>
-			      <td>Kołodziej</td>
-			      <td class="workData">msbhv.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>	      
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Michał</td>
-			      <td>Śmieszniak</td>
-			      <td class="workData">photo.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Wiktor</td>
-			      <td>Kusztykiewicz</td>
-			      <td class="workData">michal.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
+			<div id="holderTable">
+				<table id="table" class="table-striped">
+					<thead>
+				    	<tr>
+				      		<th scope="col">Imię Nazwisko</th>
+				      		<th scope="col">Klasa</th>
+				      		<th scope="col">Praca</th>
+				      		<th scope="coll">Podgląd</th>
+				    	</tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+				      		<td class="nameLastname">Jan Kołodziej</td>
+				      		<td class="classData">3b</td>
+				      		<td class="workData">msbhv.png</td>   
+				      		<td class="viewData">
+				      			<a href="" class="viewButton">Podgląd</a>
+				      		</td>
+				    	</tr>
+				   		<tr>
+					     	<td class="nameLastname">Michał Śmieszniak</td>
+					    	<td class="classData">3b</td>
+					    	<td class="workData">photo.png</td>
+					      	<td class="viewData">
+					      		<a href="" class="viewButton">Podgląd</a>
+					      	</td>
+				   		</tr>
+				    	<tr>
+					      	<td class="nameLastname">Wiktor Kusztykiewicz</td>
+							<td class="classData">3b</td>
+					      	<td class="workData">michal.png</td>
+					      	<td class="viewData">
+					      		<a href="" class="viewButton">Podgląd</a>
+					      	</td>
+				    	</tr>
 
-			    <tr>
-			      <td>Jan</td>
-			      <td>Kołodziej</td>
-			      <td class="workData">msbhv.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Michał</td>
-			      <td>Śmieszniak</td>
-			      <td class="workData">photo.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Wiktor</td>
-			      <td>Kusztykiewicz</td>
-			      <td class="workData">michal.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-
-			    <tr>
-			      <td>Jan</td>
-			      <td>Kołodziej</td>
-			      <td class="workData">msbhv.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>	      
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Michał</td>
-			      <td>Śmieszniak</td>
-			      <td class="workData">photo.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Wiktor</td>
-			      <td>Kusztykiewicz</td>
-			      <td class="workData">michal.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-
-			    <tr>
-			      <td>Jan</td>
-			      <td>Kołodziej</td>
-			      <td class="workData">msbhv.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Michał</td>
-			      <td>Śmieszniak</td>
-			      <td class="workData">photo.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-			    <tr>
-			      <td>Wiktor</td>
-			      <td>Kusztykiewicz</td>
-			      <td class="workData">michal.png</td>
-			      <td class="classData">3b</td>
-			      <td>Grafika</td>
-			      <td class="viewData">
-			      	<a href="" class="viewButton">View</a>
-			      </td>
-			    </tr>
-
-			  </tbody>
-			</table>
+				  		<tr>
+				      		<td>Jan Kołodziej</td>
+				      		<td class="classData">3b</td>
+				      		<td class="workData">msbhv.png</td>   
+				      		<td class="viewData">
+				      			<a href="" class="viewButton">Podgląd</a>
+				      		</td>
+				    	</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-		<div id="footer">
+		<footer id="footer">
 			<div id="infoDiv">
-				<p><a href="https://www.facebook.com/SzkolyKreatywne">Facebook <i class="fa fa-facebook-square"></i></a></p>
-				<p><a href="https://szkolykreatywne.pl/">Strona <i class="fa fa-external-link"></i></a></p>
+				<p><strong>Administrator</strong><br>
+				Filip Mozol<br>
+				fmozol@technikumkreatywne.pl</p>
 			</div>
 
-			<div class="d-flex justify-content-end align-items-center" id="adminDiv">
-				<p id="admin">Administracja Jan Kołodziej</p>
+			<div  id="autorAndIconsDiv">
+				<div id="autorDiv">
+					<p id="autor">Autor Jan Kołodziej</p>
+				</div>
+
+				<div id="iconsDiv">
+					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="images/icons/facebook.png"></a>
+					<a href=""><img src="images/icons/instagram.png"></a>
+					<a href="https://szkolykreatywne.pl/"><img src="images/icons/google.png"></a>
+					<a href=""><img src="images/icons/youtube.png"></a>
+				</div>
 			</div>
-		</div>
+		</footer>
 	</div>
 
 

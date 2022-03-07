@@ -4,7 +4,6 @@ body {
 }
 /*----------BANER----------*/
 #baner {
-	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -30,7 +29,6 @@ body {
 
 /*--------------SEARCH MENU--------------*/
 #searchMenu {
-	position: absolute;
 	top: 80px;
 	left: 0;
 	display: flex;
@@ -85,7 +83,6 @@ select {
 
 /*--------------GRID MENU--------------*/
 #holderDiv {
-	position: absolute;
 	top: 160px;
 	left: 0;
 	width: 100%;
@@ -116,7 +113,7 @@ body a:hover {
 	text-decoration: underline;
 }
 
-#holderDiv .col-sm-width, .col {
+#holderDiv .col-sm-width {
 	text-align: center;
 	margin: 10px;
 	height: 220px;
@@ -126,26 +123,22 @@ body a:hover {
 	align-items: center;
 	border-radius: 6px;
 	background-color: white;
+	transition: 1s;
 }
 
 #holderDiv .longCol {
-	text-align: center;
 	height: 100px;
 	width: 95%;
-	margin: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 6px;
-	background-color: white;
+}
+
+.col-sm-width:hover {
+	transform: scale(1.1);
 }
 
 /*-----------FOOTER---------*/
 
 #footer {
-	position: absolute;
-	left: 0;
-	height: 114px;
+	padding-bottom: 40px;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -219,17 +212,25 @@ body a:hover {
 
 /*---media footer---*/
 @media screen and (max-width: 455px) {
-	#infoDiv {
+
+	#footer {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		flex-direction: column;
+		flex-direction: column-reverse;
+		padding-bottom: 20px;
 	}
 
-	#autorAndIconsDiv {
-		display: flex;
+	#infoDiv {
+		width: 100%;
 		justify-content: center;
-		align-items: center;
+		align-items: start;
+		text-align: center;
+	}
+
+	#autorDiv {
+		justify-content: center;
+		align-items: end;
 	}
 
 	#footer p {
@@ -242,9 +243,10 @@ body a:hover {
 
 	#iconsDiv {
 		padding: 0px 0px;
+		justify-content: center;
+		align-items: start;
 	}
 }
-
 
 
 
