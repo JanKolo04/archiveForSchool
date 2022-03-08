@@ -29,14 +29,12 @@ body {
 
 /*--------------SEARCH MENU--------------*/
 #searchMenu {
-	top: 80px;
-	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
 	width: 100%;
-	height: 80px;
+	height: auto;
 }
 
 
@@ -44,41 +42,44 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
-#searchMenu .row {
+
+#searchRow {
 	width: 80% !important;
+	padding: 10px 20px;
+	flex-direction: row !important;
+	margin-top: 40px;
 }
 
-.dropdown-menu {
-    margin-top: 5px;
-    padding: 4px 15px !important;
-    min-width: 410px !important;
+#input {
+	padding: 5px 10px;
+	width: calc(100% - 100px);
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
 }
 
-#class {
-	border-radius: 6px;
+#searchButton {
+	width: auto !important;
+	padding: 5px 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
 }
 
-.btn {
-	padding: 6px 10px;
-	border-top: 1px solid #ced4da !important;
-	border-bottom: 1px solid #ced4da !important;
-    border-radius: 0px !important;
+#selectRow {
+	width: 80% !important;
+	padding: 10px 20px;
 }
+
 
 select {
+	border-radius: 8px !important;
 	font-size: 15px !important;
+	width: 270px !important;
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
 }
 
-.btn-primary {
-	margin-left: -3px;
-	outline: none !important;
-	border-top-right-radius: 6px !important;
-	border-bottom-right-radius: 6px !important;
-	border-bottom: 1px solid #ced4da !important;
-	border-top: 1px solid #ced4da !important;
-	border-right: 1px solid #ced4da !important;
-}
 
 
 /*--------------GRID MENU--------------*/
@@ -208,10 +209,23 @@ body a:hover {
 		height: 100px;
 		width: 400px;
 	}
+
+	#selectRow select {
+		width: 100% !important;
+	}
+
+	#searchMenu .row {
+		padding: 10px 0px;
+		max-width: 400px !important;
+	}
 }
 
 /*---media footer---*/
 @media screen and (max-width: 455px) {
+	#searchMenu .row {
+		padding: 10px 5px !important;
+	}
+
 
 	#footer {
 		display: flex;
@@ -230,7 +244,7 @@ body a:hover {
 
 	#autorDiv {
 		justify-content: center;
-		align-items: end;
+		align-items: flex-end;
 	}
 
 	#footer p {
@@ -238,7 +252,7 @@ body a:hover {
 	}
 
 	#autor {
-		text-align: right;
+		text-align: center;
 	}
 
 	#iconsDiv {
