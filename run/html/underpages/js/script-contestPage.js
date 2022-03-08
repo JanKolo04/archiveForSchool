@@ -1,5 +1,3 @@
-
-
 //***ISOTOPE***
 // init Isotope
 var $grid = $('.grid').isotope({

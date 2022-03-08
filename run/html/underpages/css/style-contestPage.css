@@ -45,6 +45,7 @@ body {
 	font-size: 20px;
 	padding: 20px 0px;
 	margin-bottom: 20px;
+	border-bottom: 1px solid #bfbfbf;
 }
 
 .contestTextDiv h2 {

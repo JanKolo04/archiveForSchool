@@ -37,6 +37,12 @@ body {
 	width: 100%;
 }
 
+.thumbnail {
+	border: none !important;
+	border-radius: 20px !important;
+	padding: 0px !important;
+}
+
 
 /*-----------FOOTER---------*/
 #footer {
