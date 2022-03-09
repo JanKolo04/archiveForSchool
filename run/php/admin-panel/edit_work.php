@@ -205,19 +205,12 @@
 
 			//split category
 			let splitCategory = worksArray['category'].split(',');
-			//if split category array is bigger then 1 do code
-			if(splitCategory.length > 1) {
 				//loop to select category options
 				for(let i=0; i<splitCategory.length; i++) {
 					//select option
 					editCategory.options.namedItem(splitCategory[i]).selected = "selected";
 				}
-			}
-
-			//if exist only one option select option from worksArray
-			else {
-				editCategory.options.namedItem(worksArray['category']).selected = "selected";
-			}
+			
 
 			//set value for input work name
 			editWork_name.value = worksArray['work_name'];
