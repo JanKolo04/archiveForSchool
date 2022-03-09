@@ -13,7 +13,7 @@
 		include('../connection.php');
 
 		if(isset($_POST['editSubmit'])) {
-			change_work_name_or_descriptoin();
+			change_work_name_or_description();
 		}
 
 		function edit_page() {
@@ -25,6 +25,21 @@
 							<div id='inputsEditsDiv'>
 								<input type='text' name='editWork_name' id='editWork_name' placeholder='Change work name'>
 								<input type='text' name='editDescription' id='editDescription' placeholder='Change description'>
+
+								<select id='tags' multiple name='tags[]'>
+									<option id='Fotografia' value='Fotografia'>Fotografia</option>
+									<option id='Grafika' value='Grafika'>Grafika</option>
+									<option id='Animacja' value='Animacja'>Animacja</option>
+									<option id='Film' value='Film'>Film</option>
+									<option id='Gra' value='Gra'>Gra</option>
+									<option id='Aplikacja' value='Aplikacja'>Aplikacja</option>
+									<option id='Strona' value='Strona'>Strona</option>
+									<option id='Dźwięk' value='Dźwięk'>Dźwięk</option>
+									<option id='Makieta' value='Makieta'>Makieta</option>
+									<option id='Rzeźba' value='Rzeźba'>Rzeźba</option>
+									<option id='Tekst' value='Tekst'>Tekst</option>
+									<option id='Inne' value='Inne'>Inne</option>
+								</select>
 							</div>
 
 							<div id='submitAndback'>
@@ -48,22 +63,21 @@
 			//get works id from 
 			$works_id = $_GET['work'];
 
-			$getDataFromSQLWorks = "SELECT work_name, description, id_user FROM user_works WHERE id='$works_id'";
+			$getDataFromSQLWorks = "SELECT work_name, description, id_user, categories FROM user_works WHERE id='$works_id'";
 			//if query data == true do code else return error
 			if($queryDataWorks = mysqli_query($con, $getDataFromSQLWorks)) {
 				//if query return zero record code will return error
 				if($queryDataWorks->num_rows > 0) {
 					//array for data from query
 					$arrayWithWorks = [];
-					$counter = 0;
 					while($row = mysqli_fetch_array($queryDataWorks)) {
 						//append data into array
-						$arrayWithWorks[$counter] = [
+						$arrayWithWorks = [
 							"description"=>$row['description'],
 							"work_name"=>$row['work_name'],
-							"user_id"=>$row['id_user']
+							"user_id"=>$row['id_user'],
+							"category"=>$row['categories']
 						];
-						$counter++;
 					}
 				}
 			}
@@ -75,7 +89,7 @@
 		get_works();
 
 
-		function change_work_name_or_descriptoin() {
+		function change_work_name_or_description() {
 			global $con;
 			//get data from edit inputs
 			//work name input
@@ -83,11 +97,25 @@
 			//description input
 			$descriptionEdit = $_POST['editDescription'];
 
+			//array with tags
+			$options = $_POST['tags'];
+			//empty variable for tags
+			$tags = "";
+			//loop get all elements from POST
+			for($i=0; $i<sizeof($options); $i++) {
+				//append vlue to variable 
+				$tags .= $options[$i];
+				//if i isn't last value add comma after append value to var 
+				if($i != sizeof($options)-1) {
+					$tags .= ",";
+				}
+			}
+
 			//optoin value
 			$work_id = $_GET['work'];
 
 			//sql query
-			$sqlCheck = "SELECT user_works.work_name, user_works.description, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
+			$sqlCheck = "SELECT user_works.work_name, user_works.description, user_works.categories, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
 
 			if($queryCheck = mysqli_query($con, $sqlCheck)) {
 				if($queryCheck->num_rows > 0) {
@@ -98,6 +126,7 @@
 						$arrayWithCheckData = [
 							"work_name"=>$row['work_name'],
 							"description"=>$row['description'],
+							"categories"=>$row['categories'],
 							"Name"=>$row['Imie'],
 							"Lastname"=>$row['Nazwisko'],
 							"Profile"=>$row['Profil'],
@@ -106,9 +135,9 @@
 					}
 
 					//if work is different or description then data in db do update db
-					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit) {
+					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit || $arrayWithCheckData['categories'] != $tags) {
 						//update data
-						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit' WHERE id='$work_id'";
+						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', categories='$tags' WHERE id='$work_id'";
 						$queryChange = mysqli_query($con, $sqlChange);
 
 						/*---------APPEND LOGS TO .adminLogs.txt---------*/
@@ -129,7 +158,7 @@
 
 
 					//if data is same code will return alert
-					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit)) {
+					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit) && ($arrayWithCheckData['categories'] == $tags)) {
 						//alert
 						echo "<script>alert('Data are same');</script>";
 					}
@@ -157,6 +186,8 @@
 			//inputs
 			let editWork_name = document.querySelector('#editWork_name');
 			let editDescription = document.querySelector('#editDescription');
+			//tags select
+			let editCategory = document.querySelector('#tags');
 
 			//div for back button
 			let backButtonDiv = document.querySelector('#backButtonDiv');
@@ -167,18 +198,38 @@
 			//set text
 			backButton.innerHTML = "Back";
 			//set href
-			backButton.href = "search_user_admin.php?user_id="+worksArray[0]['user_id'];
+			backButton.href = "search_user_admin.php?user_id="+worksArray['user_id'];
 			//append button to div
 			backButtonDiv.appendChild(backButton);
 
 
+			//split category
+			let splitCategory = worksArray['category'].split(',');
+			//if split category array is bigger then 1 do code
+			if(splitCategory.length > 1) {
+				//loop to select category options
+				for(let i=0; i<splitCategory.length; i++) {
+					//select option
+					editCategory.options.namedItem(splitCategory[i]).selected = "selected";
+				}
+			}
+
+			//if exist only one option select option from worksArray
+			else {
+				editCategory.options.namedItem(worksArray['category']).selected = "selected";
+			}
+
 			//set value for input work name
-			editWork_name.value = worksArray[0]['work_name'];
+			editWork_name.value = worksArray['work_name'];
 			//set value for input description
-			editDescription.value = worksArray[0]['description'];
-			
+			editDescription.value = worksArray['description'];
+
 		}
-		set_value_for_input();
+
+		window.onload = function() {
+			set_value_for_input();
+		}
+		
 	</script>
 
 

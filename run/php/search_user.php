@@ -3,176 +3,161 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="script.js"></script>
-	<title>Main</title>
+	<!---------------JS ANS CSS FILES--------------->
+	<link rel="stylesheet" type="text/css" href="style/style-mainPage.css">
+	<!-------AJAX------>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!------------------PLUGINS------------------>
+	<!-------BOOSTRAP------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+	  referrerpolicy="no-referrer" />
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+	<!-------ICON------>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Main Page</title>
 </head>
 <body>
 
-	<form method="post">
-		<input type="text" name="searchInput" placeholder="Search user...">
-		<select name="class" id="class">
-			<option disabled selected>Select class</option>
-		</select>
-		<select name="profile">
-			<option disabled selected>Select Profile</option>
-			<option>Grafika</option>
-			<option>Informatyka</option>
-		</select>
-		<button type="submit" name="search">Search</button>
+	<div id="baner">
+		<div id="divLogo">
+			<a href="mainPage.html"><img id="logo" src="images/logoZSK.png"></a>
+		</div>
+	</div>
+
+	<!----
+		add action to form
+		action file will
+		searchPage.html/php
+						---->
+	<form method="POST">
+		<div id="searchMenu">
+			<div class="container">
+				<div class="row d-flex justify-content-center align-items-center" id="searchRow">
+					<input type="text" id="input" name="searchInput" class="form-control" placeholder="Wyszukaj użytkownika...">
+					<button type="submit" id="searchButton" class="btn btn-primary" name="search">Szukaj <i class="fa fa-search"></i></button>
+				</div>
+
+				<div class="row d-flex justify-content-center align-items-center" id="selectRow">
+					<select class="selectpicker" name="profile[]" title="Wybierz specjalizacje" multiple aria-label="size 3 select example">
+						<option value="Grafika komputerowa">Grafika komputerowa</option>
+						<option value="Tworzenie gier">Tworzenie gier</option>
+						<option value="Fotografia kreatywna">Fotografia kreatywna</option>
+						<option value="Animacja komputerowa">Animacja komputerowa</option>
+					</select>
+
+					<select id="tags" class="selectpicker" title="Wybierz katgorie" multiple aria-label="size 3 select example" name="tags[]">
+						<option value="Fotografia">Fotografia</option>
+						<option value="Grafika">Grafika</option>
+						<option value="Animacja">Animacja</option>
+						<option value="Film">Film</option>
+						<option value="Gra">Gra</option>
+						<option value="Aplikacja">Aplikacja</option>
+						<option value="Strona">Strona</option>
+						<option value="Dźwięk">Dźwięk</option>
+						<option value="Makieta">Makieta</option>
+						<option value="Rzeźba">Rzeźba</option>
+						<option value="Tekst">Tekst</option>
+						<option value="Inne">Inne</option>
+					</select>
+
+					<select class="selectpicker" aria-label="size 3 select example" title="Wybierz klase" multiple name="class[]" id="class">
+						<option value="1a">1a</option>
+						<option value="1b">1b</option>
+						<option value="1c">1c</option>
+
+						<option value="2a">2a</option>
+						<option value="2b">2b</option>
+						<option value="2c">2c</option>
+			
+						<option value="3a">3a</option>
+						<option value="3b">3b</option>
+						<option value="3c">3c</option>
+						<option value="3d">3d</option>
+						<option value="3e">3e</option>
+						<option value="3f">3f</option>
+						<option value="3g">3g</option>
+						<option value="3h">3h</option>
+
+						<option value="4a">4a</option>
+						<option value="4b">4b</option>
+						<option value="4c">4c</option>
+
+						<option value="absolwenci">Absolwenci</option>
+			
+					</select>
+				</div>
+			</div>
+		</div>
 	</form>
+
+
+	<div id="holderDiv">
+		<div class="container">
+			<div class="row d-flex">
+		    	<div class="col-sm-width">
+		      		<a href="">Fotografie i grafiki</a>
+		    	</div>
+		    	<div class="col-sm-width">
+		      		<a href="">Filmy i aplikacje</a>
+		    	</div>
+		  	
+		    	<div class="col-sm-width">
+		      		<a href="">Gry i aplikacje</a>
+		    	</div>
+		    	<div class="col-sm-width">
+		      		<a href="">Inne</a>
+		    	</div>
+		  	
+		    	<div class="col-sm-width longCol">
+		      		<a href="">Projekty przedmiotowe</a>
+		    	</div>
+		    	<div class="col-sm-width longCol">
+		      		<a href="">Konfiguracja własnej strony</a>
+		    	</div>
+		  	</div>
+		</div>
+
+		<footer id="footer">
+			<div id="infoDiv">
+				<p><strong>Administrator</strong><br>
+				Filip Mozol<br>
+				fmozol@technikumkreatywne.pl</p>
+			</div>
+
+			<div  id="autorAndIconsDiv">
+				<div id="autorDiv">
+					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
+				</div>
+
+				<div id="iconsDiv">
+					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="images/icons/facebook.png"></a>
+					<a href=""><img src="images/icons/instagram.png"></a>
+					<a href="https://szkolykreatywne.pl/"><img src="images/icons/google.png"></a>
+					<a href=""><img src="images/icons/youtube.png"></a>
+				</div>
+			</div>
+		</footer>
+
+	</div>
 
 
 	<?php
 
 		include("connection-user.php");
-
-		/*
-		function search() {
-			global $con;
-			//dane z inputa
-			$data = $_POST['input'];
-			//klasa
-			$class = $_POST['select'];
-
-			//wybranie wssyztskich elementów 
-			$sqlAll = "SELECT * FROM works WHERE Klasa='$class'";
-			$queryAll = mysqli_query($con, $sqlAll);
-
-			//tablica z danymi
-			$arrayAll = [""];
-			//licznik
-			$i=0;
-			//wstawanie wszytskuch wyników do tablicy
-			while ($row = mysqli_fetch_row($queryAll)) {
-				foreach($queryAll as $key=>$value) {
-					$arrayAll[$i] = $value;
-					$i++;
-				}
-			}
-			//podzielenie stringa na wyrazy które stworzą tablice
-
-			$arrayText = explode(" ", $data);
-			
-			//jesli uzytkownik nie wpisze 3 wyrazów i nie wybierze klasy to pokaże sie alert
-			//z Error
-			if(sizeof($arrayText) != 3 || $class=='--Select--') {
-				echo "<script>alert('Błąd')</script>";
-			}
-			//jesli wpisał 3 to wykonuje sie kod dalej
-			else {
-				//tablica z poprawnymi wynikami
-				$arrayCheck = [];
-				//petla do sprawdzania czy dany wyraz pasuje do klucza
-				//pierwsza pętla zajmuje sie tym zeby przejsc po kazdej tablicy w tablicy wielowymiarowej
-				for($i=0; $i<sizeof($arrayAll); $i++) {
-					//druga jest od tego żeby sprawdzic czy Imie, Nazwisko i Zdjecie mają dopasowanie
-					for($y=0; $y<3; $y++) {
-						//porówanie danych czy Imie pasuje do wartości która wpisaliśmy
-						if($arrayAll[$i]['Imie'] == $arrayText[$y]) {
-							//tutaj tworze klucz Imie w tablicy arrayCheck i dodaje kluczowi wartość
-							$arrayCheck["Imie"] = $arrayText[$y];
-						}
-						//tutaj jest to samo porównanie co powyżej tylko że tutaj do nazwiska
-						else if($arrayAll[$i]['Nazwisko'] == $arrayText[$y]) {
-							$arrayCheck["Nazwisko"] = $arrayText[$y];
-						}
-						//tutaj do nazwy pracy
-						else if($arrayAll[$i]['work_name'] == $arrayText[$y]) {
-							
-								//---------FUNCKJA PODMIANY ROZSZERZEN-------
-								//ta funkcja jest potrzebna poniewaz php nie obsługuje 
-								//rozszerzen JPEG wiec jest potrzebna ta funkcja
-							
-							//zniemnne do zmiany rozszerzenia gdy zdjecie jest jpeg
-							//zmienna rozszerzenie
-							$roz = "";
-							//sama nazwa bez rozszerzenia
-							$only_work_name = "";
-							//zmienna z work_name
-							$text = $arrayText[$y];
-							//pelta odpowiedzialna za znalezienie kropki
-							for($x=0; $x<strlen($text); $x++) {
-								//jeśli znak w zmiennej text jest kropka to tworzy zmienna 
-								//z lokalizacja kropki
-								if($text[$x] == '.') {
-									//zmienna kropka
-									$dot=$x;
-								}
-							}
-							//pelta odpowiedzialna za dodanie do zmiennej only_work_name
-							//samej nazwy bez rozszerzenia
-							for($a=0; $a<$dot; $a++) {
-								//nadpisywanie zmiennej
-								$only_work_name.=$text[$a];
-							}
-							//petla która dodaje do zmiennej roz
-							//nazwe rozszerzenia
-							for($z=$dot+1; $z<strlen($text); $z++) {
-								//nadpisywanie zmiennje
-								$roz.=$text[$z];
-							}
-							//jesli rozszerzenie jest jpeg to zmienia je na jpg
-							if($roz == 'jpeg') {
-								//podmiana
-								$roz ='jpg';
-								//przypisywanie wartości do klucza
-								$arrayCheck["work_name"] = $only_work_name.".".$roz;
-							}
-							//jesli rozszerzenie nie jest jpeg to przypisuje wartośc 
-							//work_name bez zmian
-							else {
-								//przypisywanie wartości do klucza
-								$arrayCheck['work_name'] = $arrayText[$y];
-							}
-							//tutaj dodajemy Profil
-							$arrayCheck["Profil"] = $arrayAll[$i]['Profil'];
-							//dodawanie klasy
-							$arrayCheck["Klasa"] = $class;
-						}
-					}
-				}
-				//sprawdzamy czy dane zosatły dopasowane czy nie
-				//jesli dane nie zostały dopasowane to wtedy pokazuje
-				//sie alert ze nie ma takiego uzytkownika
-				if(empty($arrayCheck)) {
-					echo "<script>alert('Taki użytkownik nie istnieje');</script>";
-				}
-				else if(empty($arrayCheck['Imie']) || empty($arrayCheck['Nazwisko']) || empty($arrayCheck['Klasa']) || empty($arrayCheck['Profil']) || empty($arrayCheck['work_name'])) {
-					echo "<script>alert('Dane zostały źle wpisane');</script>";
-				}
-				else {
-					//wyświetlanie wszytskich zdjec ucznia
-					//tworzenie sciezki
-					$path = "../{$arrayCheck['Profil']}/{$arrayCheck['Klasa']}/{$arrayCheck['Imie']} {$arrayCheck['Nazwisko']}/{$arrayCheck['work_name']}";
-					echo "<img src='$path' class='img'>";
-				}
-			}
-
-
-		
-			//wyświetlanie każdego zdjęcia z folderu ucznia
-			//funkcja sprawdzająca czy otworzy sie folder
-			if($d = opendir($path)) {
-				//wczytywanie zdjec dopóki nie wczyta wszystkich
-				while($file = readdir($d)) {
-					//jesli zdjecie nie ma nazwy . lub .. to twórz
-					if($file != '.' && $file != '..' && $file==$arrayCheck['work_name']) {
-						//dodawanie nazwy zdjecia do scieżki
-						$exist = $path."/".$file;
-						//tworzenie zdjęcia
-						echo "<img src='$exist' class='img'>";
-					}
-				}
-				//zamykanie folderu
-				closedir($d);
-			}
-
-			
-
-
-
-		}
-		*/
 
 		//function to search by input value
 		function search_from_input() {
@@ -196,7 +181,6 @@
 				}
 				//search works
 				$search = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE (users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue'))";
-				echo $search;
 
 				//if class and profile isnt empty add commands with search in class and profile to sql query  
 				if(!empty($_POST['class']) && !empty($_POST['profile'])) {
@@ -209,6 +193,23 @@
 				//if profile isn't empty add to search query command with search in profile
 				else if(!empty($_POST['profile'])) {
 					$search .= " AND users.Profil='{$_POST['profile']}'";
+				}
+				else if(!empty($_POST['tags'])) {
+					//array with tags
+					$options = $_POST['tags'];
+					//empty variable for tags
+					$tags = "";
+					//loop get all elements from POST
+					for($i=0; $i<sizeof($options); $i++) {
+						//append vlue to variable 
+						$tags .= $options[$i];
+						//if i isn't last value add comma after append value to var 
+						if($i != sizeof($options)-1) {
+							$tags .= "','";
+						}
+					}
+					//search students with tags
+					$search .= " AND user_works.category IN ('{$tags}')";
 				}
 				//if query is correct 
 				if($querySearch = mysqli_query($con, $search)) {
@@ -281,6 +282,45 @@
 			}
 		}
 
+		//search works by porfiles
+		function search_from_tags_select() {
+			global $con;
+			//array with tags
+			$options = $_POST['tags'];
+			//empty variable for tags
+			$tags = "";
+			//loop get all elements from POST
+			for($i=0; $i<sizeof($options); $i++) {
+				//append vlue to variable 
+				$tags .= $options[$i];
+				//if i isn't last value add comma after append value to var 
+				if($i != sizeof($options)-1) {
+					$tags .= "','";
+				}
+			}
+
+			if(strlen($_POST['searchInput']) == 0) {
+				//search works by profile
+				$searchProfil = "SELECT DISTINCT users.Imie, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE user_works.categories IN ('$tags')";
+				//if query is true do code
+				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
+					//if query have more rows than 0 do code
+					if($querySerachProfil->num_rows > 0) {
+						//get all elemts from query
+						while ($row = mysqli_fetch_array($querySerachProfil)) {
+							//show results
+							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
+						}
+					}
+				}
+				//if query is false reutrn alert(error)
+				else {
+					echo "<script>alert('Error');</script>";
+				}	
+			}
+		}
+
+
 
 
 		if(isset($_POST['searchInput'])) {
@@ -292,11 +332,17 @@
 		if(isset($_POST['profile'])) {
 			search_from_profile_select();
 		}
+		if(isset($_POST['tags'])) {
+			search_from_tags_select();
+		}
 
 
 
 
 	?>
+
+
+
 
 	<style type="text/css">
 		.img {
