@@ -63,7 +63,5 @@ function insert_tags_to_select() {
 		});
 }
 
-window.onload = function() {
-	insert_class_to_select();
-	insert_tags_to_select();
-}
+
+
