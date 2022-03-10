@@ -63,7 +63,7 @@
 			//get works id from 
 			$works_id = $_GET['work'];
 
-			$getDataFromSQLWorks = "SELECT work_name, description, id_user, categories FROM user_works WHERE id='$works_id'";
+			$getDataFromSQLWorks = "SELECT work_name, description, id_user, category FROM user_works WHERE id='$works_id'";
 			//if query data == true do code else return error
 			if($queryDataWorks = mysqli_query($con, $getDataFromSQLWorks)) {
 				//if query return zero record code will return error
@@ -76,7 +76,7 @@
 							"description"=>$row['description'],
 							"work_name"=>$row['work_name'],
 							"user_id"=>$row['id_user'],
-							"category"=>$row['categories']
+							"category"=>$row['category']
 						];
 					}
 				}
@@ -115,7 +115,7 @@
 			$work_id = $_GET['work'];
 
 			//sql query
-			$sqlCheck = "SELECT user_works.work_name, user_works.description, user_works.categories, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
+			$sqlCheck = "SELECT user_works.work_name, user_works.description, user_works.category, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
 
 			if($queryCheck = mysqli_query($con, $sqlCheck)) {
 				if($queryCheck->num_rows > 0) {
@@ -126,7 +126,7 @@
 						$arrayWithCheckData = [
 							"work_name"=>$row['work_name'],
 							"description"=>$row['description'],
-							"categories"=>$row['categories'],
+							"category"=>$row['category'],
 							"Name"=>$row['Imie'],
 							"Lastname"=>$row['Nazwisko'],
 							"Profile"=>$row['Profil'],
@@ -135,9 +135,9 @@
 					}
 
 					//if work is different or description then data in db do update db
-					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit || $arrayWithCheckData['categories'] != $tags) {
+					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit || $arrayWithCheckData['category'] != $tags) {
 						//update data
-						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', categories='$tags' WHERE id='$work_id'";
+						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', category='$tags' WHERE id='$work_id'";
 						$queryChange = mysqli_query($con, $sqlChange);
 
 						/*---------APPEND LOGS TO .adminLogs.txt---------*/
@@ -158,7 +158,7 @@
 
 
 					//if data is same code will return alert
-					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit) && ($arrayWithCheckData['categories'] == $tags)) {
+					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit) && ($arrayWithCheckData['category'] == $tags)) {
 						//alert
 						echo "<script>alert('Data are same');</script>";
 					}

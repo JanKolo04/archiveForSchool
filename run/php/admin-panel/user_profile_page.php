@@ -45,9 +45,13 @@
 
 								<div id='selectProfileDiv'>
 									<select name='changeProfile' id='changeProfile'>
-										<option disabled selected value>Select profile</option>
-										<option value='Informatyka'>Informatyka</option>
-										<option value='Grafika'>Grafika</option>
+										<option value='Grafika komputerowa'>Grafika komputerowa</option>
+										<option value='Tworzenie gier'>Tworzenie gier</option>
+										<option value='Fotografia kreatywna'>Fotografia kreatywna</option>
+										<option value='Animacja komputerowa'>Animacja komputerowa</option>
+										<option value='Informatyka'>
+											Informatyka
+										</option>
 									</select>
 								</div>
 							</div>
@@ -208,7 +212,8 @@
 					else {
 						move_uploaded_file($fileTmp,$dir.$fileName);
 						//insert data into data base
-						$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, description) VALUES('$id', '$fileName', '$work_name', '$description')";
+						$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, categories, description) VALUES('$id', '$fileName', '$work_name', 'Inne', '$description')";
+
 						$queryInsertWork = mysqli_query($con, $sendSQL);
 						
 						/*---------APPEND LOGS TO .adminLogs.txt---------*/

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://localhost/archiwum/final/admin-panel/search_user_admin.php?user_id=26 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!---STYLE FOR USER PAGE----->
+	<link rel="stylesheet" type="text/css" href="./Search_files/style-user-page.css">
+	<link rel="stylesheet" type="text/css" href="./Search_files/style-edit-work.css">
+	<title>Search</title>
+</head>
+<body>
+
+
+	
+
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<form method="post">
+					<div id="allStuff">
+						<h2>Edit work</h2>
+						<div id="inputsDiv">
+							<div id="inputsEditsDiv">
+								<input type="text" name="editWork_name" id="editWork_name" placeholder="Change work name">
+								<input type="text" name="editDescription" id="editDescription" placeholder="Change description">
+
+								<select id="tags" multiple="" name="tags[]">
+									<option id="Fotografia" value="Fotografia">Fotografia</option>
+									<option id="Grafika" value="Grafika">Grafika</option>
+									<option id="Animacja" value="Animacja">Animacja</option>
+									<option id="Film" value="Film">Film</option>
+									<option id="Gra" value="Gra">Gra</option>
+									<option id="Aplikacja" value="Aplikacja">Aplikacja</option>
+									<option id="Strona" value="Strona">Strona</option>
+									<option id="Dźwięk" value="Dźwięk">Dźwięk</option>
+									<option id="Makieta" value="Makieta">Makieta</option>
+									<option id="Rzeźba" value="Rzeźba">Rzeźba</option>
+									<option id="Tekst" value="Tekst">Tekst</option>
+									<option id="Inne" value="Inne">Inne</option>
+								</select>
+							</div>
+
+							<div id="submitAndback">
+								<div id="backButtonDiv"></div>
+
+								<div id="submitEditButtonDiv">
+									<button type="submit" name="editSubmit">Edit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			
+
+	<!---SCRIPTS FOR USER PROFILE --->
+	<script type="text/javascript">
+		
+		function set_data() {
+			//array with data about user
+			const arrayData = <br />
+<b>Notice</b>:  Undefined variable: arrayWithDataFromQuery in <b>/Applications/XAMPP/xamppfiles/htdocs/archiwum/final/admin-panel/search_user_admin.php</b> on line <b>109</b><br />
+null;
+			const arrayWorks = {"description":"diamenty","work_name":"msbhv","user_id":"26","category":"Inne"};
+			//table
+			let table = document.querySelector('#table');
+			//name and surname(headerText)
+			let headerText = document.querySelector('#nameSurname');
+			//add name and lastname into header
+			headerText.innerHTML = arrayData['Name']+" "+arrayData['Lastname'];
+
+			//get select 
+			let select = document.querySelector("#selectWorkToEdit");
+
+			if(arrayWorks != null) {
+				//array works len
+				let arrayWorksLen = arrayWorks.length;
+				//loop exist for adding data into table
+				for(let i=0; i<arrayWorksLen; ++i) {
+
+					//crete recodr
+					let record = document.createElement('tr');
+					//set class name for record
+					record.className = "record";
+					//append record into table
+					table.appendChild(record);
+
+
+					//data with remove button
+					let dataButtonRemove = document.createElement('td');
+					//set class name
+					dataButtonRemove.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonRemove);
+
+					//remove button
+					let removeButton = document.createElement('BUTTON');
+					//set class name
+					removeButton.className = "removeButton";
+					//set text
+					removeButton.innerHTML = "X";
+					//set name
+					removeButton.name = "removeButton";
+					//set value
+					removeButton.value = arrayWorks[i]['id_work'];
+					//append button to data for button
+					dataButtonRemove.appendChild(removeButton);
+
+
+					//data with name
+					let dataName = document.createElement('td');
+					//set class name
+					dataName.className = 'data';
+					//set text
+					dataName.innerHTML = arrayData['Name'];
+					//append data to row
+					record.appendChild(dataName);
+
+					//data with Lastname
+					let dataLastName = document.createElement('td');
+					//set class name
+					dataLastName.className = 'data';
+					//set text
+					dataLastName.innerHTML = arrayData['Lastname'];
+					//append data to row
+					record.appendChild(dataLastName);
+
+
+					//data with Class
+					let dataClass = document.createElement('td');
+					//set class name
+					dataClass.className = 'data';
+					//set text
+					dataClass.innerHTML = arrayData['Class'];
+					//append data to row
+					record.appendChild(dataClass);
+
+
+					//data with profile
+					let dataProfile = document.createElement('td');
+					//set class name
+					dataProfile.className = 'data';
+					//set text
+					dataProfile.innerHTML = arrayData['Profile'];
+					//append data to row
+					record.appendChild(dataProfile);
+
+
+					//data with work name
+					let dataWorkName = document.createElement('td');
+					//set class name
+					dataWorkName.className = 'data';
+					//set text
+					dataWorkName.innerHTML = arrayWorks[i]['work_name'];
+					//append data to row
+					record.appendChild(dataWorkName);
+
+					//data with view button
+					let dataButtonView = document.createElement('td');
+					//set class name
+					dataButtonView.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonView);
+
+					//view button
+					let viewButton = document.createElement('BUTTON');
+					//set class name
+					viewButton.className = "viewButton";
+					//set value for button
+					viewButton.value = arrayWorks[i]['id_work'];
+					//set name
+					viewButton.name = "viewButton"
+					//set text
+					viewButton.innerHTML = "View";
+					//append button to data for button
+					dataButtonView.appendChild(viewButton);
+
+
+					//data with edit button 
+					let dataButtonEdit = document.createElement('td');
+					//set class name
+					dataButtonEdit.className = 'data';
+					//append data to row
+					record.appendChild(dataButtonEdit);
+
+					//view button
+					let editButton = document.createElement('BUTTON');
+					//set class name
+					editButton.className = "editButton";
+					//set href for button
+					editButton.value = arrayWorks[i]['id_work'];
+					//set name for button
+					editButton.name = "editButton"
+					//set text
+					editButton.innerHTML = "Edit";
+					//append button to data for button
+					dataButtonEdit.appendChild(editButton);
+
+				}
+			}
+		}
+
+
+		function set_value_for_input(event) {
+			//get array with work data
+			const worksArray = {"description":"diamenty","work_name":"msbhv","user_id":"26","category":"Inne"};
+			//value from target
+			let optionValue = event.target.value;
+			//inputs
+			let editWork_name = document.querySelector('#editWork_name');
+			let editDescription = document.querySelector('#editDescription');
+
+			//this loop is for checking wich option has cliked
+			for(let i=0; i<worksArray.length; ++i) {
+				//if option isn't --Select-- set value for inputs	
+				if(optionValue == worksArray[i]['id_work']) {
+					//set value for input work name
+					editWork_name.value = worksArray[i]['work_name'];
+					//set value for input description
+					editDescription.value = worksArray[i]['description'];
+				}
+			}
+		}
+
+
+		//--------!!!!!DANE BEDA DODAWANIE Z PLIKU JSON!!!!!--------
+		//zosatnie to zaimplementowane później
+		function append_data_into_chnage_inputs_user_data() {
+			//array with data about user
+			const arrayData = <br />
+<b>Notice</b>:  Undefined variable: arrayWithDataFromQuery in <b>/Applications/XAMPP/xamppfiles/htdocs/archiwum/final/admin-panel/search_user_admin.php</b> on line <b>276</b><br />
+null;
+
+			//get input with change name
+			let nameChangeInput = document.querySelector('#changeName');
+			//set value for input name
+			nameChangeInput.value = arrayData['Name'];
+
+			//get input with change lastname
+			let lastnameChangeInput = document.querySelector('#changeLastname');
+			//set value for input lasname
+			lastnameChangeInput.value = arrayData['Lastname'];
+
+
+			//get select with class
+			let selectClass = document.querySelector('#changeClass');
+			//get select with profile
+			let selectProfile = document.querySelector('#changeProfile');
+
+			//select this value
+			selectClass.value = arrayData['Class'];
+
+			//select this value
+			selectProfile.value = arrayData['Profile'];
+
+		}
+	
+
+		function set_value_for_input() {
+			//get array with work data
+			const worksArray = {"description":"diamenty","work_name":"msbhv","user_id":"26","category":"Inne"};
+			//inputs
+			let editWork_name = document.querySelector('#editWork_name');
+			let editDescription = document.querySelector('#editDescription');
+			//tags select
+			let editCategory = document.querySelector('#tags');
+
+			//div for back button
+			let backButtonDiv = document.querySelector('#backButtonDiv');
+			//create back button
+			let backButton = document.createElement("a");
+			//class name
+			backButton.className = "backButton";
+			//set text
+			backButton.innerHTML = "Back";
+			//set href
+			backButton.href = "search_user_admin.php?user_id="+worksArray['user_id'];
+			//append button to div
+			backButtonDiv.appendChild(backButton);
+
+
+			//split category
+			let splitCategory = worksArray['category'].split(',');
+				//loop to select category options
+				for(let i=0; i<splitCategory.length; i++) {
+					//select option
+					editCategory.options.namedItem(splitCategory[i]).selected = "selected";
+				}
+			
+
+			//set value for input work name
+			editWork_name.value = worksArray['work_name'];
+			//set value for input description
+			editDescription.value = worksArray['description'];
+
+		}
+
+
+		window.onload = function() {
+			set_data();
+			append_data_into_chnage_inputs_user_data();
+		}
+
+		set_value_for_input();
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

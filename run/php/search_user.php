@@ -209,7 +209,7 @@
 						}
 					}
 					//search students with tags
-					$search .= " AND user_works.category IN ('{$tags}')";
+					$search .= " AND user_works.categories IN ('{$tags}')";
 				}
 				//if query is correct 
 				if($querySearch = mysqli_query($con, $search)) {
@@ -311,6 +311,7 @@
 							//show results
 							echo($row['Imie']." ".$row['Nazwisko'].' '.$row['work_name']." <a href='overview/work.php?work=".$row['id']."'>View</a><br>");
 						}
+						header("Location: ");
 					}
 				}
 				//if query is false reutrn alert(error)
