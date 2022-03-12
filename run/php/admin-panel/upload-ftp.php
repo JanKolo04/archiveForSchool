@@ -8,18 +8,16 @@
 <body>
 
 	<?php
-		function upload_file() {
+		function upload_file($dir) {
 			//get name form file
 			$fileName = "add_user.php";
-			//path to dircetory
-			$dir = "test/".$fileName;
 			
 			//username
-			$usernameFtp = "**";
+			$usernameFtp = "jkolodziej@labzsk.webd.pro";
 			//password
-			$passwordFtp = "**";
+			$passwordFtp = "sq8++PHyK+JU";
 			//sername
-			$servername = "**";
+			$servername = "ftp.labzsk.webd.pro";
 
 			//set up basic connection
 			$ftp = ftp_connect($servername);

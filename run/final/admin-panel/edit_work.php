@@ -50,17 +50,13 @@
 		include('../connection.php');
 
 
-		if(isset($_SESSION['login'])) {
-			get_works();
-			if(isset($_POST['editSubmit'])) {
-				change_work_name_or_description();
-			}
-		}
-
-		else {
+		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
 		}
 
+		if(isset($_POST['editSubmit'])) {
+			change_work_name_or_descriptoin();
+		}
 
 		function get_works() {
 			global $con, $arrayWithWorks;
@@ -89,6 +85,8 @@
 			}
 			
 		}
+
+		get_works();
 
 
 		function change_work_name_or_description() {

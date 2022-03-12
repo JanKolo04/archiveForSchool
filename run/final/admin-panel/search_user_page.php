@@ -60,23 +60,17 @@
 				}
 				//search user sql
 				$search = "SELECT * FROM users WHERE Imie IN ('$searchValue') OR Nazwisko IN ('$searchValue')";
+				//if query will true 
 				if($querySearch = mysqli_query($con, $search)) {
-					if($querySearch->num_rows > 0) {
-						//append to array $row elements from query
-						while ($row = mysqli_fetch_array($querySearch)) {
-							//show results in results will be 
-							//Name, Lastname, and buton with link
-							//to page with user management
-							echo($row['Imie']." ".$row['Nazwisko']." <a href='user_profile_page.php?user_id=".$row['id']."'>Zarzadzaj</a><br>");
-						}
-					}
-					else {
-						echo "<script>alert('Error');</script>";
+					//append to array $row elements from query
+					while ($row = mysqli_fetch_array($querySearch)) {
+						//show results in results will be 
+						//Name, Lastname, and buton with link
+						//to page with user management
+						echo($row['Imie']." ".$row['Nazwisko']." <a href='user_profile_page.php?user_id=".$row['id']."'>Zarzadzaj</a><br>");
 					}
 				}
-				else {
-					echo "<script>alert('Error');</script>";
-				}
+					
 			}
 		}
 

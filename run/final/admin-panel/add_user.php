@@ -27,6 +27,8 @@
 
 	<?php
 
+		session_start();
+
 		include("../connection.php");
 
 		if(!isset($_SESSION['login'])) {
@@ -59,10 +61,10 @@
 				$insertQuery = mysqli_query($con, $insertSQL);
 
 				//create direcotry in local
-				mkdir($path, 0777);
+				//mkdir($path, 0777);
 
 				//create folder on hosting
-				//create_directory_for_user_in_ftp_server($path);
+				create_directory_for_user_in_ftp_server($path);
 
 				/*---------APPEND LOGS TO .adminLogs.txt---------*/
 				//set default timezone for date
@@ -88,7 +90,7 @@
 
 		function create_directory_for_user_in_ftp_server($path) {
 			//username
-			$usernameFtp = "***";
+			$usernameFtp = "**";
 			//password
 			$passwordFtp = "**";
 			//sername

@@ -203,23 +203,22 @@
 					$search .= " AND user_works.category IN ('{$tags}')";
 				}
 				//if query is correct 
-				if($querySearch = mysqli_query($con, $search)) {
-					if($querySearch->num_rows > 0) {
-						//append $row elements to array from query
-						$arrayWithResults = [];
-						$counter = 0;
-						while ($row = mysqli_fetch_array($querySearch)) {
-							//append results into array
-							$arrayWithResults[$counter] = [
-								"Name"=>$row['Imie'],
-								"Lastname"=>$row['Nazwisko'],
-								"work_name"=>$row['work_name'],
-								"work_id"=>$row['id'],
-								"Class"=>$row['Klasa']
-							];
-							$counter++;
-						}
+				if($querySearch = mysqli_query($con, $search)) {					
+					//append $row elements to array from query
+					$arrayWithResults = [];
+					$counter = 0;
+					while ($row = mysqli_fetch_array($querySearch)) {
+						//append results into array
+						$arrayWithResults[$counter] = [
+							"Name"=>$row['Imie'],
+							"Lastname"=>$row['Nazwisko'],
+							"work_name"=>$row['work_name'],
+							"work_id"=>$row['id'],
+							"Class"=>$row['Klasa']
+						];
+						$counter++;
 					}
+					
 				}
 				//if in mysqli_query is error reutrn alert(error)
 				else {

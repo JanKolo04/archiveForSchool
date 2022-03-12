@@ -1,9 +1,9 @@
 <?php
   
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "testArch";
+$servername = "192.168.101.62";
+$username = "labzsk_serwerWWW";
+$password = "KhL9Fn7h+g-=";
+$database = "labzsk_portfolia";
 
 //connectiong with database
 $con = mysqli_connect($servername, $username, $password, $database);

@@ -74,9 +74,6 @@
 	<?php
 
 		include("../connection.php");
-		//auto run functions
-		get_data_about_user();
-		get_all_user_works();
 
 		if(isset($_POST['submitAddFile'])) {
 			add_file_into_database_and_directory();
@@ -155,7 +152,8 @@
 			}
 		}
 
-
+		get_data_about_user();
+		get_all_user_works();
 
 		function add_file_into_database_and_directory() {
 			global $con;
@@ -221,7 +219,9 @@
 		      			
 		      			//if code didn't return any alert upload file to direcotry and insert data to database
 						else {
-							move_uploaded_file($fileTmp,$dir.$fileName);
+							//move_uploaded_file($fileTmp,$dir.$fileName);
+							//ulpoad file into ftp server
+							upload_file($dir, $fileName, $fileTmp);
 							//insert data into data base
 							$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('$id', '$fileName', '$work_name', 'Inne', '$description')";
 							$queryInsertWork = mysqli_query($con, $sendSQL);
@@ -253,6 +253,36 @@
 				}
 
 		   	}
+		}
+
+		function upload_file($dir, $fileName, $fileTmp) {	
+			//dir to file
+			$dir = $dir.$fileName;
+			//username
+			$usernameFtp = "**";
+			//password
+			$passwordFtp = "**";
+			//sername
+			$servername = "**";
+
+			//set up basic connection
+			$ftp = ftp_connect($servername);
+
+			//login with username and password
+			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
+
+
+
+			//upload a file
+			if (ftp_put($ftp, $dir, $fileTmp, FTP_ASCII)) {
+				echo "successfully uploaded $fileName\n";
+			} 
+			else {
+				echo "There was a problem while uploading $fileName\n";
+			}
+
+			//close the connection
+			ftp_close($ftp);
 		}
 
 
