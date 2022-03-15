@@ -9,6 +9,7 @@
 <body>
 
 	<div id="allStuff">
+		<a href="search_user_page.php">Back</a>
 		<h2 id="nameSurname"></h2>
 
 		<form method="post" enctype="multipart/form-data">
@@ -23,21 +24,38 @@
 						<div id="selectClassDiv">
 							<select name="changeClass" id="changeClass">
 								<option disabled selected value>Select class</option>
+								<option value="1a">1a</option>
+								<option value="1b">1b</option>
+								<option value="1c">1c</option>
+
+								<option value="2a">2a</option>
+								<option value="2b">2b</option>
+								<option value="2c">2c</option>
+					
 								<option value="3a">3a</option>
 								<option value="3b">3b</option>
 								<option value="3c">3c</option>
+								<option value="3d">3d</option>
+								<option value="3e">3e</option>
+								<option value="3f">3f</option>
+								<option value="3g">3g</option>
+								<option value="3h">3h</option>
+
+								<option value="4a">4a</option>
+								<option value="4b">4b</option>
+								<option value="4c">4c</option>
+
+								<option value="absolwenci">Absolwenci</option>
 							</select>
 						</div>
 
 						<div id="selectProfileDiv">
 							<select name="changeProfile" id="changeProfile">
+								<option disabled selected value>Select profile</option>
 								<option value="Grafika komputerowa">Grafika komputerowa</option>
 								<option value="Tworzenie gier">Tworzenie gier</option>
 								<option value="Fotografia kreatywna">Fotografia kreatywna</option>
 								<option value="Animacja komputerowa">Animacja komputerowa</option>
-								<option value="Informatyka">
-									Informatyka
-								</option>
 							</select>
 						</div>
 					</div>
@@ -73,7 +91,13 @@
 
 	<?php
 
+		session_start();
+
 		include("../connection.php");
+
+		if(!isset($_SESSION['login'])) {
+			header("Location: login.php");
+		}
 
 		if(isset($_POST['submitAddFile'])) {
 			add_file_into_database_and_directory();
@@ -96,7 +120,7 @@
 		function get_data_about_user() {
 			global $con, $arrayWithDataFromQuery;
 			//get user id from url
-			$user_id = $_GET['user_id'];
+			$user_id = $_GET['user'];
 			//select all data from user table where id is user_id
 			$getDataFromSQL = "SELECT * FROM users WHERE id='$user_id'";
 			//if query data == true do code else return error
@@ -127,7 +151,7 @@
 		function get_all_user_works() {
 			global $con, $arrayWithWorks;
 			//get user id from url
-			$user_id = $_GET['user_id'];
+			$user_id = $_GET['user'];
 			$getDataFromSQLWorks = "SELECT * FROM user_works WHERE id_user='$user_id'";
 			//if query data == true do code else return error
 			if($queryDataWorks = mysqli_query($con, $getDataFromSQLWorks)) {
@@ -185,7 +209,7 @@
 				//tmp file
 				$fileTmp = $_FILES['file']['tmp_name'];
 				//path to dircetory
-				$dir = "../images/$profile/$class/$name $lastname/";
+				$dir = "../data/$class/$profile/$name $lastname/";
 				//split file name 
 				$explode = explode('.',$_FILES['file']['name']);
 				//get file extension
@@ -259,11 +283,11 @@
 			//dir to file
 			$dir = $dir.$fileName;
 			//username
-			$usernameFtp = "**";
+			$usernameFtp = "jkolodziej@labzsk.webd.pro";
 			//password
-			$passwordFtp = "**";
+			$passwordFtp = "sq8++PHyK+JU";
 			//sername
-			$servername = "**";
+			$servername = "ftp.labzsk.webd.pro";
 
 			//set up basic connection
 			$ftp = ftp_connect($servername);
@@ -275,6 +299,7 @@
 
 			//upload a file
 			if (ftp_put($ftp, $dir, $fileTmp, FTP_ASCII)) {
+				ftp_chmod($ftp, 0777, $dir);
 				echo "successfully uploaded $fileName\n";
 			} 
 			else {
@@ -306,10 +331,10 @@
 			//quert add user
 			$updateQuery = mysqli_query($con, $updateSQL);
 
-			$path = "../images/{$arrayOldData['Profile']}/{$arrayOldData['Class']}/{$arrayOldData['Name']} {$arrayOldData['Lastname']}";
+			$path = "../data/{$arrayOldData['Class']}/{$arrayOldData['Profile']}/{$arrayOldData['Name']} {$arrayOldData['Lastname']}";
 			/*---------CHANGE DIRECTORY SETTINGS---------*/
 			//move to other directory or rename directory
-			rename($path, "../images/$profile/$class/$name $lastname");
+			rename($path, "../images/$class/$profile/$name $lastname");
 
 			/*---------APPEND LOGS TO .adminLogs.txt---------*/
 			//set default timezone for date
@@ -348,7 +373,7 @@
 
 
 			//path to file
-			$pathToFile = "../images/".$arrayWithUserData["Profile"]."/".$arrayWithUserData['Class']."/".$arrayWithUserData['Name']." ".$arrayWithUserData['Lastname']."/".$arrayWithFile_name['file_name'];
+			$pathToFile = "../data/".$arrayWithUserData["Class"]."/".$arrayWithUserData['Profile']."/".$arrayWithUserData['Name']." ".$arrayWithUserData['Lastname']."/".$arrayWithFile_name['file_name'];
 
 			//if code cant delete file return error
 			if(!unlink($pathToFile)) {

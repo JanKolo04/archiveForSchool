@@ -11,14 +11,37 @@
 		<input type="text" name="imie" placeholder="Name" required>
 		<input type="text" name="nazwisko" placeholder="Lastname" required>
 		<select name="klasa">
-			<option disabled selected value>--Select--</option>
-			<option>3a</option>
-			<option>3b</option>
+			<option disabled selected value>Select class</option>
+			<option value="1a">1a</option>
+			<option value="1b">1b</option>
+			<option value="1c">1c</option>
+
+			<option value="2a">2a</option>
+			<option value="2b">2b</option>
+			<option value="2c">2c</option>
+
+			<option value="3a">3a</option>
+			<option value="3b">3b</option>
+			<option value="3c">3c</option>
+			<option value="3d">3d</option>
+			<option value="3e">3e</option>
+			<option value="3f">3f</option>
+			<option value="3g">3g</option>
+			<option value="3h">3h</option>
+
+			<option value="4a">4a</option>
+			<option value="4b">4b</option>
+			<option value="4c">4c</option>
+
+			<option value="absolwenci">Absolwenci</option>
 		</select>
+		
 		<select name="sepcjalizacja">
-			<option disabled selected value>--Select--</option>
-			<option>Informatyka</option>
-			<option>Grafika</option>
+			<option disabled selected value>Select profile</option>
+			<option value="Grafika komputerowa">Grafika komputerowa</option>
+			<option value="Tworzenie gier">Tworzenie gier</option>
+			<option value="Fotografia kreatywna">Fotografia kreatywna</option>
+			<option value="Animacja komputerowa">Animacja komputerowa</option>
 		</select>
 
 		<button type="submit" name="add">Add</button>
@@ -52,7 +75,7 @@
 			$profile = $_POST['sepcjalizacja'];
 
 			//path to user directory
-			$path = "../images/$profile/$class/$name $lastname";
+			$path = "../data/$class/$profile/$name $lastname";
 			//if directory dosen't exist create user and create directory
 			if(!file_exists($path)) {
 				//insert data into user
@@ -87,14 +110,38 @@
 			}
 		}
 
+		//function to check if student class exist or others dir exists
+		function check_if_folders_exists($path, $ftp_connection) {			
+			//split path to chech if 
+			$splitPath = explode('/', $path);
+
+			//class var from split
+			$class = $splitPath[2];
+			//profile var from split
+			$profile = $splitPath[3];
+
+			//if dosent exist 
+			if(!ftp_nlist($ftp_connection, $class) === false) {
+				ftp_mkdir($ftp_connection, '../data/'.$class);
+				ftp_chmod($ftp_connection, 0777, $class);
+			}
+
+			if(!ftp_nlist($ftp_connection, $profile) === false) {
+				ftp_mkdir($ftp_connection, '../data/'.$class.'/'.$profile);
+				ftp_chmod($ftp_connection, 0777, $profile);
+			}
+			print_r($splitPath);
+
+		}
+
 
 		function create_directory_for_user_in_ftp_server($path) {
 			//username
-			$usernameFtp = "**";
+			$usernameFtp = "jkolodziej@labzsk.webd.pro";
 			//password
-			$passwordFtp = "**";
+			$passwordFtp = "sq8++PHyK+JU";
 			//sername
-			$servername = "**";
+			$servername = "ftp.labzsk.webd.pro";
 
 			//set up basic connection
 			$ftp = ftp_connect($servername);
@@ -102,8 +149,31 @@
 			//login with username and password
 			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
 
-			//if directory create echo Sucessfully
+			//maybe we will useing this in future
+			//$folder_exists = is_dir('ftp://user:password@example.com/some/dir/path');
+
+			//split path to chech if 
+			$splitPath = explode('/', $path);
+
+			//class var from split
+			$class = "../data/$splitPath[2]";
+			//profile var from split
+			$profile = "../data/$class/$splitPath[3]";
+
+			//create class dir
+			ftp_mkdir($ftp, $class);
+			//set chmod for class dir
+			ftp_chmod($ftp, 0777, $class);
+			
+			//create profile dir
+			ftp_mkdir($ftp, $profile);
+			//set chmod for profile dir
+			ftp_chmod($ftp, 0777, $profile);
+			
+
+			//if direcotry with name and last name dosent exist return error
 			if(ftp_mkdir($ftp, $path)) {
+				ftp_chmod($ftp, 0777, $path);
 				echo "Successfully";
 			}
 			//else echo error

@@ -150,244 +150,87 @@
 
 		$arrayWithResults = [];
 
-		//function to search by input value
-		function search_from_input() {
-			global $con, $arrayWithResults;
-			//get value from input POST
-			$searchValue = $_POST['searchInput'];
-
-			if(strlen($searchValue) > 0) {
-				//split value from input
-				$arraySplit = explode(" ", $searchValue);
-
-				$searchValue = "";
-				//loop to add values to clear value
-				for($i=0; $i<sizeof($arraySplit); $i++) {
-					//append vlue to variable 
-					$searchValue .= $arraySplit[$i];
-					//if i isn't last value add comma after append value to var 
-					if($i != sizeof($arraySplit)-1) {
-						$searchValue .= "','";
-					}
-				}
-				//search works
-				$search = "SELECT DISTINCT users.Imie, users.Nazwisko, users.Klasa, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE (users.Imie IN ('$searchValue') OR users.Nazwisko IN ('$searchValue') OR user_works.work_name IN ('$searchValue'))";
-
-				//if class and profile isnt empty add commands with search in class and profile to sql query  
-				if(!empty($_POST['class']) && !empty($_POST['profile'])) {
-					$search .= " AND (users.Klasa='{$_POST['class']}' OR users.Profil='{$_POST['profile']}')";
-				}
-				//if class isn't empty add to search query command with search in class
-				else if(!empty($_POST['class'])) {
-					$search .= " AND users.Klasa='{$_POST['class']}'";
-				}
-				//if profile isn't empty add to search query command with search in profile
-				else if(!empty($_POST['profile'])) {
-					$search .= " AND users.Profil='{$_POST['profile']}'";
-				}
-				else if(!empty($_POST['tags'])) {
-					//array with tags
-					$options = $_POST['tags'];
-					//empty variable for tags
-					$tags = "";
+		function AdaptFilter($arrayOfFilterValues, $dbColumName) {
+			if(empty($arrayOfFilterValues)) $resultValue = "AND 1";
+				else {
+					$resultValue = "AND ( $dbColumName =";
 					//loop get all elements from POST
-					for($i=0; $i<sizeof($options); $i++) {
+					for($i=0; $i<sizeof($arrayOfFilterValues); $i++) {
 						//append vlue to variable 
-						$tags .= $options[$i];
+						$resultValue .= "\"$arrayOfFilterValues[$i]\"";
 						//if i isn't last value add comma after append value to var 
-						if($i != sizeof($options)-1) {
-							$tags .= "','";
+						if($i != sizeof($arrayOfFilterValues)-1) {
+							$resultValue .= " OR $dbColumName = ";
 						}
 					}
-					//search students with tags
-					$search .= " AND user_works.category IN ('{$tags}')";
+					$resultValue.= ") ";
 				}
-				//if query is correct 
-				if($querySearch = mysqli_query($con, $search)) {					
-					//append $row elements to array from query
-					$arrayWithResults = [];
-					$counter = 0;
-					while ($row = mysqli_fetch_array($querySearch)) {
-						//append results into array
-						$arrayWithResults[$counter] = [
-							"Name"=>$row['Imie'],
-							"Lastname"=>$row['Nazwisko'],
-							"work_name"=>$row['work_name'],
-							"work_id"=>$row['id'],
-							"Class"=>$row['Klasa']
-						];
-						$counter++;
-					}
-					
-				}
-				//if in mysqli_query is error reutrn alert(error)
-				else {
-					echo "<script>alert('Error');</script>";
-				}
-			}
+				return $resultValue;
 		}
 
-		//function to search works by class
-		function search_from_class_select() {
-			global $con, $arrayWithResults;
-			//array wirh class from POST
-			$classArray = $_POST['class'];
+		function AdaptTextPhrase($arrayOfPhases, $dbColumnName) {
+			$value = "$dbColumnName LIKE ";
+			for($i=0; $i < sizeof($arrayOfPhases); $i++) {
+				$value .= "'%". $arrayOfPhases[$i]."%'";
+				if($i != sizeof($arrayOfPhases)-1) {
+					$value .= " OR $dbColumnName LIKE ";
+				}
+				
+			}
+			return $value;
+		}
 
-			//empty variable for tags
-			$class = "";
-			//loop get all elements from POST
-			for($i=0; $i<sizeof($classArray); $i++) {
-				//append vlue to variable 
-				$class .= $classArray[$i];
-				//if i isn't last value add comma after append value to var 
-				if($i != sizeof($classArray)-1) {
-					$class .= "','";
+		function MultipleSearch() {
+			global $con, $arrayWithResults;
+
+			$searchValue = $_POST['searchInput'];
+			$classValue = AdaptFilter($_POST['class'], "users.Klasa");
+			$profileValue = AdaptFilter($_POST['profile'], "users.Profil");
+			$tagsValue = AdaptFilter($_POST['tags'], "user_works.category");
+
+			if(empty($searchValue)) {
+				$searchValue = "1";
+			}
+			else {
+				if(strlen($searchValue) > 0) {
+					$arraySplit = explode(" ", $searchValue);
+					$searchValue = AdaptTextPhrase($arraySplit, "users.Imie") . 
+					' OR ('.  AdaptTextPhrase($arraySplit, "users.Nazwisko").
+					') OR ('.  AdaptTextPhrase($arraySplit, "user_works.work_name"). ")";
+					
 				}
 			}
 			
-			if(strlen($_POST['searchInput']) == 0) {
-				//search works by class
-				$searchClass = "SELECT DISTINCT users.Imie, users.Klasa, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Klasa IN ('$class')";
+			$search = "SELECT DISTINCT * FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE $searchValue $classValue $profileValue $tagsValue";
 
-				//if query is true do code
-				if($querySerachClass = mysqli_query($con, $searchClass)) {
-					//if rows in query is bigger tahn 0 do code
-					if($querySerachClass->num_rows > 0) {
-						//append $row elements to array from query
-						$arrayWithResults = [];
-						$counter = 0;
-						while ($row = mysqli_fetch_array($querySerachClass)) {
-							//append results into array
-							$arrayWithResults[$counter] = [
-								"Name"=>$row['Imie'],
-								"Lastname"=>$row['Nazwisko'],
-								"work_name"=>$row['work_name'],
-								"work_id"=>$row['id'],
-								"Class"=>$row['Klasa']
-							];
-							$counter++;
-						}	
-					}
+			 ///////////////////////////////////////////////////////////////////////////////////////
+			 if($querySearch = mysqli_query($con, $search)) {			
+	
+				$counter = 0;
+				while ($row = mysqli_fetch_array($querySearch)) {
+					//append results into array
+					$arrayWithResults[$counter] = [
+						"Name"=>$row['Imie'],
+						"Lastname"=>$row['Nazwisko'],
+						"work_name"=>$row['work_name'],
+						"work_id"=>$row['id'],
+						"Class"=>$row['Klasa']
+					];
+					$counter++;
 				}
-				//if query is flase return aler(error)
-				else {
-					echo "<script>alert('Error');</script>";
-				}
+				
+			}
+			else {
+				echo "<script>alert('Error');</script>";
 			}
 		}
-
-		//search works by porfiles
-		function search_from_profile_select() {
-			global $con, $arrayWithResults;
-			//array with profiles from POST
-			$profilesAray = $_POST['profile'];
-
-			//empty variable for tags
-			$profile = "";
-			//loop get all elements from POST
-			for($i=0; $i<sizeof($profilesAray); $i++) {
-				//append vlue to variable 
-				$profile .= $profilesAray[$i];
-				//if i isn't last value add comma after append value to var 
-				if($i != sizeof($profilesAray)-1) {
-					$profile .= "','";
-				}
-			}
-
-			if(strlen($_POST['searchInput']) == 0) {
-				//search works by profile
-				$searchProfil = "SELECT DISTINCT users.Imie, users.Klasa, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE users.Profil IN ('$profile')";
-				//if query is true do code
-				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
-					//if query have more rows than 0 do code
-					if($querySerachProfil->num_rows > 0) {
-						//append $row elements to array from query
-						$arrayWithResults = [];
-						$counter = 0;
-						while ($row = mysqli_fetch_array($querySerachProfil)) {
-							//append results into array
-							$arrayWithResults[$counter] = [
-								"Name"=>$row['Imie'],
-								"Lastname"=>$row['Nazwisko'],
-								"work_name"=>$row['work_name'],
-								"work_id"=>$row['id'],
-								"Class"=>$row['Klasa']
-							];
-							$counter++;
-						}
-					}
-				}
-				//if query is false reutrn alert(error)
-				else {
-					echo "<script>alert('Error');</script>";
-				}	
-			}
-		}
-
-		//search works by porfiles
-		function search_from_tags_select() {
-			global $con, $arrayWithResults;
-			//array with tags
-			$options = $_POST['tags'];
-			//empty variable for tags
-			$tags = "";
-			//loop get all elements from POST
-			for($i=0; $i<sizeof($options); $i++) {
-				//append vlue to variable 
-				$tags .= $options[$i];
-				//if i isn't last value add comma after append value to var 
-				if($i != sizeof($options)-1) {
-					$tags .= "','";
-				}
-			}
-
-			if(strlen($_POST['searchInput']) == 0) {
-				//search works by profile
-				$searchProfil = "SELECT DISTINCT users.Imie, users.Klasa, users.Nazwisko, user_works.work_name, user_works.id FROM users INNER JOIN user_works ON users.id=user_works.id_user WHERE user_works.category IN ('$tags')";
-				//if query is true do code
-				if($querySerachProfil = mysqli_query($con, $searchProfil)) {
-					//if query have more rows than 0 do code
-					if($querySerachProfil->num_rows > 0) {
-						//append $row elements to array from query
-						$arrayWithResults = [];
-						$counter = 0;
-						while ($row = mysqli_fetch_array($querySerachProfil)) {
-							//append results into array
-							$arrayWithResults[$counter] = [
-								"Name"=>$row['Imie'],
-								"Lastname"=>$row['Nazwisko'],
-								"work_name"=>$row['work_name'],
-								"work_id"=>$row['id'],
-								"Class"=>$row['Klasa']
-							];
-							$counter++;
-						}
-					}
-				}
-				//if query is false reutrn alert(error)
-				else {
-					echo "<script>alert('Error');</script>";
-				}	
-			}
-		}
-
-
 
 
 		if(isset($_POST['searchInput'])) {
-			search_from_input();
-		}
-		if(isset($_POST['class'])) {
-			search_from_class_select();
-		}
-		if(isset($_POST['profile'])) {
-			search_from_profile_select();
-		}
-		if(isset($_POST['tags'])) {
-			search_from_tags_select();
+			MultipleSearch();
 		}
 
-
+		
 	?>
 
 
@@ -443,14 +286,14 @@
 				//create data with preview button
 				let dataButton = document.createElement('td');
 				//set class name for data name
-				dataButton.className = "previewData";
+				dataButton.className = "buttonData";
 				//append data to row
 				row.appendChild(dataButton);
 
 				//create preview button
 				let previewButton = document.createElement("a");
 				//set class name
-				previewButton.className = "previewButton";
+				previewButton.className = "buttonView";
 				//set innerHTML
 				previewButton.innerHTML = "Podgląd";
 				//set href for a
