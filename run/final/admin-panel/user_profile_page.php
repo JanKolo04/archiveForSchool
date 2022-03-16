@@ -218,7 +218,7 @@
 				//max file size 1048576 is a 1MB in bits
 				$maxSize = 3*(1048576);
 				//possible extensions
-			    $extensions = array("jpg","png");
+			    $extensions = array("jpg","png","txt");
 
 			    $counter = 0;
 			    while($counter < 1) {
@@ -295,10 +295,8 @@
 			//login with username and password
 			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
 
-
-
 			//upload a file
-			if (ftp_put($ftp, $dir, $fileTmp, FTP_ASCII)) {
+			if (ftp_put($ftp, $dir, $fileTmp, FTP_BINARY)) {
 				ftp_chmod($ftp, 0777, $dir);
 				echo "successfully uploaded $fileName\n";
 			} 

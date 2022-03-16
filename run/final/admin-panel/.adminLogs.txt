@@ -596,3 +596,36 @@ Admin created user Jan Nowak 1b Grafika komputerowa at 15.03.22 09:11:50pm
 Admin created user Jan Nowak 1b Grafika komputerowa at 15.03.22 09:12:23pm
 Admin created user Jan Kolodziej 1b Grafika komputerowa at 15.03.22 09:13:48pm
 Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 15.03.22 10:32:56pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 06:57:09pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 07:02:14pm
+Admin edited work for Jan Kolodziej 1b Grafika komputerowa at 16.03.22 08:13:51pm
+	Chnages:
+		Work name: spiderman => spidergirl,
+		Description: spiderman => spidergirl
+
+Admin edited work for Jan Kolodziej 1b Grafika komputerowa at 16.03.22 08:16:49pm
+	Chnages:
+		Work name: spidergirl => spiderman,
+		Description: spidergirl => spiderman
+
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 08:23:33pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 08:23:50pm
+Admin created user Angelina Dobrenko 3g Fotografia kreatywna at 16.03.22 08:30:39pm
+Admin added work for user Angelina Dobrenko 3g Fotografia kreatywna at 16.03.22 08:33:01pm
+Admin added work for user Angelina Dobrenko 3g Fotografia kreatywna at 16.03.22 08:33:21pm
+Admin added work for user Angelina Dobrenko 3g Fotografia kreatywna at 16.03.22 08:33:31pm
+Admin created user Oliwia Zasim 3g Fotografia kreatywna at 16.03.22 08:37:53pm
+Admin added work for user Oliwia Zasim 3g Fotografia kreatywna at 16.03.22 08:39:51pm
+Admin added work for user Oliwia Zasim 3g Fotografia kreatywna at 16.03.22 08:50:18pm
+Admin added work for user Oliwia Zasim 3g Fotografia kreatywna at 16.03.22 08:51:19pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:09:11pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:16:26pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:20:24pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:25:29pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:26:03pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:29:56pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:31:11pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:31:59pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:33:06pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:35:10pm
+Admin added work for user Jan Kolodziej 1b Grafika komputerowa at 16.03.22 11:39:14pm

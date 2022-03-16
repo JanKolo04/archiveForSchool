@@ -110,8 +110,7 @@
 
 
 			//path where we have our image
-			$path = "images/{$arrayUser[0]['Profil']}/{$arrayUser[0]['Klasa']}/{$arrayUser[0]['Imie']} {$arrayUser[0]['Nazwisko']}/{$arrayWorks[0]['file_name']}";
-
+			$path = "http://labzsk.webd.pro/portfolia/data/{$arrayUser[0]['Klasa']}/{$arrayUser[0]['Profil']}/{$arrayUser[0]['Imie']} {$arrayUser[0]['Nazwisko']}/{$arrayWorks[0]['file_name']}";
 
 			//this array is importing to JS for better show 
 			//data in website
@@ -143,10 +142,12 @@
 			//description
 			let description = document.querySelector('#description');
 			description.innerHTML = arrayImportDataFromPHP['description'];
-			//set src for img
 
+			//set src for img
 			let img = document.querySelector("#work");
 			img.src = arrayImportDataFromPHP["path"];
+		
+			console.log(arrayImportDataFromPHP['path']);
 		}
 
 		show_img();
