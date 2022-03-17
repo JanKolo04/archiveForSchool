@@ -67,8 +67,8 @@
 
 				<div id="inputsDiv">
 					<div id="inputsFileTextDiv">
-						<input type="text" name="work_name" placeholder="Work name...">
-						<input type="text" name="description" placeholder="Description...">
+						<input type="text" name="work_name" id="work_name" placeholder="Work name..." value="<?php echo $_POST['work_name'];?>">
+						<input type="text" name="description" id="description" placeholder="Description..." value="<?php echo $_POST['description'];?>">
 					</div>
 					<div id="inputFileSelectDiv">
 						<input type="file" name="file">
@@ -94,6 +94,8 @@
 		session_start();
 
 		include("../connection.php");
+
+		$success_add_work = 0;
 
 		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
@@ -180,7 +182,7 @@
 		get_all_user_works();
 
 		function add_file_into_database_and_directory() {
-			global $con;
+			global $con, $success_add_work;
 			//get return value from get_data_about_user function
 			$userDataArray = get_data_about_user();
 
@@ -243,27 +245,19 @@
 		      			
 		      			//if code didn't return any alert upload file to direcotry and insert data to database
 						else {
-							//move_uploaded_file($fileTmp,$dir.$fileName);
-							//ulpoad file into ftp server
-							upload_file($dir, $fileName, $fileTmp);
+							//inset work to server
+							move_uploaded_file($fileTmp,$dir.$fileName);
+		
 							//insert data into data base
 							$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('$id', '$fileName', '$work_name', 'Inne', '$description')";
 							$queryInsertWork = mysqli_query($con, $sendSQL);
 							
 							/*---------APPEND LOGS TO .adminLogs.txt---------*/
-							//set default timezone for date
-							date_default_timezone_set("Europe/Warsaw");
-							//set current date
-							$date = date("d.m.y h:i:sa");
-
-							//open file to write
-							$file = fopen(".adminLogs.txt", "a");
-							//data to append
+							//data to append adminLog
 							$data = "Admin added work for user $name $lastname $class $profile at $date\n";
-							//write file
-							fwrite($file, $data);
-							//clode file
-							fclose($file);
+							//append $data to function which append data into .adminLog.txt
+							append_data_into_adminLog($data);
+							$success_add_work = 1;
 
 							break;
 						}
@@ -279,35 +273,6 @@
 		   	}
 		}
 
-		function upload_file($dir, $fileName, $fileTmp) {	
-			//dir to file
-			$dir = $dir.$fileName;
-			//username
-			$usernameFtp = "jkolodziej@labzsk.webd.pro";
-			//password
-			$passwordFtp = "sq8++PHyK+JU";
-			//sername
-			$servername = "ftp.labzsk.webd.pro";
-
-			//set up basic connection
-			$ftp = ftp_connect($servername);
-
-			//login with username and password
-			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
-
-			//upload a file
-			if (ftp_put($ftp, $dir, $fileTmp, FTP_BINARY)) {
-				ftp_chmod($ftp, 0777, $dir);
-				echo "successfully uploaded $fileName\n";
-			} 
-			else {
-				echo "There was a problem while uploading $fileName\n";
-			}
-
-			//close the connection
-			ftp_close($ftp);
-		}
-
 
 		function chnage_user_data() {
 			global $con;
@@ -315,39 +280,42 @@
 			$arrayOldData = get_data_about_user();
 
 			//get user id
-			$user_id = $_GET['user_id'];
+			$user_id = $_GET['user'];
 			//name
 			$name = $_POST['changeName'];
 			//lastname
 			$lastname = $_POST['changeLastname'];
 			//class
 			$class = $_POST['changeClass'];
-			//profile
-			$profile = $_POST['changeProfile'];
+			//major
+			$major = $_POST['changeProfile'];
 
-			$updateSQL = "UPDATE users SET Imie='$name', Nazwisko='$lastname', Klasa='$class', Profil='$profile' WHERE id='$user_id'";
+			$updateSQL = "UPDATE users SET Imie='$name', Nazwisko='$lastname', Klasa='$class', Profil='$major' WHERE id='$user_id'";
 			//quert add user
 			$updateQuery = mysqli_query($con, $updateSQL);
 
 			$path = "../data/{$arrayOldData['Class']}/{$arrayOldData['Profile']}/{$arrayOldData['Name']} {$arrayOldData['Lastname']}";
 			/*---------CHANGE DIRECTORY SETTINGS---------*/
+			//if class dir dosent exist create dirvetory
+			if(!file_exists("../data/$class")) {
+				//create class dir
+				mkdir("../data/$class", 0777);
+			}
+
+			//if major dir dosent exist create directory
+			if(!file_exists("../data/$class/$major")) {
+				//create direcotry
+				mkdir("../data/$class/$major", 0777);
+			}
+
 			//move to other directory or rename directory
-			rename($path, "../images/$class/$profile/$name $lastname");
+			rename($path, "../data/$class/$major/$name $lastname");
 
-			/*---------APPEND LOGS TO .adminLogs.txt---------*/
-			//set default timezone for date
-			date_default_timezone_set("Europe/Warsaw");
-			//set current date
-			$date = date("d.m.y h:i:s");
-
-			//open file to write
-			$file = fopen(".adminLogs.txt", "a");
 			//data to append
-			$data = "Admin chnaged user data {$arrayOldData['Name']} {$arrayOldData['Lastname']} {$arrayOldData['Class']} {$arrayOldData['Profile']} at $date\n\tChnages:\n\t\tName: {$arrayOldData['Name']} => $name,\n\t\tLastname: {$arrayOldData['Lastname']} => $lastname,\n\t\tClass: {$arrayOldData['Class']} => $class, \n\t\tProfile: {$arrayOldData['Profile']} => $profile\n\n";
-			//write file
-			fwrite($file, $data);
-			//clode file
-			fclose($file);
+			$data = "Admin chnaged user data {$arrayOldData['Name']} {$arrayOldData['Lastname']} {$arrayOldData['Class']} {$arrayOldData['Profile']} at $date\n\tChnages:\n\t\tName: {$arrayOldData['Name']} => $name,\n\t\tLastname: {$arrayOldData['Lastname']} => $lastname,\n\t\tClass: {$arrayOldData['Class']} => $class, \n\t\tProfile: {$arrayOldData['Profile']} => $major\n\n";
+			//append $data to function which append data into .adminLog.txt
+			append_data_into_adminLog($data);
+
 
 		}
 
@@ -379,9 +347,34 @@
 			}
 		}
 
+
+		function append_data_into_adminLog($data) {
+			//set default timezone for date
+			date_default_timezone_set("Europe/Warsaw");
+			//set current date
+			$date = date("d.m.y h:i:s");
+
+			//open file to write
+			$file = fopen(".adminLogs.txt", "a");
+
+			//write file
+			fwrite($file, $data);
+			//clode file
+			fclose($file);
+		}
+
 	?>
 
 	<script type="text/javascript">
+
+		function clear_inputs_fileds_after_success_add_work() {
+			let success = <?php echo json_encode($success_add_work);?>;
+
+			if(success == 1) {
+				document.querySelector("#work_name").value = "";
+				document.querySelector("#description").value = "";
+			}
+		}
 		
 		function set_data() {
 			//array with data about user
@@ -488,13 +481,11 @@
 					record.appendChild(dataButtonView);
 
 					//view button
-					let viewButton = document.createElement('BUTTON');
+					let viewButton = document.createElement('a');
 					//set class name
 					viewButton.className = "viewButton";
 					//set value for button
-					viewButton.value = arrayWorks[i]['id_work'];
-					//set name
-					viewButton.name = "viewButton"
+					viewButton.href = "../previewPage.php?work="+arrayWorks[i]['id_work'];
 					//set text
 					viewButton.innerHTML = "View";
 					//append button to data for button
@@ -555,6 +546,7 @@
 		window.onload = function() {
 			set_data();
 			append_data_into_chnage_inputs_user_data();
+			clear_inputs_fileds_after_success_add_work();
 		}
 
 	</script>

@@ -110,7 +110,7 @@
 
 
 			//path where we have our image
-			$path = "http://labzsk.webd.pro/portfolia/data/{$arrayUser[0]['Klasa']}/{$arrayUser[0]['Profil']}/{$arrayUser[0]['Imie']} {$arrayUser[0]['Nazwisko']}/{$arrayWorks[0]['file_name']}";
+			$path = "data/{$arrayUser[0]['Klasa']}/{$arrayUser[0]['Profil']}/{$arrayUser[0]['Imie']} {$arrayUser[0]['Nazwisko']}/{$arrayWorks[0]['file_name']}";
 
 			//this array is importing to JS for better show 
 			//data in website

@@ -71,23 +71,30 @@
 			$lastname = $_POST['nazwisko'];
 			//class
 			$class = $_POST['klasa'];
-			//profile
-			$profile = $_POST['sepcjalizacja'];
+			//major
+			$major = $_POST['sepcjalizacja'];
 
 			//path to user directory
-			$path = "../data/$class/$profile/$name $lastname";
+			$path = "../data/$class/$major/$name $lastname";
 			//if directory dosen't exist create user and create directory
 			if(!file_exists($path)) {
 				//insert data into user
-				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$profile')";
+				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$major')";
 				//quert add user
 				$insertQuery = mysqli_query($con, $insertSQL);
 
-				//create direcotry in local
-				//mkdir($path, 0777);
-
-				//create folder on hosting
-				create_directory_for_user_in_ftp_server($path);
+				//if class dir dosent exist create dirvetory
+				if(!file_exists("../data/$class")) {
+					//create class dir
+					mkdir("../data/$class", 0777);
+				}
+				//if major dir dosent exist create directory
+				if(!file_exists("../data/$class/$major")) {
+					//create direcotry
+					mkdir("../data/$class/$major", 0777);
+				}
+				//create surdent directory
+				mkdir($path, 0777);
 
 				/*---------APPEND LOGS TO .adminLogs.txt---------*/
 				//set default timezone for date
@@ -98,7 +105,7 @@
 				//open file to write
 				$file = fopen(".adminLogs.txt", "a");
 				//data to append
-				$data = "Admin created user $name $lastname $class $profile at $date\n";
+				$data = "Admin created user $name $lastname $class $major at $date\n";
 				//write file
 				fwrite($file, $data);
 				//clode file
@@ -108,79 +115,6 @@
 			else {
 				echo "<script>alert('User exist!');</script>";
 			}
-		}
-
-		//function to check if student class exist or others dir exists
-		function check_if_folders_exists($path, $ftp_connection) {			
-			//split path to chech if 
-			$splitPath = explode('/', $path);
-
-			//class var from split
-			$class = $splitPath[2];
-			//profile var from split
-			$profile = $splitPath[3];
-
-			//if dosent exist 
-			if(!ftp_nlist($ftp_connection, $class) === false) {
-				ftp_mkdir($ftp_connection, '../data/'.$class);
-				ftp_chmod($ftp_connection, 0777, $class);
-			}
-
-			if(!ftp_nlist($ftp_connection, $profile) === false) {
-				ftp_mkdir($ftp_connection, '../data/'.$class.'/'.$profile);
-				ftp_chmod($ftp_connection, 0777, $profile);
-			}
-			print_r($splitPath);
-
-		}
-
-
-		function create_directory_for_user_in_ftp_server($path) {
-			//username
-			$usernameFtp = "jkolodziej@labzsk.webd.pro";
-			//password
-			$passwordFtp = "sq8++PHyK+JU";
-			//sername
-			$servername = "ftp.labzsk.webd.pro";
-
-			//set up basic connection
-			$ftp = ftp_connect($servername);
-
-			//login with username and password
-			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
-
-			//maybe we will useing this in future
-			//$folder_exists = is_dir('ftp://user:password@example.com/some/dir/path');
-
-			//split path to chech if 
-			$splitPath = explode('/', $path);
-
-			//class var from split
-			$class = "../data/$splitPath[2]";
-			//profile var from split
-			$profile = "../data/$class/$splitPath[3]";
-
-			//create class dir
-			ftp_mkdir($ftp, $class);
-			//set chmod for class dir
-			ftp_chmod($ftp, 0777, $class);
-			
-			//create profile dir
-			ftp_mkdir($ftp, $profile);
-			//set chmod for profile dir
-			ftp_chmod($ftp, 0777, $profile);
-			
-
-			//if direcotry with name and last name dosent exist return error
-			if(ftp_mkdir($ftp, $path)) {
-				ftp_chmod($ftp, 0777, $path);
-				echo "Successfully";
-			}
-			//else echo error
-			else {
-				echo "Error";
-			}
-
 		}
 
 	?>

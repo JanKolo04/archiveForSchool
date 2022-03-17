@@ -42,7 +42,7 @@
 					while($row = mysqli_fetch_array($queryCheck)) {
 						if($row['password'] == $password) {
 							$_SESSION['login'] = true;
-							header("Location: search_user_page.php");
+							header("Location: index.php");
 							echo "Successfully";
 						}
 						else {
