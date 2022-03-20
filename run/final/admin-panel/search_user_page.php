@@ -78,6 +78,10 @@
 						<option value="4c">4c</option>
 
 						<option value="absolwenci">Absolwenci</option>
+<<<<<<< HEAD
+=======
+			
+>>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 					</select>
 				</div>
 			</div>

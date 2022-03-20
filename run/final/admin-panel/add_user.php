@@ -8,9 +8,15 @@
 <body>
 
 	<form method="post">
+<<<<<<< HEAD
 		<input type="text" name="name" placeholder="Name" id="name" required value="<?php echo $_POST['name']?>">
 		<input type="text" name="lastname" placeholder="Lastname" id="lastname" required value="<?php echo $_POST['lastname']?>">
 		<select name="class" id="class">
+=======
+		<input type="text" name="imie" placeholder="Name" required>
+		<input type="text" name="nazwisko" placeholder="Lastname" required>
+		<select name="klasa">
+>>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 			<option disabled selected value>Select class</option>
 			<option value="1a">1a</option>
 			<option value="1b">1b</option>
@@ -36,7 +42,11 @@
 			<option value="absolwenci">Absolwenci</option>
 		</select>
 		
+<<<<<<< HEAD
 		<select name="major" id="major">
+=======
+		<select name="sepcjalizacja">
+>>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 			<option disabled selected value>Select profile</option>
 			<option value="Grafika komputerowa">Grafika komputerowa</option>
 			<option value="Tworzenie gier">Tworzenie gier</option>
@@ -72,9 +82,15 @@
 			//lastname
 			$lastname = $_POST['lastname'];
 			//class
+<<<<<<< HEAD
 			$class = $_POST['class'];
 			//major
 			$major = $_POST['major'];
+=======
+			$class = $_POST['klasa'];
+			//major
+			$major = $_POST['sepcjalizacja'];
+>>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 
 			//path to user directory
 			$path = "../data/$class/$major/$name $lastname";
@@ -122,6 +138,7 @@
 		}
 
 	?>
+<<<<<<< HEAD
 
 
 	<script type="text/javascript">
@@ -153,6 +170,8 @@
 		}
 
 	</script>
+=======
+>>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 
 </body>
 </html>
