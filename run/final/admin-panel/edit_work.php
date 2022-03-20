@@ -117,31 +117,12 @@
 
 			if($queryCheck = mysqli_query($con, $sqlCheck)) {
 				//array for data from sqlCheck
-<<<<<<< HEAD
 				while($row = mysqli_fetch_array($queryCheck)) {
 					continue;
 				}
 
 				//if work is different or description then data in db do update db
 				if($row['work_name'] != $workNameEdit || $row['description'] != $descriptionEdit || $row['category'] != $tags) {
-=======
-				$arrayWithCheckData = [];
-				while($row = mysqli_fetch_array($queryCheck)) {
-					//append data
-					$arrayWithCheckData = [
-						"work_name"=>$row['work_name'],
-						"description"=>$row['description'],
-						"category"=>$row['category'],
-						"Name"=>$row['Imie'],
-						"Lastname"=>$row['Nazwisko'],
-						"Profile"=>$row['Profil'],
-						"Class"=>$row['Klasa']
-					];
-				}
-
-				//if work is different or description then data in db do update db
-				if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit || $arrayWithCheckData['category'] != $tags) {
->>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 					//update data
 					$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', category='$tags' WHERE id='$work_id'";
 					$queryChange = mysqli_query($con, $sqlChange);
@@ -155,11 +136,7 @@
 					//open file to write
 					$file = fopen(".adminLogs.txt", "a");
 					//data to append
-<<<<<<< HEAD
 					$data = "Admin edited work for {$row['Name']} {$row['Lastname']} {$row['Class']} {$row['Profile']} at $date\n\tChnages:\n\t\tWork name: {$row['work_name']} => $workNameEdit,\n\t\tDescription: {$row['description']} => $descriptionEdit\n\n";
-=======
-					$data = "Admin edited work for {$arrayWithCheckData['Name']} {$arrayWithCheckData['Lastname']} {$arrayWithCheckData['Class']} {$arrayWithCheckData['Profile']} at $date\n\tChnages:\n\t\tWork name: {$arrayWithCheckData['work_name']} => $workNameEdit,\n\t\tDescription: {$arrayWithCheckData['description']} => $descriptionEdit\n\n";
->>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 					//write file
 					fwrite($file, $data);
 					//clode file
@@ -168,11 +145,7 @@
 
 
 				//if data is same code will return alert
-<<<<<<< HEAD
 				else if(($row['work_name'] == $workNameEdit) && ($row['description'] == $descriptionEdit) && ($row['category'] == $tags)) {
-=======
-				else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit) && ($arrayWithCheckData['category'] == $tags)) {
->>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 					//alert
 					echo "<script>alert('Data are same');</script>";
 				}

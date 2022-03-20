@@ -37,6 +37,10 @@
 		</div>
 	</div>
 
+	<div id="backDiv">
+		<a href="mainPage.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+	</div>
+
 	<form method="POST">
 		<div id="searchMenu">
 			<div class="container">

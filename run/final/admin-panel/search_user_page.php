@@ -38,6 +38,10 @@
 		</div>
 	</div>
 
+	<div id="backDiv">
+		<a href="index.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+	</div>
+
 	<form method="POST">
 		<div id="searchMenu">
 			<div class="container">
@@ -78,10 +82,6 @@
 						<option value="4c">4c</option>
 
 						<option value="absolwenci">Absolwenci</option>
-<<<<<<< HEAD
-=======
-			
->>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
 					</select>
 				</div>
 			</div>

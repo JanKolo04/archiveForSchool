@@ -67,7 +67,6 @@ Admin added work for user Jan Kolodziej 3a Tworzenie gier at 17.03.22 10:55:28pm
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 17.03.22 11:00:06pm
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 
-<<<<<<< HEAD
 Admin chnaged user data Jan Kolodziej 3a Tworzenie gier at 
 	Chnages:
 		Name: Jan => Jan,
@@ -87,5 +86,3 @@ Admin edited work for     at 20.03.22 04:39:53pm
 		Work name:  => joda,
 		Description:  => joda
 
-=======
->>>>>>> f3eb130f0a0f20fcc226b07391ce8419a3e16729
