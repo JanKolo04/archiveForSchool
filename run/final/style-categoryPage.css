@@ -81,19 +81,17 @@ body a:hover {
 	text-decoration: underline;
 }
 
-#categoryDiv .longCol {
+#categoryDiv .bigger {
 	text-align: center;
 	height: 130px;
 	width: 95%;
 	margin: 10px;
-	font-size: 18px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 6px;
 	background-color: white;
 	transition: 1s;
-	cursor: pointer;
 }
 
 #newWorks {
@@ -102,7 +100,7 @@ body a:hover {
 
 .longCol:hover {
 	font-size: 20px;
-	transform: scale(1.07);
+	transform: scale(1.1);
 }
 
 /*-----------FOOTER---------*/
