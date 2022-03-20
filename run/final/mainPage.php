@@ -108,26 +108,17 @@
 	<div id="holderDiv">
 		<div class="container">
 			<div class="row d-flex">
-		    	<div class="col-sm-width">
-		      		<a href="underpages/categoryPage.php?category=Fotografia%20i%20aplikacje">Fotografie i grafiki</a>
-		    	</div>
-		    	<div class="col-sm-width">
-		      		<a href="underpages/categoryPage.php">Filmy i aplikacje</a>
-		    	</div>
+		    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Fotografie i grafiki</div>
+
+		      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Filmy i aplikacje</div>
 		  	
-		    	<div class="col-sm-width">
-		      		<a href="underpages/categoryPage.php">Gry i aplikacje</a>
-		    	</div>
-		    	<div class="col-sm-width">
-		      		<a href="underpages/categoryPage.php">Inne</a>
-		    	</div>
+		    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Gry i aplikacje</div>		    	
+
+		      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Inne</div>
 		  	
-		    	<div class="col-sm-width longCol">
-		      		<a href="underpages/categoryPage.php">Projekty przedmiotowe</a>
-		    	</div>
-		    	<div class="col-sm-width longCol">
-		      		<a href="http://labzsk.webd.pro/pkucharczyk/">Konfiguracja własnej strony</a>
-		    	</div>
+		    	<div class="col-sm-width longCol" onclick="location.href='underpages/categoryPage.php';">Projekty przedmiotowe</div>
+		    	<div class="col-sm-width longCol" onclick="location.href='http://labzsk.webd.pro/pkucharczyk/';">Konfiguracja własnej strony</div>
+
 		  	</div>
 		</div>
 

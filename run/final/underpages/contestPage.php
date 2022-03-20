@@ -25,6 +25,10 @@
 		</div>
 	</div>
 
+	<div id="backDiv">
+		<a href="categoryPage.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+	</div>
+
 	<div id="main">
 		<div id="galeryDiv">
 			<div class="container">

@@ -150,9 +150,12 @@
 
 	<?php
 
+		session_start();
+
 		include("connection-user.php");
 
 		$arrayWithResults = [];
+
 
 		function AdaptFilter($arrayOfFilterValues, $dbColumName) {
 			if(empty($arrayOfFilterValues)) $resultValue = "AND 1";
@@ -229,10 +232,23 @@
 			}
 		}
 
-
-		if(isset($_POST['searchInput'])) {
-			MultipleSearch();
+		function check_session_variable() {
+			global $session;
+			//var with session
+			$session = 0;
+			//if session with categorySearch exist set value for $session
+			if(isset($_SESSION['categorySearch'])) {
+				//set value
+				$session = 1;
+				MultipleSearch();
+				session_unset();
+			}
+			else if(isset($_POST['searchInput'])) {
+				MultipleSearch();
+			}
 		}
+
+		check_session_variable();
 
 		
 	?>
@@ -310,7 +326,25 @@
 			
 		}
 
-		append_rows_into_table();
+
+		function chnage_href_for_back_button() {
+			//get session value
+			let session = <?php echo json_encode($session); ?>;
+
+			//if session equals 1 chnage back button href
+			if(session == 1) {
+				//change back button href
+				document.querySelector('#backButton').href = "underpages/categoryPage.php";
+			}
+			else {
+				document.querySelector('#backButton').href = "mainPage.php";
+			}
+		}
+
+		window.onload = function() {
+			append_rows_into_table();
+			chnage_href_for_back_button();
+		}
 
 	</script>
 

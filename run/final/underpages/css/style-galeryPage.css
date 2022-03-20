@@ -25,6 +25,23 @@ body {
 	margin-left: 20px;
 }
 
+/*--------BACK DIV STYLE---------*/
+#backDiv {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#backButton {
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+#backButton:hover {
+	text-decoration: underline;
+	color: black;
+}
 
 /*-----------MAIN---------*/
 #main {
