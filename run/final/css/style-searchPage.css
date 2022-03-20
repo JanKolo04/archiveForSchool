@@ -118,22 +118,25 @@ th {
 	border-bottom: 2px solid #ced4da;
 }
 
-.previewData {
-	width: 0px !important;
-	padding: 10px 20px !important;
+.buttonData {
+	width: 125px !important;
+	padding: 6px 10px;
 }
 
-.previewButton {
+.buttonView {
 	background-color: #007bff;
 	padding: 4px 15px;
 	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 	cursor: pointer;
 	color: white;
 	text-decoration: none;
 	border: 1px solid #ced4da;
 }
 
-.previewButton:hover {
+.buttonView:hover {
 	color: white;
 	text-decoration: none;
 }

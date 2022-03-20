@@ -10,11 +10,11 @@
 
 	<form method="post">
 		<div id="allStuff">
-			<h2>Edit work</h2>
+			<h2>Edytuj prace</h2>
 			<div id="inputsDiv">
 				<div id="inputsEditsDiv">
-					<input type="text" name="editWork_name" id="editWork_name" placeholder="Change work name">
-					<input type="text" name="editDescription" id="editDescription" placeholder="Change description">
+					<input type="text" name="editWork_name" id="editWork_name" placeholder="Zmień tutuł pracy...">
+					<input type="text" name="editDescription" id="editDescription" placeholder="Zmień opis pracy...">
 
 					<select id="tags" multiple name="tags[]">
 						<option id="Fotografia" value="Fotografia">Fotografia</option>
@@ -36,7 +36,7 @@
 					<div id="backButtonDiv"></div>
 
 					<div id="submitEditButtonDiv">
-						<button type="submit" name="editSubmit">Edit</button>
+						<button type="submit" name="editSubmit">Zmień</button>
 					</div>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 		}
 
 		if(isset($_POST['editSubmit'])) {
-			change_work_name_or_descriptoin();
+			change_work_name_or_description();
 		}
 
 		function get_works() {
@@ -116,55 +116,44 @@
 			$sqlCheck = "SELECT user_works.work_name, user_works.description, user_works.category, users.Imie, users.Nazwisko, users.Klasa, users.Profil FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id'";
 
 			if($queryCheck = mysqli_query($con, $sqlCheck)) {
-				if($queryCheck->num_rows > 0) {
-					//array for data from sqlCheck
-					$arrayWithCheckData = [];
-					while($row = mysqli_fetch_array($queryCheck)) {
-						//append data
-						$arrayWithCheckData = [
-							"work_name"=>$row['work_name'],
-							"description"=>$row['description'],
-							"category"=>$row['category'],
-							"Name"=>$row['Imie'],
-							"Lastname"=>$row['Nazwisko'],
-							"Profile"=>$row['Profil'],
-							"Class"=>$row['Klasa']
-						];
-					}
-
-					//if work is different or description then data in db do update db
-					if($arrayWithCheckData['work_name'] != $workNameEdit || $arrayWithCheckData['description'] != $descriptionEdit || $arrayWithCheckData['category'] != $tags) {
-						//update data
-						$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', category='$tags' WHERE id='$work_id'";
-						$queryChange = mysqli_query($con, $sqlChange);
-
-						/*---------APPEND LOGS TO .adminLogs.txt---------*/
-						//set default timezone for date
-						date_default_timezone_set("Europe/Warsaw");
-						//set current date
-						$date = date("d.m.y h:i:sa");
-
-						//open file to write
-						$file = fopen(".adminLogs.txt", "a");
-						//data to append
-						$data = "Admin edited work for {$arrayWithCheckData['Name']} {$arrayWithCheckData['Lastname']} {$arrayWithCheckData['Class']} {$arrayWithCheckData['Profile']} at $date\n\tChnages:\n\t\tWork name: {$arrayWithCheckData['work_name']} => $workNameEdit,\n\t\tDescription: {$arrayWithCheckData['description']} => $descriptionEdit\n\n";
-						//write file
-						fwrite($file, $data);
-						//clode file
-						fclose($file);
-					}
-
-
-					//if data is same code will return alert
-					else if(($arrayWithCheckData['work_name'] == $workNameEdit) && ($arrayWithCheckData['description'] == $descriptionEdit) && ($arrayWithCheckData['category'] == $tags)) {
-						//alert
-						echo "<script>alert('Data are same');</script>";
-					}
-					//if error return alert with error
-					else {
-						echo "<script>alert('Error');</script>";
-					}
+				//array for data from sqlCheck
+				while($row = mysqli_fetch_array($queryCheck)) {
+					continue;
 				}
+
+				//if work is different or description then data in db do update db
+				if($row['work_name'] != $workNameEdit || $row['description'] != $descriptionEdit || $row['category'] != $tags) {
+					//update data
+					$sqlChange = "UPDATE user_works SET work_name='$workNameEdit', description='$descriptionEdit', category='$tags' WHERE id='$work_id'";
+					$queryChange = mysqli_query($con, $sqlChange);
+
+					/*---------APPEND LOGS TO .adminLogs.txt---------*/
+					//set default timezone for date
+					date_default_timezone_set("Europe/Warsaw");
+					//set current date
+					$date = date("d.m.y h:i:sa");
+
+					//open file to write
+					$file = fopen(".adminLogs.txt", "a");
+					//data to append
+					$data = "Admin edited work for {$row['Name']} {$row['Lastname']} {$row['Class']} {$row['Profile']} at $date\n\tChnages:\n\t\tWork name: {$row['work_name']} => $workNameEdit,\n\t\tDescription: {$row['description']} => $descriptionEdit\n\n";
+					//write file
+					fwrite($file, $data);
+					//clode file
+					fclose($file);
+				}
+
+
+				//if data is same code will return alert
+				else if(($row['work_name'] == $workNameEdit) && ($row['description'] == $descriptionEdit) && ($row['category'] == $tags)) {
+					//alert
+					echo "<script>alert('Data are same');</script>";
+				}
+				//if error return alert with error
+				else {
+					echo "<script>alert('Error');</script>";
+				}
+				
 			}
 			else {
 				echo "<script>alert('Error');</script>";
@@ -192,9 +181,9 @@
 				//class name
 				backButton.className = "backButton";
 				//set text
-				backButton.innerHTML = "Back";
+				backButton.innerHTML = "Wróć";
 				//set href
-				backButton.href = "search_user_admin.php?user_id="+worksArray['user_id'];
+				backButton.href = "user_profile_page.php?user="+worksArray['user_id'];
 				//append button to div
 				backButtonDiv.appendChild(backButton);
 

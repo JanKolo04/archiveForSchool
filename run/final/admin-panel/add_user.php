@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl-PL">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,20 +8,43 @@
 <body>
 
 	<form method="post">
-		<input type="text" name="imie" placeholder="Name" required>
-		<input type="text" name="nazwisko" placeholder="Lastname" required>
-		<select name="klasa">
-			<option disabled selected value>--Select--</option>
-			<option>3a</option>
-			<option>3b</option>
+		<input type="text" name="name" placeholder="Name" id="name" required value="<?php echo $_POST['name']?>">
+		<input type="text" name="lastname" placeholder="Lastname" id="lastname" required value="<?php echo $_POST['lastname']?>">
+		<select name="class" id="class">
+			<option disabled selected value>Select class</option>
+			<option value="1a">1a</option>
+			<option value="1b">1b</option>
+			<option value="1c">1c</option>
+
+			<option value="2a">2a</option>
+			<option value="2b">2b</option>
+			<option value="2c">2c</option>
+
+			<option value="3a">3a</option>
+			<option value="3b">3b</option>
+			<option value="3c">3c</option>
+			<option value="3d">3d</option>
+			<option value="3e">3e</option>
+			<option value="3f">3f</option>
+			<option value="3g">3g</option>
+			<option value="3h">3h</option>
+
+			<option value="4a">4a</option>
+			<option value="4b">4b</option>
+			<option value="4c">4c</option>
+
+			<option value="absolwenci">Absolwenci</option>
 		</select>
-		<select name="sepcjalizacja">
-			<option disabled selected value>--Select--</option>
-			<option>Informatyka</option>
-			<option>Grafika</option>
+		
+		<select name="major" id="major">
+			<option disabled selected value>Select profile</option>
+			<option value="Grafika komputerowa">Grafika komputerowa</option>
+			<option value="Tworzenie gier">Tworzenie gier</option>
+			<option value="Fotografia kreatywna">Fotografia kreatywna</option>
+			<option value="Animacja komputerowa">Animacja komputerowa</option>
 		</select>
 
-		<button type="submit" name="add">Add</button>
+		<button type="submit" name="add" id="add">Add</button>
 	</form>
 
 
@@ -30,6 +53,8 @@
 		session_start();
 
 		include("../connection.php");
+
+		$success = 0;
 
 		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
@@ -40,31 +65,39 @@
 		}
 
 		function add() {
-			global $con;
+			global $con, $success, $class, $major;
 
 			//name
-			$name = $_POST['imie'];
+			$name = $_POST['name'];
 			//lastname
-			$lastname = $_POST['nazwisko'];
+			$lastname = $_POST['lastname'];
 			//class
-			$class = $_POST['klasa'];
-			//profile
-			$profile = $_POST['sepcjalizacja'];
+			$class = $_POST['class'];
+			//major
+			$major = $_POST['major'];
 
 			//path to user directory
-			$path = "../images/$profile/$class/$name $lastname";
+			$path = "../data/$class/$major/$name $lastname";
 			//if directory dosen't exist create user and create directory
 			if(!file_exists($path)) {
+				$success = 1;
 				//insert data into user
-				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$profile')";
+				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$major')";
 				//quert add user
 				$insertQuery = mysqli_query($con, $insertSQL);
 
-				//create direcotry in local
-				//mkdir($path, 0777);
-
-				//create folder on hosting
-				create_directory_for_user_in_ftp_server($path);
+				//if class dir dosent exist create dirvetory
+				if(!file_exists("../data/$class")) {
+					//create class dir
+					mkdir("../data/$class", 0777);
+				}
+				//if major dir dosent exist create directory
+				if(!file_exists("../data/$class/$major")) {
+					//create direcotry
+					mkdir("../data/$class/$major", 0777);
+				}
+				//create surdent directory
+				mkdir($path, 0777);
 
 				/*---------APPEND LOGS TO .adminLogs.txt---------*/
 				//set default timezone for date
@@ -75,7 +108,7 @@
 				//open file to write
 				$file = fopen(".adminLogs.txt", "a");
 				//data to append
-				$data = "Admin created user $name $lastname $class $profile at $date\n";
+				$data = "Admin created user $name $lastname $class $major at $date\n";
 				//write file
 				fwrite($file, $data);
 				//clode file
@@ -83,37 +116,43 @@
 			}
 			//else show alert
 			else {
+				$success = 2;
 				echo "<script>alert('User exist!');</script>";
 			}
 		}
 
+	?>
 
-		function create_directory_for_user_in_ftp_server($path) {
-			//username
-			$usernameFtp = "**";
-			//password
-			$passwordFtp = "**";
-			//sername
-			$servername = "**";
 
-			//set up basic connection
-			$ftp = ftp_connect($servername);
+	<script type="text/javascript">
+		
+		function clear_inputs_fileds_after_success_add_work() {
+			//get success value from php
+			let success = <?php echo json_encode($success);?>;
 
-			//login with username and password
-			$login_result = ftp_login($ftp, $usernameFtp, $passwordFtp);
+			//get value from class select
+			let selectClassValue = <?php echo json_encode($class);?>;
+			//get value from major select
+			let selectMajorValue = <?php echo json_encode($major);?>;
 
-			//if directory create echo Sucessfully
-			if(ftp_mkdir($ftp, $path)) {
-				echo "Successfully";
+			//if success is 1 clear all inputs
+			if(success == 1) {
+				//clear inputs
+				document.querySelector("#name").value = "";
+				document.querySelector("#lastname").value = "";
 			}
-			//else echo error
-			else {
-				echo "Error";
+			else if(success == 2) {
+				//select value if success is 0
+				document.querySelector('#class').value = selectClassValue;
+				document.querySelector('#major').value = selectMajorValue;
 			}
-
 		}
 
-	?>
+		window.onload = function() {
+			clear_inputs_fileds_after_success_add_work();
+		}
+
+	</script>
 
 </body>
 </html>
