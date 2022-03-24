@@ -9,8 +9,8 @@
 
 	<h2>Nawigacja</h2>
 
-	<a href="search_user_page.php">Search user</a><br>
-	<a href="add_user.php">Add user</a>
+	<a href="search_user_page.php">Szukaj ucznia</a><br>
+	<a href="add_user.php">Dodaj ucznia</a>
 
 
 	<?php

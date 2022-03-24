@@ -9,21 +9,21 @@
 <body>
 
 	<div id="allStuff">
-		<a href="search_user_page.php">Back</a>
+		<a href="javascript: history.go(-1)" id="backButton">Wróć</a>
 		<h2 id="nameSurname"></h2>
 
 		<form method="post" enctype="multipart/form-data">
 			<div id="allInputs">
 				<div id="changeDiv">
 					<div id="chnageInputsDiv">
-						<input type="text" name="changeName" id="changeName" placeholder="Chnage name...">
-						<input type="text" name="changeLastname" id="changeLastname" placeholder="Chnage Lastname...">
+						<input type="text" name="changeName" id="changeName" placeholder="Zmień imie...">
+						<input type="text" name="changeLastname" id="changeLastname" placeholder="Zmień nazwisko...">
 					</div>
 
 					<div id="changeSelectDiv">
 						<div id="selectClassDiv">
 							<select name="changeClass" id="changeClass">
-								<option disabled selected value>Select class</option>
+								<option disabled selected value>Zmien klase</option>
 								<option value="1a">1a</option>
 								<option value="1b">1b</option>
 								<option value="1c">1c</option>
@@ -51,7 +51,7 @@
 
 						<div id="selectProfileDiv">
 							<select name="changeProfile" id="changeProfile">
-								<option disabled selected value>Select profile</option>
+								<option disabled selected value>Zmien profil</option>
 								<option value="Grafika komputerowa">Grafika komputerowa</option>
 								<option value="Tworzenie gier">Tworzenie gier</option>
 								<option value="Fotografia kreatywna">Fotografia kreatywna</option>
@@ -61,18 +61,31 @@
 					</div>
 
 					<div id="submitChangeDiv">
-						<button type="submit" name="submitChange">Change</button>
+						<button type="submit" name="submitChange">Zmień</button>
 					</div>
 				</div>
 
 				<div id="inputsDiv">
 					<div id="inputsFileTextDiv">
-						<input type="text" name="work_name" id="work_name" placeholder="Work name..." value="<?php echo $_POST['work_name'];?>">
-						<input type="text" name="description" id="description" placeholder="Description..." value="<?php echo $_POST['description'];?>">
+						<input type="text" name="work_name" id="work_name" placeholder="Tytuł pracy..." value="<?php echo $_POST['work_name'];?>">
+						<textarea name="description" id="description" placeholder="Opis pracy..." value="<?php echo $_POST['description'];?>" style="width: 240px; height: 60px;"></textarea>
+
+						<div id="list">
+							<p>Lista możliwych plików</p>
+
+							<ol id="extensionsList">
+								<li class="element">jpg</li>
+								<li class="element">png</li>
+								<li class="element">gif</li>
+								<li class="element">mp4</li>
+								<li class="element">mp3</li>
+								<li class="element">zip</li>
+							</ol>
+						</div>
 					</div>
 					<div id="inputFileSelectDiv">
 						<input type="file" name="file">
-						<button type="submit" name="submitAddFile">Add</button>
+						<button type="submit" name="submitAddFile">Dodaj</button>
 					</div>
 				</div>
 			</div>
@@ -369,6 +382,7 @@
 
 		function clear_inputs_fileds_after_success_add_work() {
 			let success = <?php echo json_encode($success_add_work);?>;
+			let backButton = <?php echo json_encode($backButton); ?>;
 
 			if(success == 1) {
 				document.querySelector("#work_name").value = "";
@@ -485,9 +499,9 @@
 					//set class name
 					viewButton.className = "viewButton";
 					//set value for button
-					viewButton.href = "../previewPage.php?work="+arrayWorks[i]['id_work'];
+					viewButton.href = "previewPage.php?work="+arrayWorks[i]['id_work'];
 					//set text
-					viewButton.innerHTML = "View";
+					viewButton.innerHTML = "Podgląd";
 					//append button to data for button
 					dataButtonView.appendChild(viewButton);
 
@@ -506,7 +520,7 @@
 					//set href for button
 					editButton.href = "edit_work.php?work="+arrayWorks[i]['id_work'];
 					//set text
-					editButton.innerHTML = "Edit";
+					editButton.innerHTML = "Edytuj";
 					//append button to data for button
 					dataButtonEdit.appendChild(editButton);
 

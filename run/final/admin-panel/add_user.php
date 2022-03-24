@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl-PL">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +7,13 @@
 </head>
 <body>
 
+	<a href="javascript: history.go(-1)">Wróć</a><br><br>
+
 	<form method="post">
-		<input type="text" name="imie" placeholder="Name" required>
-		<input type="text" name="nazwisko" placeholder="Lastname" required>
-		<select name="klasa">
-			<option disabled selected value>Select class</option>
+		<input type="text" name="name" placeholder="Imie" id="name" required value="<?php echo $_POST['name']?>">
+		<input type="text" name="lastname" placeholder="Nazwisko" id="lastname" required value="<?php echo $_POST['lastname']?>">
+		<select name="class" id="class">
+			<option disabled selected value>Wybierz klase ucznia</option>
 			<option value="1a">1a</option>
 			<option value="1b">1b</option>
 			<option value="1c">1c</option>
@@ -36,15 +38,15 @@
 			<option value="absolwenci">Absolwenci</option>
 		</select>
 		
-		<select name="sepcjalizacja">
-			<option disabled selected value>Select profile</option>
+		<select name="major" id="major">
+			<option disabled selected value>Wybierz specjalizacje ucznia</option>
 			<option value="Grafika komputerowa">Grafika komputerowa</option>
 			<option value="Tworzenie gier">Tworzenie gier</option>
 			<option value="Fotografia kreatywna">Fotografia kreatywna</option>
 			<option value="Animacja komputerowa">Animacja komputerowa</option>
 		</select>
 
-		<button type="submit" name="add">Add</button>
+		<button type="submit" name="add" id="add">Add</button>
 	</form>
 
 
@@ -53,6 +55,8 @@
 		session_start();
 
 		include("../connection.php");
+
+		$success = 0;
 
 		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
@@ -63,21 +67,23 @@
 		}
 
 		function add() {
-			global $con;
+			global $con, $success, $class, $major;
 
 			//name
-			$name = $_POST['imie'];
+			$name = $_POST['name'];
 			//lastname
-			$lastname = $_POST['nazwisko'];
+			$lastname = $_POST['lastname'];
 			//class
-			$class = $_POST['klasa'];
+			$class = $_POST['class'];
 			//major
-			$major = $_POST['sepcjalizacja'];
+			$major = $_POST['major'];
 
 			//path to user directory
 			$path = "../data/$class/$major/$name $lastname";
 			//if directory dosen't exist create user and create directory
 			if(!file_exists($path)) {
+				$success = 1;
+	
 				//insert data into user
 				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$major')";
 				//quert add user
@@ -95,6 +101,7 @@
 				}
 				//create surdent directory
 				mkdir($path, 0777);
+				
 
 				/*---------APPEND LOGS TO .adminLogs.txt---------*/
 				//set default timezone for date
@@ -110,14 +117,57 @@
 				fwrite($file, $data);
 				//clode file
 				fclose($file);
+
+				//get alst id in table
+				//this sql is nedded because we move to new student profile
+				$get_user_id = "SELECT MAX(id) AS id FROM users";
+				//query get_id
+				$mysqli_query_id = mysqli_query($con, $get_user_id);
+				//get id from query
+				$user_id = mysqli_fetch_array($mysqli_query_id);
+				//move to student profile
+				header("Location: user_profile_page.php?user=".$user_id['id']);
+
 			}
 			//else show alert
 			else {
+				$success = 2;
 				echo "<script>alert('User exist!');</script>";
 			}
 		}
 
 	?>
+
+
+	<script type="text/javascript">
+		
+		function clear_inputs_fileds_after_success_add_work() {
+			//get success value from php
+			let success = <?php echo json_encode($success);?>;
+
+			//get value from class select
+			let selectClassValue = <?php echo json_encode($class);?>;
+			//get value from major select
+			let selectMajorValue = <?php echo json_encode($major);?>;
+
+			//if success is 1 clear all inputs
+			if(success == 1) {
+				//clear inputs
+				document.querySelector("#name").value = "";
+				document.querySelector("#lastname").value = "";
+			}
+			else if(success == 2) {
+				//select value if success is 0
+				document.querySelector('#class').value = selectClassValue;
+				document.querySelector('#major').value = selectMajorValue;
+			}
+		}
+
+		window.onload = function() {
+			clear_inputs_fileds_after_success_add_work();
+		}
+
+	</script>
 
 </body>
 </html>

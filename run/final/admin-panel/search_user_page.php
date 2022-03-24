@@ -34,8 +34,12 @@
 
 	<div id="baner">
 		<div id="divLogo">
-			<a href="mainPage.php"><img id="logo" src="../images/logoZSK.png"></a>
+			<a href="javascript: history.go(-1)"><img id="logo" src="../images/logoZSK.png"></a>
 		</div>
+	</div>
+
+	<div id="backDiv">
+		<a href="index.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
 	</div>
 
 	<form method="POST">
@@ -78,7 +82,6 @@
 						<option value="4c">4c</option>
 
 						<option value="absolwenci">Absolwenci</option>
-			
 					</select>
 				</div>
 			</div>
@@ -214,7 +217,6 @@
 			}
 		}
 
-		
 		
 		MultipleSearch();
 		

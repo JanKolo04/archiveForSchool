@@ -67,3 +67,45 @@ Admin added work for user Jan Kolodziej 3a Tworzenie gier at 17.03.22 10:55:28pm
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 17.03.22 11:00:06pm
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 
 Admin added work for user Jan Kolodziej 3a Tworzenie gier at 
+Admin chnaged user data Jan Kolodziej 3a Tworzenie gier at 
+	Chnages:
+		Name: Jan => Jan,
+		Lastname: Kolodziej => Kolodziej,
+		Class: 3a => 3b, 
+		Profile: Tworzenie gier => Grafika komputerowa
+
+Admin created user Michał Śmieszniak 3b Grafika komputerowa at 20.03.22 03:23:20pm
+Admin created user Jan Kolodziej   at 20.03.22 03:48:20pm
+Admin created user Ola Kelner 3b Grafika komputerowa at 20.03.22 03:56:47pm
+Admin created user Piotr Kolodziej 3e Tworzenie gier at 20.03.22 03:59:10pm
+Admin created user Piotr Kolodziej 3e Tworzenie gier at 20.03.22 04:09:44pm
+Admin added work for user Jan Kolodziej 3b Grafika komputerowa at 
+Admin added work for user Jan Kolodziej 3b Grafika komputerowa at 
+Admin edited work for     at 20.03.22 04:39:53pm
+	Chnages:
+		Work name:  => joda,
+		Description:  => joda
+
+Admin chnaged user data Jan Kolodziej 3b Grafika komputerowa at 
+	Chnages:
+		Name: Jan => Wiktor,
+		Lastname: Kolodziej => Kolodziej,
+		Class: 3b => 3b, 
+		Profile: Grafika komputerowa => Grafika komputerowa
+
+Admin chnaged user data Wiktor Kolodziej 3b Grafika komputerowa at 
+	Chnages:
+		Name: Wiktor => Jan,
+		Lastname: Kolodziej => Kolodziej,
+		Class: 3b => 3b, 
+		Profile: Grafika komputerowa => Grafika komputerowa
+
+Admin created user Jan  kowalski 1a Grafika komputerowa at 22.03.22 02:38:46pm
+Admin created user Szymon Zimecki 3b Grafika komputerowa at 23.03.22 03:42:00pm
+Admin created user Szymon Zimecki 3b Grafika komputerowa at 23.03.22 03:45:18pm
+Admin created user Patryk Lebiecki 3b Grafika komputerowa at 23.03.22 03:46:19pm
+Admin created user Szymon Zimecki 3a Fotografia kreatywna at 23.03.22 03:49:12pm
+Admin created user Szymon Zimecki 3b Tworzenie gier at 23.03.22 03:50:25pm
+Admin created user Szymon Zimecki 3b Grafika komputerowa at 23.03.22 03:51:02pm
+Admin created user Patryk Lebiecki 3b Grafika komputerowa at 24.03.22 10:04:52pm
+Admin created user xyz xyz 2a Grafika komputerowa at 24.03.22 10:06:53pm
