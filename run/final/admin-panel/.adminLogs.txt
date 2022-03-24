@@ -86,6 +86,7 @@ Admin edited work for     at 20.03.22 04:39:53pm
 		Work name:  => joda,
 		Description:  => joda
 
+<<<<<<< HEAD
 Admin chnaged user data Jan Kolodziej 3b Grafika komputerowa at 
 	Chnages:
 		Name: Jan => Wiktor,
@@ -109,3 +110,5 @@ Admin created user Szymon Zimecki 3b Tworzenie gier at 23.03.22 03:50:25pm
 Admin created user Szymon Zimecki 3b Grafika komputerowa at 23.03.22 03:51:02pm
 Admin created user Patryk Lebiecki 3b Grafika komputerowa at 24.03.22 10:04:52pm
 Admin created user xyz xyz 2a Grafika komputerowa at 24.03.22 10:06:53pm
+=======
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254

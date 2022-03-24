@@ -156,10 +156,13 @@
 
 		$arrayWithResults = [];
 
+<<<<<<< HEAD
 		if(isset($_POST['searchInput'])) {
 			MultipleSearch();
 		}
 
+=======
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 
 		function AdaptFilter($arrayOfFilterValues, $dbColumName) {
 			if(empty($arrayOfFilterValues)) $resultValue = "AND 1";
@@ -241,10 +244,21 @@
 			//var with session
 			$session = 0;
 			//if session with categorySearch exist set value for $session
+<<<<<<< HEAD
 			if($_SESSION['categorySearch'] == "categoryPage") {
 				//set value
 				$session = 1;
 				MultipleSearch();
+=======
+			if(isset($_SESSION['categorySearch'])) {
+				//set value
+				$session = 1;
+				MultipleSearch();
+				session_unset();
+			}
+			else if(isset($_POST['searchInput'])) {
+				MultipleSearch();
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 			}
 		}
 
@@ -330,7 +344,10 @@
 		function chnage_href_for_back_button() {
 			//get session value
 			let session = <?php echo json_encode($session); ?>;
+<<<<<<< HEAD
 			console.log(session);
+=======
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 
 			//if session equals 1 chnage back button href
 			if(session == 1) {

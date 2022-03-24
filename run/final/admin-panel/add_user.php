@@ -7,6 +7,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 	<a href="javascript: history.go(-1)">Wróć</a><br><br>
 
 	<form method="post">
@@ -14,6 +15,15 @@
 		<input type="text" name="lastname" placeholder="Nazwisko" id="lastname" required value="<?php echo $_POST['lastname']?>">
 		<select name="class" id="class">
 			<option disabled selected value>Wybierz klase ucznia</option>
+=======
+	<a href="index.php">Wróć</a><br><br>
+
+	<form method="post">
+		<input type="text" name="name" placeholder="Name" id="name" required value="<?php echo $_POST['name']?>">
+		<input type="text" name="lastname" placeholder="Lastname" id="lastname" required value="<?php echo $_POST['lastname']?>">
+		<select name="class" id="class">
+			<option disabled selected value>Select class</option>
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 			<option value="1a">1a</option>
 			<option value="1b">1b</option>
 			<option value="1c">1c</option>
@@ -39,7 +49,11 @@
 		</select>
 		
 		<select name="major" id="major">
+<<<<<<< HEAD
 			<option disabled selected value>Wybierz specjalizacje ucznia</option>
+=======
+			<option disabled selected value>Select profile</option>
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 			<option value="Grafika komputerowa">Grafika komputerowa</option>
 			<option value="Tworzenie gier">Tworzenie gier</option>
 			<option value="Fotografia kreatywna">Fotografia kreatywna</option>
@@ -83,7 +97,10 @@
 			//if directory dosen't exist create user and create directory
 			if(!file_exists($path)) {
 				$success = 1;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 				//insert data into user
 				$insertSQL = "INSERT INTO users(Imie, Nazwisko, Klasa, Profil) VALUES('$name', '$lastname', '$class', '$major')";
 				//quert add user

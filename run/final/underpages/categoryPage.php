@@ -25,21 +25,19 @@
 		</div>
 	</div>
 
+	<div id="backDiv">
+		<a href="../mainPage.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+	</div>
+
 	<div id="main">
 		<div id="categoryDiv">
 			<div class="container">
 				<div class="row d-flex justify-content-around">
-			    	<div class="longCol" id="newWorks">
-			      		<a href="galeryPage.php">Najnowsze prace</a>
-			    	</div>
+			    	<div class="longCol" id="newWorks" onclick="location.href='galeryPage.php';">Najnowsze prace</div>
 
-			    	<div class="longCol">
-			      		<a href="contestPage.php">Konkursy i Wystawy</a>
-			    	</div>
+			    	<div class="longCol" onclick="location.href='contestPage.php';">Konkursy i Wystawy</div>
 
-			    	<div class="longCol">
-			      		<a href="../searchPage.php">Lista prac</a>
-			    	</div>
+			    	<div class="longCol" onclick="location.href='../searchPage.php';">Lista prac</div>
 			  	</div>
 			</div>
 		</div>
@@ -67,5 +65,22 @@
 		</footer>
 	</div>
 
+
+	<?php
+
+		session_start();
+
+		$_SESSION['categorySearch'] = true;
+
+	?>
+
 </body>
 </html>
+
+
+
+
+
+
+
+

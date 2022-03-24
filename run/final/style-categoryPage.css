@@ -1,6 +1,5 @@
 body {
 	overflow: auto;
-	color: black !important;
 	background-color: #e9ebee !important;
 }
 /*----------BANER----------*/
@@ -43,23 +42,66 @@ body {
 	color: black;
 }
 
+
 /*-----------MAIN---------*/
 #main {
 	width: 100%;
 }
 
-#galeryDiv {
-	padding: 40px;
-	min-height: 700px;
-	width: 100%;
+#categoryDiv {
+	min-height: 720px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.thumbnail {
-	border: none !important;
-	border-radius: 20px !important;
-	padding: 0px !important;
+
+#categoryDiv .container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 40px;
 }
 
+#categoryDiv .row {
+	width: 80%;
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+body a {
+	font-size: 18px;
+	color: black;
+	text-decoration: none;
+}
+body a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+#categoryDiv .bigger {
+	text-align: center;
+	height: 130px;
+	width: 95%;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	background-color: white;
+	transition: 1s;
+}
+
+#newWorks {
+	height: 200px !important;
+}
+
+.longCol:hover {
+	font-size: 20px;
+	transform: scale(1.1);
+}
 
 /*-----------FOOTER---------*/
 #footer {

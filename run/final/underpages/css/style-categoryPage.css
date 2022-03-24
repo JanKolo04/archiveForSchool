@@ -24,6 +24,24 @@ body {
 	margin-left: 20px;
 }
 
+/*--------BACK DIV STYLE---------*/
+#backDiv {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#backButton {
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+#backButton:hover {
+	text-decoration: underline;
+	color: black;
+}
+
 
 /*-----------MAIN---------*/
 #main {
@@ -68,12 +86,14 @@ body a:hover {
 	height: 130px;
 	width: 95%;
 	margin: 10px;
+	font-size: 18px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 6px;
 	background-color: white;
 	transition: 1s;
+	cursor: pointer;
 }
 
 #newWorks {
@@ -82,7 +102,7 @@ body a:hover {
 
 .longCol:hover {
 	font-size: 20px;
-	transform: scale(1.1);
+	transform: scale(1.07);
 }
 
 /*-----------FOOTER---------*/
