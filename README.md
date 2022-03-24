@@ -7,20 +7,29 @@ if you are in searchPage.php after had been in categirePage.php session variable
 and $session turn to 1, but if you open searchPage.php after had been in mainPage.php
 ### PHP code
 ```PHP
-$session = 0;
-if($_SESSION['backButtonMainPage'] == true) {
-  $session = 1;
+function sessionCheckVar() {
+  global $session;
+  $session = 0;
+  if($_SESSION['backButtonMainPage'] == true) {
+    $session = 1;
+  }
 }
+
+sessionCheckVar();
 ```
 ### JS code
 ```JS
-let session = <?php echo json_encode($session); ?>;
-if(session == 1) {
-  backButton.href = "categoriesPage.php";
+function setbackButtonHref() {
+  let session = <?php echo json_encode($session); ?>;
+  if(session == 1) {
+    backButton.href = "categoriesPage.php";
+  }
+  else {
+    backButton.href = "mainPage.php";
+  }
 }
-else {
-  backButton.href = "mainPage.php";
-}
+
+setbackButtonHref();
 ```
 
 
