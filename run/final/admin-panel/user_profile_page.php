@@ -9,11 +9,7 @@
 <body>
 
 	<div id="allStuff">
-<<<<<<< HEAD
 		<a href="javascript: history.go(-1)" id="backButton">Wróć</a>
-=======
-		<a href="search_user_page.php">Wróć</a>
->>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 		<h2 id="nameSurname"></h2>
 
 		<form method="post" enctype="multipart/form-data">
@@ -73,7 +69,6 @@
 					<div id="inputsFileTextDiv">
 						<input type="text" name="work_name" id="work_name" placeholder="Tytuł pracy..." value="<?php echo $_POST['work_name'];?>">
 						<textarea name="description" id="description" placeholder="Opis pracy..." value="<?php echo $_POST['description'];?>" style="width: 240px; height: 60px;"></textarea>
-<<<<<<< HEAD
 
 						<div id="list">
 							<p>Lista możliwych plików</p>
@@ -87,8 +82,6 @@
 								<li class="element">zip</li>
 							</ol>
 						</div>
-=======
->>>>>>> d2dea70c9b384ef11efc18b3e10eb983ada33254
 					</div>
 					<div id="inputFileSelectDiv">
 						<input type="file" name="file">

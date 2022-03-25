@@ -93,12 +93,15 @@
 	<div id="mainDiv">
 		<div id="tableDiv">
 			<div id="holderTable">
+				<div id="actionMenuTable">
+					<a href="add_user.php"><i class='fa fa-user-plus'></i> Dodaj</a>
+				</div>
 				<table id="table" class="table-striped">
 					<thead>
 				    	<tr>
 				      		<th scope="col">Imię Nazwisko</th>
 				      		<th scope="col">Klasa</th>
-				      		<th scope="coll">Podgląd</th>
+				      		<th scope="col">Podgląd</th>
 				    	</tr>
 				  	</thead>
 				  	<tbody id="tableBody">

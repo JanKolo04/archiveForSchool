@@ -1,3 +1,20 @@
 .classData {
 	width: 200px !important;
 }
+
+#actionMenuTable {
+	width: 50%;
+	min-width: 428px;
+	height: 30px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: auto;
+	margin-bottom: 10px;
+	background-color: white;
+}
+
+#actionMenuTable a {
+	margin: 20px;
+	text-decoration: none;
+}
