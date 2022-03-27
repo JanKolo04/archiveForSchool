@@ -35,5 +35,6 @@ if(confirmAlert == true) {
 ## To do
 - [x] create JSON file for classes and profies lists
 - [ ] frontend for admin panel
-- [x] add user button in <strong>searchPage.php</strong> table
+- [x] add user button in <strong>searchPage.php</strong> table\
+- [ ] fix issue with AJAX
 
