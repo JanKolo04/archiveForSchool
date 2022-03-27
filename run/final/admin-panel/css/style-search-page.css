@@ -5,7 +5,7 @@
 #actionMenuTable {
 	width: 50%;
 	min-width: 428px;
-	height: 30px;
+	padding: 5px 0px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -14,7 +14,10 @@
 	background-color: white;
 }
 
-#actionMenuTable a {
-	margin: 20px;
+#actionMenuTable a, #actionMenuTable p {
+	margin: 0px;
+	margin-left: 20px;
+	margin-right: 20px;
 	text-decoration: none;
+	cursor: pointer;
 }

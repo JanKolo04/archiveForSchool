@@ -6,6 +6,7 @@
 	<!---------------JS ANS CSS FILES--------------->
 	<link rel="stylesheet" type="text/css" href="../css/style-searchPage.css">
 	<link rel="stylesheet" type="text/css" href="css/style-search-page.css">
+	<script type="text/javascript" src="script-search-user-page.js"></script>
 	<!-------AJAX------>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -95,10 +96,12 @@
 			<div id="holderTable">
 				<div id="actionMenuTable">
 					<a href="add_user.php"><i class='fa fa-user-plus'></i> Dodaj</a>
+					<p onclick="delete_user()"><i class='fa fa-user-times'></i> Usuń</p>
 				</div>
 				<table id="table" class="table-striped">
 					<thead>
 				    	<tr>
+				    		<th scope="col"></th>
 				      		<th scope="col">Imię Nazwisko</th>
 				      		<th scope="col">Klasa</th>
 				      		<th scope="col">Podgląd</th>
@@ -246,6 +249,25 @@
 				let row = document.createElement("tr");
 				//append row into table
 				tableBody.appendChild(row);
+
+				//create column with chcekboxs
+				let dataCheckBox = document.createElement('td');
+				//set classname
+				dataCheckBox.className = "checkBoxData";
+				//append data to row
+				row.appendChild(dataCheckBox);
+
+				//create checkBox 
+				let checkBox = document.createElement("input");
+				//set type for input
+				checkBox.type = "checkbox";
+				//set class name
+				checkBox.className = "check";
+				//set value
+				checkBox.value = arrayResults[i]['user_id'];
+				//append checkbox into td
+				dataCheckBox.appendChild(checkBox);
+
 				
 				//create data with name and lastname
 				let dataNameLastname = document.createElement('td');
