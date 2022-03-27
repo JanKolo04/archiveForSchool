@@ -19,7 +19,7 @@ let check = document.querySelector("#check");
 if(confirmAlert == true) {
   if(check.checked) {
     let checkValue = check.value;
-    $ajax({
+    $.ajax({
       url: "delete_user.php",
       method: "post",
       data: {user_id: checkValue},
