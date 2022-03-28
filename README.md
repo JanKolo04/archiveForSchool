@@ -58,5 +58,6 @@ function delete_user() {
 - [x] create JSON file for classes and profies lists
 - [ ] frontend for admin panel
 - [x] add user button in <strong>searchPage.php</strong> table\
-- [ ] fix issue with AJAX
+- [x] fix issue with AJAX
+- [ ] find solution for unfresh page after delete user
 
