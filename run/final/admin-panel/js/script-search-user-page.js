@@ -22,18 +22,19 @@ function delete_user() {
 			for(let i=0; i<getCheckBoxs.length; ++i) {
 				//if checkbox is checked send POST to PHP file
 				if(getCheckBoxs[i].checked) {
+					let valueFromCheckBox = getCheckBoxs[i].value;
 					//send value from cehckbox into PHP
 					//in checkbox value be user_id
 				    $.ajax({
-				    	url: "../delete_data.php",
-				     	method: "post",
-				      	data: {user_id: getCheckBoxs[i].value},
-				      	success: function() {
-				        	return true;
+				    	type: "POST",
+				    	url: "delete_data.php",
+				      	data: {user_id: valueFromCheckBox},
+				      	success: function(data) {
+				        	return console.log(data);
 				      	}
 				    });
 				}
 			}
 		}
-	}	
+	}
 }

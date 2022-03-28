@@ -6,9 +6,9 @@
 	<!---------------JS ANS CSS FILES--------------->
 	<link rel="stylesheet" type="text/css" href="../css/style-searchPage.css">
 	<link rel="stylesheet" type="text/css" href="css/style-search-page.css">
-	<script type="text/javascript" src="script-search-user-page.js"></script>
+	<script type="text/javascript" src="js/script-search-user-page.js"></script>
 	<!-------AJAX------>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 	<!------------------PLUGINS------------------>
 	<!-------BOOSTRAP------>
@@ -94,23 +94,25 @@
 	<div id="mainDiv">
 		<div id="tableDiv">
 			<div id="holderTable">
-				<div id="actionMenuTable">
-					<a href="add_user.php"><i class='fa fa-user-plus'></i> Dodaj</a>
-					<p onclick="delete_user()"><i class='fa fa-user-times'></i> Usuń</p>
-				</div>
-				<table id="table" class="table-striped">
-					<thead>
-				    	<tr>
-				    		<th scope="col"></th>
-				      		<th scope="col">Imię Nazwisko</th>
-				      		<th scope="col">Klasa</th>
-				      		<th scope="col">Podgląd</th>
-				    	</tr>
-				  	</thead>
-				  	<tbody id="tableBody">
+				<form method="POST">
+					<div id="actionMenuTable">
+						<a href="add_user.php"><i class='fa fa-user-plus'></i> Dodaj</a>
+						<buton type="submit" onclick="delete_user()"><i class='fa fa-user-times'></i> Usuń</button>
+					</div>
+					<table id="table" class="table-striped">
+						<thead>
+					    	<tr>
+					    		<th scope="col"></th>
+					      		<th scope="col">Imię Nazwisko</th>
+					      		<th scope="col">Klasa</th>
+					      		<th scope="col">Podgląd</th>
+					    	</tr>
+					  	</thead>
+					  	<tbody id="tableBody">
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</div>
 
