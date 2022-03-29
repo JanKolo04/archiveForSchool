@@ -26,7 +26,7 @@
 	</div>
 
 	<div id="backDiv">
-		<a href="categoryPage.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+		<a href="javascript: window.history.back()" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
 	</div>
 
 	<div id="main">

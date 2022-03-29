@@ -33,7 +33,7 @@
 			<div id="textsDiv">
 				<div id="headerDiv">
 					<div id="backDiv">
-						<a id="backButton"><i class="fa fa-long-arrow-left"></i> wróć</a>
+						<a id="backButton" href="javascript: window.history.back()"><i class="fa fa-long-arrow-left"></i> wróć</a>
 					</div>
 					<div id="workNameDiv">
 						<h2 id="work_name"></h2>
@@ -149,7 +149,8 @@
 		
 			console.log(arrayImportDataFromPHP['path']);
 		}
-
+		
+		/*
 		function set_href_for_back_button() {
 			//user id
 			let user_id = <?php echo json_encode($user_id); ?>;
@@ -157,10 +158,11 @@
 			//set href fo back button
 			document.querySelector('#backButton').href = "user_profile_page.php?user="+user_id;
 		}
+		*/
 
 		window.onload = function() {
 			show_img();
-			set_href_for_back_button();
+			//set_href_for_back_button();
 		}
 
 

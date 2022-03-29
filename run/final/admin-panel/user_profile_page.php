@@ -9,7 +9,7 @@
 <body>
 
 	<div id="allStuff">
-		<a href="javascript: history.go(-1)" id="backButton">Wróć</a>
+		<a href="javascript: window.history.back()" id="backButton">Wróć</a>
 		<h2 id="nameSurname"></h2>
 
 		<form method="post" enctype="multipart/form-data">

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<a href="javascript: history.go(-1)">Wróć</a><br><br>
+	<a href="javascript: window.history.back()">Wróć</a><br><br>
 
 	<form method="post">
 		<input type="text" name="name" placeholder="Imie" id="name" required value="<?php echo $_POST['name']?>">

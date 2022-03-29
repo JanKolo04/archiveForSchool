@@ -26,7 +26,7 @@
 	</div>
 
 	<div id="backDiv">
-		<a href="../mainPage.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+		<a href="javascript: window.history.back()" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
 	</div>
 
 	<div id="main">
@@ -70,7 +70,7 @@
 
 		session_start();
 
-		$_SESSION['categorySearch'] = true;
+		$_SESSION['categorySearch'] = "categoryPage";
 
 	?>
 

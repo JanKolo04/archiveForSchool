@@ -33,7 +33,9 @@
 				</div>
 
 				<div id="submitAndback">
-					<div id="backButtonDiv"></div>
+					<div id="backButtonDiv">
+						<a href="javascript: window.history.back()">Wróć</a>
+					</div>
 
 					<div id="submitEditButtonDiv">
 						<button type="submit" name="editSubmit">Zmień</button>
@@ -176,6 +178,7 @@
 
 				//div for back button
 				let backButtonDiv = document.querySelector('#backButtonDiv');
+				/*
 				//create back button
 				let backButton = document.createElement("a");
 				//class name
@@ -186,7 +189,7 @@
 				backButton.href = "user_profile_page.php?user="+worksArray['user_id'];
 				//append button to div
 				backButtonDiv.appendChild(backButton);
-
+				*/
 
 				//split category
 				let splitCategory = worksArray['category'].split(',');

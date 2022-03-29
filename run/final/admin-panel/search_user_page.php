@@ -40,7 +40,7 @@
 	</div>
 
 	<div id="backDiv">
-		<a href="index.php" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
+		<a href="javascript: window.history.back()" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
 	</div>
 
 	<form method="POST">

@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!---------------JS ANS CSS FILES--------------->
 	<link rel="stylesheet" type="text/css" href="css/style-previewPage.css">
+	<script type="text/javascript" src="viewCounter/timer-for-view.js"></script>
 	<!-------AJAX------>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -33,7 +34,7 @@
 			<div id="textsDiv">
 				<div id="headerDiv">
 					<div id="backDiv">
-						<a id="backButton" href="searchPage.php"><i class="fa fa-long-arrow-left"></i> wróć</a>
+						<a id="backButton" href="javascript: window.history.back()"><i class="fa fa-long-arrow-left"></i> wróć</a>
 					</div>
 					<div id="workNameDiv">
 						<h2 id="work_name"></h2>
@@ -79,7 +80,13 @@
 
 
 	<?php
+
+		session_start();
+
 		include("connection.php");
+
+		//varibale to import to upload-data.php
+		$_SESSION['work_id'] = $_GET['work'];
 
 		function get_data() {
 			global $con, $arrayImportDataToJS;
@@ -146,8 +153,7 @@
 			//set src for img
 			let img = document.querySelector("#work");
 			img.src = arrayImportDataFromPHP["path"];
-		
-			console.log(arrayImportDataFromPHP['path']);
+	
 		}
 
 		show_img();
