@@ -87,17 +87,13 @@
 				</div>
 			</div>
 		</div>
-	</form>
 
-
-
-	<div id="mainDiv">
-		<div id="tableDiv">
-			<div id="holderTable">
-				<form method="POST">
+		<div id="mainDiv">
+			<div id="tableDiv">
+				<div id="holderTable">
 					<div id="actionMenuTable">
 						<a href="add_user.php"><i class='fa fa-user-plus'></i> Dodaj</a>
-						<buton type="submit" onclick="delete_user()"><i class='fa fa-user-times'></i> Usuń</button>
+						<button type="submit" name="delete" onclick="delete_user()"><i class='fa fa-user-times'></i> Usuń</button>
 					</div>
 					<table id="table" class="table-striped">
 						<thead>
@@ -112,31 +108,31 @@
 
 						</tbody>
 					</table>
-				</form>
+				</div>
 			</div>
+
+			<footer id="footer">
+				<div id="infoDiv">
+					<p><strong>Administrator</strong><br>
+					Filip Mozol<br>
+					fmozol@technikumkreatywne.pl</p>
+				</div>
+
+				<div  id="autorAndIconsDiv">
+					<div id="autorDiv">
+						<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
+					</div>
+
+					<div id="iconsDiv">
+						<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
+						<a href=""><img src="../images/icons/instagram.png"></a>
+						<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
+						<a href=""><img src="../images/icons/youtube.png"></a>
+					</div>
+				</div>
+			</footer>
 		</div>
-
-		<footer id="footer">
-			<div id="infoDiv">
-				<p><strong>Administrator</strong><br>
-				Filip Mozol<br>
-				fmozol@technikumkreatywne.pl</p>
-			</div>
-
-			<div  id="autorAndIconsDiv">
-				<div id="autorDiv">
-					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-				</div>
-
-				<div id="iconsDiv">
-					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
-					<a href=""><img src="../images/icons/instagram.png"></a>
-					<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
-					<a href=""><img src="../images/icons/youtube.png"></a>
-				</div>
-			</div>
-		</footer>
-	</div>
+	</form>
 
 
 
@@ -152,6 +148,11 @@
 		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
 		}
+
+		if(isset($_POST['delete'])) {
+			header("Location: search_user_page.php");
+		}
+
 
 		function AdaptFilter($arrayOfFilterValues, $dbColumName) {
 			if(empty($arrayOfFilterValues)) $resultValue = "AND 1";
@@ -227,7 +228,7 @@
 
 		
 		MultipleSearch();
-		
+ 		
 
 	?>
 

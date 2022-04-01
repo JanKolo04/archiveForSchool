@@ -24,6 +24,23 @@ body {
 	margin-left: 20px;
 }
 
+/*--------BACK DIV STYLE---------*/
+#backDiv {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#backButton {
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+#backButton:hover {
+	text-decoration: underline;
+	color: black;
+}
 
 /*--------------SEARCH MENU--------------*/
 #searchMenu {
@@ -47,7 +64,7 @@ body {
 	width: 80% !important;
 	padding: 10px 60px;
 	flex-direction: row !important;
-	margin-top: 40px;
+	margin-top: 30px;
 }
 
 #input {
@@ -89,7 +106,7 @@ body {
 	margin-top: 40px;
 	width: 100%;
 	min-height: 580px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 #holderTable {

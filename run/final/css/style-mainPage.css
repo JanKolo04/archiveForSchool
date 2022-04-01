@@ -113,18 +113,20 @@ body a:hover {
 	text-decoration: underline;
 }
 
+
 #holderDiv .col-sm-width {
 	text-align: center;
 	margin: 10px;
 	height: 220px;
 	width: 400px;
+	font-size: 18px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 6px;
 	background-color: white;
 	transition: 1s;
-	border
+	cursor: pointer;
 }
 
 #holderDiv .longCol {
@@ -206,6 +208,7 @@ body a:hover {
 	#holderDiv .col-sm-width {
 		height: 100px;
 	}
+
 	#holderDiv .longCol {
 		height: 100px;
 		width: 400px;

@@ -17,24 +17,28 @@ function delete_user() {
 		let confirmAlert = confirm("Are you want delete this user?");
 		//if confirm alert return true do code
 		if(confirmAlert == true) {
-			console.log("siema");
+			//array with user id to delete
+			let array_id = [];
 			//get all elements from selector
 			for(let i=0; i<getCheckBoxs.length; ++i) {
 				//if checkbox is checked send POST to PHP file
 				if(getCheckBoxs[i].checked) {
-					let valueFromCheckBox = getCheckBoxs[i].value;
-					//send value from cehckbox into PHP
-					//in checkbox value be user_id
-				    $.ajax({
-				    	type: "POST",
-				    	url: "delete_data.php",
-				      	data: {user_id: valueFromCheckBox},
-				      	success: function(data) {
-				        	return console.log(data);
-				      	}
-				    });
+					//append value to array
+					array_id.push(getCheckBoxs[i].value);
+
 				}
 			}
+			console.log(array_id);
+
+		    $.ajax({
+		    	type: "POST",
+		    	url: "delete_data.php",
+		      	data: {array_user_id: array_id},
+		      	success: function(res) {
+		        	return console.log(res);
+		      	}
+		    });
+
 		}
 	}
 }
