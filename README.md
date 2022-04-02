@@ -7,8 +7,6 @@ Java Script have function with get last open page. I use this function to
 ```HTML
 <a href="javascript: history.go(-1)">Back</a>
 ```
-
-
 ## Delete user
 If you select student to delete and click delte button will show you confirm alert
 ### JS code
