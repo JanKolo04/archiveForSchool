@@ -125,3 +125,11 @@ Admin chnaged user data Wiktor Kowalski   at
 		Class:  => 1b, 
 		Profile:  => Grafika komputerowa
 
+Admin created user Jan Kowalski 1b Grafika komputerowa at 02.04.22 09:39:17pm
+Admin created user Marcel Kowalski 1b Grafika komputerowa at 02.04.22 09:39:47pm
+Admin created user Ola Kelner 1b Grafika komputerowa at 02.04.22 09:41:24pm
+Admin created user Jan Kowalski 1b Grafika komputerowa at 02.04.22 09:45:33pm
+Admin created user Marcel Kowalski 1b Grafika komputerowa at 02.04.22 09:50:00pm
+Admin created user Jan Kowalski 1b Grafika komputerowa at 02.04.22 09:54:56pm
+Admin created user Marcel Kowalski 1b Grafika komputerowa at 02.04.22 09:59:06pm
+Admin created user Marcel Kowalski 1b Grafika komputerowa at 02.04.22 10:19:42pm

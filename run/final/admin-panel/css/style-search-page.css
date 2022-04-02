@@ -14,10 +14,20 @@
 	background-color: white;
 }
 
-#actionMenuTable a, #actionMenuTable p {
+#actionMenuTable a {
 	margin: 0px;
 	margin-left: 20px;
 	margin-right: 20px;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+#actionMenuTable button {
+	margin: 0px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: white;
 }

@@ -35,7 +35,7 @@
 
 	<div id="baner">
 		<div id="divLogo">
-			<a href="javascript: history.go(-1)"><img id="logo" src="../images/logoZSK.png"></a>
+			<a href="index.php"><img id="logo" src="../images/logoZSK.png"></a>
 		</div>
 	</div>
 
@@ -87,8 +87,10 @@
 				</div>
 			</div>
 		</div>
+	</form>
 
-		<div id="mainDiv">
+	<div id="mainDiv">
+		<form method="POST">
 			<div id="tableDiv">
 				<div id="holderTable">
 					<div id="actionMenuTable">
@@ -110,29 +112,29 @@
 					</table>
 				</div>
 			</div>
+		</form>
 
-			<footer id="footer">
-				<div id="infoDiv">
-					<p><strong>Administrator</strong><br>
-					Filip Mozol<br>
-					fmozol@technikumkreatywne.pl</p>
+		<footer id="footer">
+			<div id="infoDiv">
+				<p><strong>Administrator</strong><br>
+				Filip Mozol<br>
+				fmozol@technikumkreatywne.pl</p>
+			</div>
+
+			<div  id="autorAndIconsDiv">
+				<div id="autorDiv">
+					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
 				</div>
 
-				<div  id="autorAndIconsDiv">
-					<div id="autorDiv">
-						<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-					</div>
-
-					<div id="iconsDiv">
-						<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
-						<a href=""><img src="../images/icons/instagram.png"></a>
-						<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
-						<a href=""><img src="../images/icons/youtube.png"></a>
-					</div>
+				<div id="iconsDiv">
+					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
+					<a href=""><img src="../images/icons/instagram.png"></a>
+					<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
+					<a href=""><img src="../images/icons/youtube.png"></a>
 				</div>
-			</footer>
-		</div>
-	</form>
+			</div>
+		</footer>
+	</div>
 
 
 

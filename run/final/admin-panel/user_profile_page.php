@@ -130,6 +130,17 @@
 			remove_work();
 		}
 
+		function check_get_data() {
+			//this function exist because after great added user
+			//show alert with information
+
+			//if isset add variabel in url show alert
+			if(isset($_GET['add'])) {
+				//show alert 
+				echo "<script>alert('uczeń został dodany!');</script>";
+			}
+		}
+		check_get_data();
 
 			
 		function get_data_about_user() {

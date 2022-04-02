@@ -126,7 +126,7 @@
 				//get id from query
 				$user_id = mysqli_fetch_array($mysqli_query_id);
 				//move to student profile
-				header("Location: user_profile_page.php?user=".$user_id['id']);
+				header("Location: user_profile_page.php?user=".$user_id['id']."&add=true");
 
 			}
 			//else show alert
