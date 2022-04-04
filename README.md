@@ -59,5 +59,6 @@ function delete_user() {
 - [ ] frontend for admin panel
 - [x] add user button in <strong>searchPage.php</strong> table\
 - [x] fix issue with AJAX
-- [ ] find solution for unfresh page after delete user
+- [x] find solution for unfresh page after delete user
+- [ ] add Google Analitics .js to all user pages
 
