@@ -19,6 +19,16 @@
 </head>
 <body>
 
+	<!-----------Google analitics----------->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SC930026W4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){window.dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-SC930026W4');
+	</script>
+
 	<div id="baner">
 		<div id="divLogo">
 			<a href="../mainPage.php"><img id="logo" src="../images/logoZSK.png"></a>

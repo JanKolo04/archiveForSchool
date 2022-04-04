@@ -50,7 +50,6 @@
 			</div>
 
 			<div id="workDiv">
-				<img id="work">
 			</div>
 		</div>
 
@@ -131,6 +130,18 @@
 	<script type="text/javascript">
 		//function for show data on webiste form PHP
 		function show_img() {
+			//create object with show work method
+			const showData = {
+				png: "img",
+				jpg: "img",
+				gif: "img",
+				jpeg: "img",
+				mp4: "video"
+			};
+
+			//work div
+			let workDiv = document.querySelector("#workDiv");
+
 			//get importing array from PHP
 			const arrayImportDataFromPHP = <?php echo json_encode($arrayImportDataToJS); ?>;
 			//work name h2
@@ -143,26 +154,52 @@
 			let description = document.querySelector('#description');
 			description.innerHTML = arrayImportDataFromPHP['description'];
 
-			//set src for img
-			let img = document.querySelector("#work");
-			img.src = arrayImportDataFromPHP["path"];
-		
-			console.log(arrayImportDataFromPHP['path']);
-		}
-		
-		/*
-		function set_href_for_back_button() {
-			//user id
-			let user_id = <?php echo json_encode($user_id); ?>;
+			//get extension
+			let splitWork = arrayImportDataFromPHP['path'].split('.');
+			//get extension posittion
+			let getExtensionPosittion = splitWork.length - 1;
+			//extension
+			let extension = splitWork[getExtensionPosittion];
 
-			//set href fo back button
-			document.querySelector('#backButton').href = "user_profile_page.php?user="+user_id;
+			//show method
+			let showMethod = "";
+			//get all data from Object
+			for(object in showData) {
+				//if extension is in Object get show method
+				if(object == extension) {
+					showMethod = showData[object];
+				}
+			}
+		
+			//create showPlace
+			let showPlace = document.createElement(showMethod);
+			//set id for showPlace
+			showPlace.id = "work";
+			//if show method is img add src
+			if(showPlace == "img") {
+				//set src for showPlace
+				showPlace.src = arrayImportDataFromPHP["path"];
+			}
+			//else create source for video or audio
+			else {
+				showPlace.setAttribute("controls", "controls");
+				//create source
+				let source = document.createElement("source");
+				//set src
+				source.src = arrayImportDataFromPHP["path"];
+				//set type
+				source.type = "video/mp4";
+				//append source to showPlace
+				showPlace.appendChild(source);
+			}
+			//append showPlace to workDiv
+			workDiv.appendChild(showPlace);
+
 		}
-		*/
+		
 
 		window.onload = function() {
 			show_img();
-			//set_href_for_back_button();
 		}
 
 

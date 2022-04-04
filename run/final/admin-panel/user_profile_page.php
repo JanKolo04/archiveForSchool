@@ -242,22 +242,16 @@
 				$fileExt = end($explode);
 
 				//max file size 1048576 is a 1MB in bits
-				$maxSize = 3*(1048576);
+				$maxSize = 5*(1048576);
 				//possible extensions
-			    $extensions = array("jpg","png","txt");
+			    $extensions = array("jpg","png","txt","mp4");
 
 			    $counter = 0;
 			    while($counter < 1) {
 				    //if filename dosen't empty do code 
 				    if(!empty($fileName)) {
-				    	//if file exist show alert
-					    if(file_exists($dir.$fileName)) {
-					     	echo("<script>alert('File exist');</script>");
-					     	break;
-					    }
-					
 					    //if upload file extension dosen't be in extensions array return alert 
-					    else if(!in_array($fileExt,$extensions)) {
+					    if(!in_array($fileExt,$extensions)) {
 					        echo("<script>alert('Different extensions, use JPG or PNG');</script>");
 					        break;
 					    }
@@ -269,11 +263,17 @@
 		      			
 		      			//if code didn't return any alert upload file to direcotry and insert data to database
 						else {
+							//set default timezone for date
+							date_default_timezone_set("Europe/Warsaw");
+							//set current date
+							$date = date("d.m.y h:i:s");
+
+							$fileNameDate = $date.'.'.$fileExt;
 							//inset work to server
-							move_uploaded_file($fileTmp,$dir.$fileName);
+							move_uploaded_file($fileTmp,$dir.$fileNameDate);
 		
 							//insert data into data base
-							$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('$id', '$fileName', '$work_name', 'Inne', '$description')";
+							$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('$id', '$fileNameDate', '$work_name', 'Inne', '$description')";
 							$queryInsertWork = mysqli_query($con, $sendSQL);
 							
 							/*---------APPEND LOGS TO .adminLogs.txt---------*/
