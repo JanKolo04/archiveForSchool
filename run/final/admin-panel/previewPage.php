@@ -78,6 +78,7 @@
 
 
 	<?php
+	
 		include("../connection.php");
 
 		function get_data() {
@@ -176,7 +177,7 @@
 			//set id for showPlace
 			showPlace.id = "work";
 			//if show method is img add src
-			if(showPlace == "img") {
+			if(showMethod == "img") {
 				//set src for showPlace
 				showPlace.src = arrayImportDataFromPHP["path"];
 			}
