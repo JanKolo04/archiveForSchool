@@ -47,7 +47,7 @@
 
 			    	<div class="longCol" onclick="location.href='contestPage.php';">Konkursy i Wystawy</div>
 
-			    	<div class="longCol" onclick="location.href='../searchPage.php';">Lista prac</div>
+			    	<div class="longCol" onclick="location.href='../searchPage.php?all=true';">Lista prac</div>
 			  	</div>
 			</div>
 		</div>

@@ -141,7 +141,6 @@ body a:hover {
 	justify-content: end;
 	align-items: end;
 	width: 100%;
-	height: 57px;
 }
 
 #autor {
@@ -175,12 +174,14 @@ body a:hover {
 		min-height: 650px;
 	}
 
+	/*---media footer---*/
 	#footer {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column-reverse;
 		padding-bottom: 20px;
+		padding-top: 10px;
 	}
 
 	#infoDiv {
@@ -192,7 +193,7 @@ body a:hover {
 
 	#autorDiv {
 		justify-content: center;
-		align-items: end;
+		align-items: flex-end;
 	}
 
 	#footer p {
@@ -200,7 +201,7 @@ body a:hover {
 	}
 
 	#autor {
-		text-align: right;
+		text-align: center;
 	}
 
 	#iconsDiv {

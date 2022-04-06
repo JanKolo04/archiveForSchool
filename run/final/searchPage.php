@@ -41,12 +41,6 @@
 	  gtag('config', 'G-SC930026W4');
 	</script>
 
-	<div id="baner">
-		<div id="divLogo">
-			<a href="mainPage.php"><img id="logo" src="images/logoZSK.png"></a>
-		</div>
-	</div>
-
 	<div id="backDiv">
 		<a href="javascript: window.history.back()" id="backButton"><i class="fa fa-long-arrow-left"></i> Wróć</a>
 	</div>
@@ -114,45 +108,22 @@
 
 
 
-	<div id="mainDiv">
-		<div id="tableDiv">
-			<div id="holderTable">
-				<table id="table" class="table-striped">
-					<thead>
-				    	<tr>
-				      		<th scope="col">Imię Nazwisko</th>
-				      		<th scope="col">Klasa</th>
-				      		<th scope="col">Praca</th>
-				      		<th scope="coll">Podgląd</th>
-				    	</tr>
-				  	</thead>
-				  	<tbody id="tableBody">
+	<div id="tableDiv">
+		<div id="holderTable">
+			<table id="table" class="table-striped">
+				<thead>
+			    	<tr>
+			      		<th scope="col">Imię Nazwisko</th>
+			      		<th scope="col">Klasa</th>
+			      		<th scope="col">Praca</th>
+			      		<th scope="coll">Podgląd</th>
+			    	</tr>
+			  	</thead>
+			  	<tbody id="tableBody">
 
-					</tbody>
-				</table>
-			</div>
+				</tbody>
+			</table>
 		</div>
-
-		<footer id="footer">
-			<div id="infoDiv">
-				<p><strong>Administrator</strong><br>
-				Filip Mozol<br>
-				fmozol@technikumkreatywne.pl</p>
-			</div>
-
-			<div  id="autorAndIconsDiv">
-				<div id="autorDiv">
-					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-				</div>
-
-				<div id="iconsDiv">
-					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="images/icons/facebook.png"></a>
-					<a href=""><img src="images/icons/instagram.png"></a>
-					<a href="https://szkolykreatywne.pl/"><img src="images/icons/google.png"></a>
-					<a href=""><img src="images/icons/youtube.png"></a>
-				</div>
-			</div>
-		</footer>
 	</div>
 
 
@@ -167,6 +138,13 @@
 		$arrayWithResults = [];
 
 		if(isset($_POST['searchInput'])) {
+			MultipleSearch();
+		}
+
+		//if 'all' variable exist run function
+		//because this variable exist when you open this page after been
+		//on categoryPage.php
+		if(isset($_GET['all'])) {
 			MultipleSearch();
 		}
 

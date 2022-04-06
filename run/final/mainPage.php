@@ -42,18 +42,12 @@
 	  gtag('config', 'G-SC930026W4');
 	</script>
 
-	<div id="baner">
-		<div id="divLogo">
-			<a href="mainPage.php"><img id="logo" src="images/logoZSK.png"></a>
-		</div>
-	</div>
-
 	<!----
 		add action to form
 		action file will
 		searchPage.html/php
 						---->
-	<form method="POST" action="searchPage.php">
+	<form method="POST" action="index.php?page=searchPage">
 		<div id="searchMenu">
 			<div class="container">
 				<div class="row d-flex justify-content-center align-items-center" id="searchRow">
@@ -115,63 +109,25 @@
 	</form>
 
 
-	<div id="holderDiv">
-		<div class="container">
-			<div class="row d-flex">
-		    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Fotografie i grafiki</div>
+	<div class="container">
+		<div class="row d-flex">
+	    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Fotografie i grafiki</div>
 
-		      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Filmy i aplikacje</div>
-		  	
-		    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Gry i aplikacje</div>		    	
+	      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Filmy i aplikacje</div>
+	  	
+	    	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Gry i aplikacje</div>		    	
 
-		      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Inne</div>
-		  	
-		    	<div class="col-sm-width longCol" onclick="location.href='underpages/categoryPage.php';">Projekty przedmiotowe</div>
-		    	<div class="col-sm-width longCol" onclick="location.href='http://labzsk.webd.pro/pkucharczyk/';">Konfiguracja własnej strony</div>
+	      	<div class="col-sm-width" onclick="location.href='underpages/categoryPage.php';">Inne</div>
+	  	
+	    	<div class="col-sm-width longCol" onclick="location.href='underpages/categoryPage.php';">Projekty przedmiotowe</div>
+	    	<div class="col-sm-width longCol" onclick="location.href='http://labzsk.webd.pro/pkucharczyk/';">Konfiguracja własnej strony</div>
 
-		  	</div>
-		</div>
-
-		<footer id="footer">
-			<div id="infoDiv">
-				<p><strong>Administrator</strong><br>
-				Filip Mozol<br>
-				fmozol@technikumkreatywne.pl</p>
-			</div>
-
-			<div  id="autorAndIconsDiv">
-				<div id="autorDiv">
-					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-				</div>
-
-				<div id="iconsDiv">
-					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="images/icons/facebook.png"></a>
-					<a href=""><img src="images/icons/instagram.png"></a>
-					<a href="https://szkolykreatywne.pl/"><img src="images/icons/google.png"></a>
-					<a href=""><img src="images/icons/youtube.png"></a>
-				</div>
-			</div>
-		</footer>
-
+	  	</div>
 	</div>
-
-	<?php
-
-		session_start();
-
-		$_SESSION['categorySearch'] = "mainPage";
-
-	?>
-
-
 
 
 </body>
 </html>
-
-
-
-
 
 
 

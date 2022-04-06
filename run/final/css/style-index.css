@@ -1,10 +1,7 @@
-body {
-	overflow: auto;
-	color: black !important;
-	background-color: #e9ebee !important;
-}
 /*----------BANER----------*/
 #baner {
+	left: 0;
+	top: 0;
 	width: 100%;
 	height: 80px;
 	display: flex;
@@ -24,42 +21,6 @@ body {
 #logo {
 	margin-left: 20px;
 }
-
-/*--------BACK DIV STYLE---------*/
-#backDiv {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	align-items: flex-end;
-}
-
-#backButton {
-	margin-left: 20px;
-	text-decoration: none;
-	color: black;
-}
-#backButton:hover {
-	text-decoration: underline;
-	color: black;
-}
-
-/*-----------MAIN---------*/
-#main {
-	width: 100%;
-}
-
-#galeryDiv {
-	padding: 40px;
-	min-height: 700px;
-	width: 100%;
-}
-
-.thumbnail {
-	border: none !important;
-	border-radius: 20px !important;
-	padding: 0px !important;
-}
-
 
 /*-----------FOOTER---------*/
 #footer {
@@ -122,14 +83,9 @@ body {
 	width: 20px;
 }
 
-/*-----------MEDIA------------*/
+
 /*---media footer---*/
 @media screen and (max-width: 455px) {
-	#categoryDiv {
-		min-height: 650px;
-	}
-
-	/*---media footer---*/
 	#footer {
 		display: flex;
 		justify-content: center;
@@ -165,5 +121,3 @@ body {
 		align-items: start;
 	}
 }
-
-
