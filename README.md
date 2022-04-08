@@ -55,10 +55,9 @@ function delete_user() {
 
 
 ## To do
-- [x] create JSON file for classes and profies lists
 - [ ] frontend for admin panel
 - [x] add user button in <strong>searchPage.php</strong> table\
 - [x] fix issue with AJAX
 - [x] find solution for unfresh page after delete user
-- [ ] add Google Analitics .js to all user pages
+- [x] add Google Analitics .js to all user pages
 
