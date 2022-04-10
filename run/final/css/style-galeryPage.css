@@ -1,0 +1,52 @@
+body {
+	overflow: auto;
+	color: black !important;
+	background-color: #e9ebee !important;
+}
+
+
+/*--------BACK DIV STYLE---------*/
+#backDiv {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#backButton {
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+#backButton:hover {
+	text-decoration: underline;
+	color: black;
+}
+
+/*-----------MAIN---------*/
+#main {
+	width: 100%;
+}
+
+#galeryDiv {
+	padding: 40px;
+	min-height: 700px;
+	width: 100%;
+}
+
+.thumbnail {
+	border: none !important;
+	border-radius: 20px !important;
+	padding: 0px !important;
+}
+
+
+/*-----------MEDIA------------*/
+@media screen and (max-width: 455px) {
+	#categoryDiv {
+		min-height: 650px;
+	}
+
+}
+
+

@@ -34,8 +34,8 @@ function delete_user() {
 		    	type: "POST",
 		    	url: "delete_data.php",
 		      	data: {array_user_id: array_id},
-		      	success: function(res) {
-		        	return console.log(res);
+		      	success: function() {
+		        	return true;
 		      	}
 		    });
 

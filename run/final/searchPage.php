@@ -291,7 +291,7 @@
 				//set innerHTML
 				previewButton.innerHTML = "Podgląd";
 				//set href for a
-				previewButton.href = "previewPage.php?work="+arrayResults[i]['work_id'];
+				previewButton.href = "index.php?page=previewPage&work="+arrayResults[i]['work_id'];
 				//append button into dataButton
 				dataButton.appendChild(previewButton);
 

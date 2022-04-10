@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!---------------JS ANS CSS FILES--------------->
 	<link rel="stylesheet" type="text/css" href="../css/style-previewPage.css">
+	<link rel="stylesheet" type="text/css" href="css/style-work-view.css">
 	<!-------AJAX------>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -21,61 +22,6 @@
 	<title>View</title>
 </head>
 <body>
-
-	<div id="baner">
-		<div id="divLogo">
-			<a href="../mainPage.php"><img id="logo" src="../images/logoZSK.png"></a>
-		</div>
-	</div>
-
-	<div id="main">
-		<div id="mainInfoDiv">
-			<div id="textsDiv">
-				<div id="headerDiv">
-					<div id="backDiv">
-						<a id="backButton" href="javascript: window.history.back()"><i class="fa fa-long-arrow-left"></i> wróć</a>
-					</div>
-					<div id="workNameDiv">
-						<h2 id="work_name"></h2>
-					</div>
-				</div>
-
-				<div id="nameLastnameDiv">
-					<p id="nameLastname"></p>
-				</div>
-
-				<div id="descriptionDiv">
-					<p id="description"></p>
-				</div>
-			</div>
-
-			<div id="workDiv">
-			</div>
-		</div>
-
-
-		<footer id="footer">
-			<div id="infoDiv">
-				<p><strong>Administrator</strong><br>
-				Filip Mozol<br>
-				fmozol@technikumkreatywne.pl</p>
-			</div>
-
-			<div  id="autorAndIconsDiv">
-				<div id="autorDiv">
-					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-				</div>
-
-				<div id="iconsDiv">
-					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
-					<a href=""><img src="../images/icons/instagram.png"></a>
-					<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
-					<a href=""><img src="../images/icons/youtube.png"></a>
-				</div>
-			</div>
-		</footer>
-	</div>
-
 
 	<?php
 	
@@ -126,6 +72,62 @@
 		get_data();
 
 	?>
+
+
+	<div id="baner">
+		<div id="divLogo">
+			<a href="index.php"><img id="logo" src="../images/logoZSK.png"></a>
+		</div>
+	</div>
+
+	<div id="main">
+		<div id="mainInfoDiv">
+			<div id="textsDiv">
+				<div id="headerDiv">
+					<div id="backDiv">
+						<a id="backButton" href='<?php echo "user_profile_page.php?user=$user_id"; ?>'><i class="fa fa-long-arrow-left"></i> wróć</a>
+					</div>
+					<div id="workNameDiv">
+						<h2 id="work_name"></h2>
+					</div>
+				</div>
+
+				<div id="nameLastnameDiv">
+					<p id="nameLastname"></p>
+				</div>
+
+				<div id="descriptionDiv">
+					<p id="description"></p>
+				</div>
+			</div>
+
+			<div id="workDiv">
+			</div>
+		</div>
+
+
+		<footer id="footer">
+			<div id="infoDiv">
+				<p><strong>Administrator</strong><br>
+				Filip Mozol<br>
+				fmozol@technikumkreatywne.pl</p>
+			</div>
+
+			<div  id="autorAndIconsDiv">
+				<div id="autorDiv">
+					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
+				</div>
+
+				<div id="iconsDiv">
+					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="../images/icons/facebook.png"></a>
+					<a href=""><img src="../images/icons/instagram.png"></a>
+					<a href="https://szkolykreatywne.pl/"><img src="../images/icons/google.png"></a>
+					<a href=""><img src="../images/icons/youtube.png"></a>
+				</div>
+			</div>
+		</footer>
+	</div>
+
 
 
 	<script type="text/javascript">

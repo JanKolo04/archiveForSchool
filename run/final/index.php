@@ -9,7 +9,7 @@
 
 	<div id="baner">
 		<div id="divLogo">
-			<a href="mainPage.php"><img id="logo" src="images/logoZSK.png"></a>
+			<a href="index.php?page=mainPage"><img id="logo" src="images/logoZSK.png"></a>
 		</div>
 	</div>
 

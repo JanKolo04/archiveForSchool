@@ -33,62 +33,33 @@
 	  gtag('config', 'G-SC930026W4');
 	</script>
 
-	<div id="baner">
-		<div id="divLogo">
-			<a href="mainPage.php"><img id="logo" src="images/logoZSK.png"></a>
-		</div>
-	</div>
-
-	<div id="main">
-		<div id="mainInfoDiv">
-			<div id="textsDiv">
-				<div id="headerDiv">
-					<div id="backDiv">
-						<a id="backButton" href="searchPage.php"><i class="fa fa-long-arrow-left"></i> wróć</a>
-					</div>
-					<div id="workNameDiv">
-						<h2 id="work_name"></h2>
-					</div>
+	<div id="mainInfoDiv">
+		<div id="textsDiv">
+			<div id="headerDiv">
+				<div id="backDiv">
+					<a id="backButton" href="searchPage.php"><i class="fa fa-long-arrow-left"></i> wróć</a>
 				</div>
-
-				<div id="nameLastnameDiv">
-					<p id="nameLastname"></p>
-				</div>
-
-				<div id="descriptionDiv">
-					<p id="description"></p>
+				<div id="workNameDiv">
+					<h2 id="work_name"></h2>
 				</div>
 			</div>
 
-			<div id="workDiv"></div>
+			<div id="nameLastnameDiv">
+				<p id="nameLastname"></p>
+			</div>
+
+			<div id="descriptionDiv">
+				<p id="description"></p>
+			</div>
 		</div>
 
-
-		<footer id="footer">
-			<div id="infoDiv">
-				<p><strong>Administrator</strong><br>
-				Filip Mozol<br>
-				fmozol@technikumkreatywne.pl</p>
-			</div>
-
-			<div  id="autorAndIconsDiv">
-				<div id="autorDiv">
-					<p id="autor"><strong>Autor Jan Kołodziej</strong></p>
-				</div>
-
-				<div id="iconsDiv">
-					<a href="https://www.facebook.com/SzkolyKreatywne"><img src="images/icons/facebook.png"></a>
-					<a href=""><img src="images/icons/instagram.png"></a>
-					<a href="https://szkolykreatywne.pl/"><img src="images/icons/google.png"></a>
-					<a href=""><img src="images/icons/youtube.png"></a>
-				</div>
-			</div>
-		</footer>
+		<div id="workDiv"></div>
 	</div>
 
 
 	<?php
 
+		session_start();
 
 		include("connection.php");
 
@@ -96,6 +67,9 @@
 			global $con, $arrayImportDataToJS, $user_id;
 			//get id from url
 			$id_work = $_GET['work'];
+
+			//set session variable with work id
+			$_SESSION['work_id'] = $id_work;
 
 			//get all data from row where id=id_work
 			$findWorks = "SELECT * FROM user_works WHERE id='$id_work'";

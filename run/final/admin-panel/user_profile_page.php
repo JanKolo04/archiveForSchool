@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style-user-page.css">
+
+	<!-------AJAX------>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 	<title>User profile</title>
 </head>
 <body>
@@ -90,14 +94,12 @@
 				</div>
 			</div>
 
-		<div id="divTable">
-			<form method="POST">
+			<div id="divTable">
 				<table id="table">
 					<tboody>
 					</tboody>
 				</table>
-			</form>
-		</div>
+			</div>
 		</form>
 	</div>
 
@@ -126,9 +128,6 @@
 			chnage_user_data();
 		}
 
-		else if(isset($_POST['removeButton'])) {
-			remove_work();
-		}
 
 		function check_get_data() {
 			//this function exist because after great added user
@@ -343,34 +342,6 @@
 
 		}
 
-		//function to remove work
-		function remove_work() {
-			global $con;
-			//array with data about user
-			$arrayWithUserData = get_data_about_user();
-			//get value from button
-			$removeButton = $_POST['removeButton'];
-
-			//get work name
-			$getWorkNameSQL = "SELECT file_name FROM user_works WHERE id='$removeButton'";
-			$getWorkNameQuery = mysqli_query($con, $getWorkNameSQL);
-			//append reslut to variable
-			$arrayWithFile_name = mysqli_fetch_array($getWorkNameQuery);
-
-			//remove work
-			$removeSQL = "DELETE FROM user_works WHERE id='$removeButton'";
-			$removeQuery = mysqli_query($con, $removeSQL);
-
-
-			//path to file
-			$pathToFile = "../data/".$arrayWithUserData["Class"]."/".$arrayWithUserData['Profile']."/".$arrayWithUserData['Name']." ".$arrayWithUserData['Lastname']."/".$arrayWithFile_name['file_name'];
-
-			//if code cant delete file return error
-			if(!unlink($pathToFile)) {
-				echo "<script> alert('Error'); </script>";
-			}
-		}
-
 
 		function append_data_into_adminLog($data) {
 			//set default timezone for date
@@ -442,12 +413,31 @@
 					removeButton.className = "removeButton";
 					//set text
 					removeButton.innerHTML = "X";
-					//set name
-					removeButton.name = "removeButton";
+					removeButton.id = "removeB";
 					//set value
 					removeButton.value = arrayWorks[i]['id_work'];
 					//append button to data for button
 					dataButtonRemove.appendChild(removeButton);
+
+					//function for removeButton to remove work
+					removeButton.addEventListener("click", function() {
+						//work id
+						let work_id = removeButton.value;
+
+						//confirm alert
+						let confirmAlert = confirm("Are you want delete this work?");
+						//if confirm return true do code
+						if(confirmAlert == true) {
+						    $.ajax({
+						    	type: "POST",
+						    	url: "delete_data.php",
+						      	data: {work_id, userData:arrayData},
+						      	success: function() {
+						        	return true;
+						      	}
+						    });
+						}
+					});
 
 
 					//data with name

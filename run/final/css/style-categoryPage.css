@@ -1,0 +1,95 @@
+body {
+	overflow: auto;
+	background-color: #e9ebee !important;
+}
+
+/*--------BACK DIV STYLE---------*/
+#backDiv {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: flex-end;
+}
+
+#backButton {
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+#backButton:hover {
+	text-decoration: underline;
+	color: black;
+}
+
+
+/*-----------MAIN---------*/
+#main {
+	width: 100%;
+}
+
+#categoryDiv {
+	min-height: 720px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#categoryDiv .container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 40px;
+}
+
+#categoryDiv .row {
+	width: 80%;
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+body a {
+	font-size: 18px;
+	color: black;
+	text-decoration: none;
+}
+body a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+#categoryDiv .longCol {
+	text-align: center;
+	height: 130px;
+	width: 95%;
+	margin: 10px;
+	font-size: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	background-color: white;
+	transition: 1s;
+	cursor: pointer;
+}
+
+#newWorks {
+	height: 200px !important;
+}
+
+.longCol:hover {
+	font-size: 20px;
+	transform: scale(1.07);
+}
+
+
+/*-----------MEDIA------------*/
+@media screen and (max-width: 455px) {
+	#categoryDiv {
+		min-height: 650px;
+	}
+}
+
+
