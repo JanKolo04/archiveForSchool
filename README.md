@@ -59,5 +59,11 @@ function delete_user() {
 - [x] add user button in <strong>searchPage.php</strong> table\
 - [x] fix issue with AJAX
 - [x] find solution for unfresh page after delete user
-- [x] add Google Analitics .js to all user pages
+- [ ] learn bow to print document im php or ja
+
+
+
+
+
+
 
