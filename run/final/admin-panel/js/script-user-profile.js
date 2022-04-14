@@ -1,4 +1,4 @@
-function delete_user() {
+function delete_work() {
 	//get all checkbox from table
 	let getCheckBoxs = document.querySelectorAll(".check");
 	//variable to check whether checked check box exist
@@ -14,7 +14,7 @@ function delete_user() {
 	//if checker equals true do code
 	if(checker == true) {
 		//show confirm alert
-		let confirmAlert = confirm("Are you want delete this user?");
+		let confirmAlert = confirm("Are you want delete this work?");
 		//if confirm alert return true do code
 		if(confirmAlert == true) {
 			//array with user id to delete
@@ -32,9 +32,12 @@ function delete_user() {
 		    $.ajax({
 		    	type: "POST",
 		    	url: "manipulate_data.php",
-		      	data: {array_user_id: array_id},
-		      	success: function(res) {
-		        	return document.write(res);
+		      	data: {work_id: array_id},
+		      	success: function() {
+		        	return true;
+		      	},
+		      	error: function() {
+		      		return alert("Error");
 		      	}
 		    });
 

@@ -244,9 +244,6 @@
 			//table 
 			const tableBody = document.querySelector('#tableBody');
 
-			if(arrayResults.length > 0) {
-				document.querySelector("#table").style = "display: table;";
-			}
 
 			//for loop inserting data from arrayResults to table
 			for(let i=0; i<arrayResults.length; ++i) {

@@ -125,8 +125,12 @@
 				$mysqli_query_id = mysqli_query($con, $get_user_id);
 				//get id from query
 				$user_id = mysqli_fetch_array($mysqli_query_id);
+
+				//set session variable for alert
+				$_SESSION['addUser'] = true;
+
 				//move to student profile
-				header("Location: user_profile_page.php?user=".$user_id['id']."&add=true");
+				header("Location: user_profile_page.php?user=".$user_id['id']);
 
 			}
 			//else show alert

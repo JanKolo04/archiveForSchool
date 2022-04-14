@@ -3,18 +3,28 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!---------------JS ANS CSS FILES--------------->
 	<link rel="stylesheet" type="text/css" href="css/style-user-page.css">
+	<script type="text/javascript" src="js/script-user-profile.js"></script>
+
+	<!-------BOOSTRAP------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 	<!-------AJAX------>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+	<!-------ICON------>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>User profile</title>
 </head>
 <body>
 
 	<div id="allStuff">
-		<a href="javascript: window.history.back()" id="backButton">Wróć</a>
-		<h2 id="nameSurname"></h2>
+		<a href="javascript: window.history.back()" id="backButton" style="margin-top: 20px;">Wróć</a>
+		<h2 id="nameSurname" style="font-size: 25px !important; margin-top: 20px;"></h2>
 
 		<form method="post" enctype="multipart/form-data">
 			<div id="allInputs">
@@ -93,14 +103,35 @@
 					</div>
 				</div>
 			</div>
-
-			<div id="divTable">
-				<table id="table">
-					<tboody>
-					</tboody>
-				</table>
-			</div>
 		</form>
+
+		<div id="mainDiv">
+			<form method="POST">
+				<div id="tableDiv">
+					<div id="holderTable">
+						<div id="actionMenuTable">
+							<button type="submit" name="delete" onclick="delete_work()"><i class='fa fa-user-times'></i> Usuń</button>
+						</div>
+						<table id="table" class="table-striped">
+							<thead>
+						    	<tr>
+						    		<th scope="col"></th>
+						      		<th scope="col">Imię Nazwisko</th>
+						      		<th scope="col">Klasa</th>
+						      		<th scope="col">Profil</th>
+						      		<th scope="col">Nazwa pracy</th>
+									<th scope="col">Podgląd</th>
+						      		<th scope="col">Edycja</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody id="tableBody">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 
 
@@ -111,6 +142,7 @@
 		include("../connection.php");
 
 		$success_add_work = 0;
+		$arrayWorks = [];
 
 		if(!isset($_SESSION['login'])) {
 			header("Location: login.php");
@@ -134,12 +166,13 @@
 			//show alert with information
 
 			//if isset add variabel in url show alert
-			if(isset($_GET['add'])) {
+			if(isset($_SESSION['addUser'])) {
 				//show alert 
 				echo "<script>alert('uczeń został dodany!');</script>";
+				//delete session vairbale
+				unset($_SESSION['addUser']);
 			}
 		}
-		check_get_data();
 
 			
 		function get_data_about_user() {
@@ -201,11 +234,9 @@
 			}
 		}
 
-		get_data_about_user();
-		get_all_user_works();
 
 		function add_file_into_database_and_directory() {
-			global $con, $success_add_work;
+			global $con, $success_add_work, $arrayWorks;
 			//get return value from get_data_about_user function
 			$userDataArray = get_data_about_user();
 
@@ -240,10 +271,11 @@
 				//get file extension
 				$fileExt = end($explode);
 
-				//max file size 1048576 is a 1MB in bits
-				$maxSize = 5*(1048576);
+				//file size in Mb
+				$fileSizeMb = round($fileSize / 1024 / 1024, 1);
+				echo $fileSizeMb;
 				//possible extensions
-			    $extensions = array("jpg","png","txt","mp4");
+			    $extensions = array("jpg", "gif", "png", "mp3", "mp4", "zip");
 
 			    $counter = 0;
 			    while($counter < 1) {
@@ -255,8 +287,18 @@
 					        break;
 					    }
 					    //if file size is bigger than max size return alert
-		      			else if($fileSize > $maxSize) {
-							echo("<script>alert('File is bigger than 3MB');</script>");
+		      			else if($fileSize > 15) {
+		      				//add work data to array
+		      				$arrayWorks = [
+		      					"id"=>$id,
+		      					"fileName"=>$fileName,
+		      					"work_name"=>$work_name,
+		      					"description"=>$description,
+		      					"fileSize"=>$fileSize,
+		      					"fileExt"=>$fileExt,
+		      					"fileTmp"=>$fileTmp,
+		      					"dir"=>$dir
+		      				];
 		        			break;
 		        		}
 		      			
@@ -358,6 +400,10 @@
 			fclose($file);
 		}
 
+		check_get_data();
+		get_data_about_user();
+		get_all_user_works();
+
 	?>
 
 	<script type="text/javascript">
@@ -377,7 +423,7 @@
 			const arrayData = <?php echo json_encode($arrayWithDataFromQuery);?>;
 			const arrayWorks = <?php echo json_encode($arrayWithWorks);?>;
 			//table
-			let table = document.querySelector('#table');
+			let table = document.querySelector('tbody');
 			//name and surname(headerText)
 			let headerText = document.querySelector('#nameSurname');
 			//add name and lastname into header
@@ -401,62 +447,32 @@
 
 
 					//data with remove button
-					let dataButtonRemove = document.createElement('td');
+					let dataCheckBox = document.createElement('td');
 					//set class name
-					dataButtonRemove.className = 'data';
+					dataCheckBox.className = 'data';
 					//append data to row
-					record.appendChild(dataButtonRemove);
+					record.appendChild(dataCheckBox);
 
-					//remove button
-					let removeButton = document.createElement('BUTTON');
+					//create checkBox 
+					let checkBox = document.createElement("input");
+					//set type for input
+					checkBox.type = "checkbox";
 					//set class name
-					removeButton.className = "removeButton";
-					//set text
-					removeButton.innerHTML = "X";
-					removeButton.id = "removeB";
+					checkBox.className = "check";
 					//set value
-					removeButton.value = arrayWorks[i]['id_work'];
-					//append button to data for button
-					dataButtonRemove.appendChild(removeButton);
-
-					//function for removeButton to remove work
-					removeButton.addEventListener("click", function() {
-						//work id
-						let work_id = removeButton.value;
-
-						//confirm alert
-						let confirmAlert = confirm("Are you want delete this work?");
-						//if confirm return true do code
-						if(confirmAlert == true) {
-						    $.ajax({
-						    	type: "POST",
-						    	url: "delete_data.php",
-						      	data: {work_id, userData:arrayData},
-						      	success: function() {
-						        	return true;
-						      	}
-						    });
-						}
-					});
+					checkBox.value = arrayWorks[i]['id_work'];
+					//append checkbox into td
+					dataCheckBox.appendChild(checkBox);
 
 
-					//data with name
+					//data with name and lastname
 					let dataName = document.createElement('td');
 					//set class name
 					dataName.className = 'data';
 					//set text
-					dataName.innerHTML = arrayData['Name'];
+					dataName.innerHTML = arrayData['Name']+' '+arrayData['Lastname'];
 					//append data to row
 					record.appendChild(dataName);
-
-					//data with Lastname
-					let dataLastName = document.createElement('td');
-					//set class name
-					dataLastName.className = 'data';
-					//set text
-					dataLastName.innerHTML = arrayData['Lastname'];
-					//append data to row
-					record.appendChild(dataLastName);
 
 
 					//data with Class
@@ -558,10 +574,72 @@
 
 		}
 
+
+		function alert_confirm_work() {
+			//variable with file size
+			let arrayWorks = <?php echo json_encode($arrayWorks); ?>;
+
+			//if file size id bigger than 15MB and ext == png || jpg || gif
+			//show confirm alert for photo file
+			if((arrayWorks['fileSize'] > 15) && (arrayWorks['fileExt']=='png' || arrayWorks['fileExt']=='jpg' || arrayWorks['fileExt']=='gif')) {
+				let confirmAlert = confirm("Plik jest większy niż 15MB czy napewno chcesz dodać ?");
+				//if confirm return true send data to PHP by AJAX
+				if(confirmAlert == true) {
+					$.ajax({
+				    	type: "POST",
+				    	url: "manipulate_data.php",
+				      	data: {work: arrayWorks},
+				      	success: function(res) {
+				        	return res;
+				      	}	
+					});
+				}
+			}
+	
+			//if file size id bigger than 200MB and ext == mp3 || mp4
+			//show confirm alert for audio file
+			else if((arrayWorks['fileSize'] >= 200) && (arrayWorks['fileExt']=='mp3' || arrayWorks['fileExt']=='mp4')) {
+				let confirmAlert = confirm("Plik jest większy niż 200MB czy napewno chcesz dodać ?");
+				//if confirm return true send data to PHP by AJAX
+				if(confirmAlert == true) {
+					$.ajax({
+				    	type: "POST",
+				    	url: "manipulate_data.php",
+				      	data: {work: arrayWorks},
+				      	success: function(res) {
+				        	return res;
+				      	}	
+					});
+				}
+			}
+			//if file size id bigger than 500MB and ext == mp3 || mp4
+			//show confirm alert for audio file
+			else if((arrayWorks['fileSize'] >= 500) && (arrayWorks['fileExt']=='zip')) {
+				let confirmAlert = confirm("Plik jest większy niż 200MB czy napewno chcesz dodać ?");
+				//if confirm return true send data to PHP by AJAX
+				if(confirmAlert == true) {
+					$.ajax({
+				    	type: "POST",
+				    	url: "manipulate_data.php",
+				      	data: {work: arrayWorks},
+				      	success: function(res) {
+				        	return res;
+				      	}	
+					});
+				}
+			}
+			//else file is bigger than 5GB
+			else if(arrayWorks['fileSize'] > 5*1024) {
+				alert("Plik jest za duży i nie możesz go przesłać !");
+			}
+
+		}
+
 		window.onload = function() {
 			set_data();
 			append_data_into_chnage_inputs_user_data();
 			clear_inputs_fileds_after_success_add_work();
+			alert_confirm_work();
 		}
 
 	</script>

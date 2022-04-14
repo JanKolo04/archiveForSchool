@@ -1,3 +1,25 @@
+/*-----------MAIN----------*/
+body {
+	background-color: #e9ebee !important;
+}
+
+
+#allInputs button {
+	font-size: 13px !important;
+}
+
+#allInputs select {
+	font-size: 13px !important;
+}
+
+#allInputs input {
+	font-size: 13px !important;
+}
+
+#allInputs textarea {
+	font-size: 13px !important;
+}
+
 /*-----STYLE FOR MAIN DIVS-------*/
 #allStuff {
 	display: flex;
@@ -40,6 +62,7 @@
 #chnageInputsDiv input {
 	width: 49%;
 	margin: 5px;
+	font-size: 13px !important;
 }
 
 #changeSelectDiv {
@@ -58,9 +81,14 @@
 	align-items: center;
 }
 
+#changeSelectDiv select {
+	font-size: 13px !important;
+}
+
 #submitChangeDiv {
 	margin-top: 10px;
 }
+
 
 /*-----STYLE FOR EDITS INPUTS-------*/
 #selectFileDiv  {
@@ -98,6 +126,10 @@
 
 
 /*-----STYLE FOR ADD INPUTS-------*/
+#mainDiv {
+	margin-top: 20px;
+	width: 100%;
+}
 
 #inputsFileTextDiv {
 	margin-top: 30px;
@@ -118,8 +150,102 @@
 }
 
 /*--------STYLE FOR TABLE--------*/
-#divTable {
-	margin-top: 50px;
+#actionMenuTable {
+	width: 50%;
+	min-width: 428px;
+	padding: 5px 0px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: auto;
+	margin-bottom: 10px;
+	background-color: white;
+}
+
+#actionMenuTable a {
+	margin: 0px;
+	margin-left: 20px;
+	margin-right: 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#actionMenuTable button {
+	margin: 0px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: white;
+}
+
+
+#tableDiv {
+	margin-top: 40px;
+	width: 100%;
+	min-height: 580px;
+	margin-bottom: 15px;
+}
+
+#holderTable {
+	overflow-x: auto;
+	padding-bottom: 10px;
+}
+
+
+#table {
+	margin: auto;
+	width: 50% !important;
+}
+
+tr {
+	background-color: white;
+	height: 40px;
+}
+
+td, th {
+	border-bottom: 1px solid #ced4da;
+	padding: 0px 10px;
+}
+
+th {
+	border-bottom: 2px solid #ced4da;
+}
+
+.buttonData {
+	width: 125px !important;
+	padding: 6px 10px;
+}
+
+.buttonView {
+	background-color: #007bff;
+	padding: 4px 15px;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	cursor: pointer;
+	color: white;
+	text-decoration: none;
+	border: 1px solid #ced4da;
+}
+
+.buttonView:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.nameLastname {
+	min-width: 250px !important;
+}
+
+.classData {
+	width: 100px !important;
+}
+
+.workData {
+	min-width: 200px !important;
 }
 
 /*--------STYLE FOR BUTTON--------*/
