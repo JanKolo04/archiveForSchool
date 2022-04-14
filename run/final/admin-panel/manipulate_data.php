@@ -57,11 +57,12 @@
 
 			$getWorkNameQuery = mysqli_query($con, $getWorkNameSQL);
 
+			
 			//path
 			$path = "../data/";
 			while($row = mysqli_fetch_array($getWorkNameQuery)) {
 				//path to file
-				$path .= $row["Klasa"]."/".$row['Profil']."/".$row['Imie']." ".$row['Nazwisko']."/".$row['file_name'];
+				$path .= $row['Klasa'].'/'.$row['Profil'].'/'.$row['Imie'].' '.$row['Nazwisko'].'/'.$row['file_name'];
 			}
 
 			//remove work
@@ -69,7 +70,7 @@
 			$removeQuery = mysqli_query($con, $removeSQL);
 
 			//unsent file
-			unlink($path);
+			//unlink($path);
 
 		}
 
@@ -101,7 +102,7 @@
 		//append $data to function which append data into .adminLog.txt
 		append_data_into_adminLog($data);
 
-
+		header("user_profile_page.php?user={$arrayWork['id']}");
 	}
 
 

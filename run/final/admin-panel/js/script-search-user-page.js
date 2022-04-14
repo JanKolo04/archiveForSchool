@@ -33,8 +33,8 @@ function delete_user() {
 		    	type: "POST",
 		    	url: "manipulate_data.php",
 		      	data: {array_user_id: array_id},
-		      	success: function(res) {
-		        	return document.write(res);
+		      	success: function() {
+		        	return true;
 		      	}
 		    });
 

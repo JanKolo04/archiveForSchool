@@ -271,9 +271,8 @@
 				//get file extension
 				$fileExt = end($explode);
 
-				//file size in Mb
-				$fileSizeMb = round($fileSize / 1024 / 1024, 1);
-				echo $fileSizeMb;
+				//max file size 1048576b is a 1MB
+				$maxSize = 15*(1048576);
 				//possible extensions
 			    $extensions = array("jpg", "gif", "png", "mp3", "mp4", "zip");
 
@@ -287,7 +286,7 @@
 					        break;
 					    }
 					    //if file size is bigger than max size return alert
-		      			else if($fileSize > 15) {
+		      			else if($fileSize > $maxSize) {
 		      				//add work data to array
 		      				$arrayWorks = [
 		      					"id"=>$id,
@@ -464,6 +463,44 @@
 					//append checkbox into td
 					dataCheckBox.appendChild(checkBox);
 
+					/*
+					//remove button
+					let removeButton = document.createElement('BUTTON');
+					//set class name
+					removeButton.className = "removeButton";
+					//set text
+					removeButton.innerHTML = "X";
+					//set id
+					removeButton.id = "removeB";
+					//set type
+					removeButton.type = "submit";
+					removeButton.name = "remove";
+					//set value
+					removeButton.value = arrayWorks[i]['id_work'];
+
+					//function for removeButton to remove work
+					removeButton.addEventListener("click", function() {
+						//work id
+						let work_id = removeButton.value;
+
+						//confirm alert
+						let confirmAlert = confirm("Are you want delete this work?");
+						//if confirm return true do code
+						if(confirmAlert == true) {
+						    $.ajax({
+						    	type: "POST",
+						    	url: "manipulate_data.php",
+						      	data: {work_id, userData:arrayData},
+						      	success: function() {
+						        	return true;
+						      	}
+						    });
+						}
+					});
+					//append button to data for button
+					document.querySelector('body').appendChild(removeButton);
+					*/
+
 
 					//data with name and lastname
 					let dataName = document.createElement('td');
@@ -581,7 +618,7 @@
 
 			//if file size id bigger than 15MB and ext == png || jpg || gif
 			//show confirm alert for photo file
-			if((arrayWorks['fileSize'] > 15) && (arrayWorks['fileExt']=='png' || arrayWorks['fileExt']=='jpg' || arrayWorks['fileExt']=='gif')) {
+			if((arrayWorks['fileSize'] > 15*(1048576)) && (arrayWorks['fileExt']=='png' || arrayWorks['fileExt']=='jpg' || arrayWorks['fileExt']=='gif')) {
 				let confirmAlert = confirm("Plik jest większy niż 15MB czy napewno chcesz dodać ?");
 				//if confirm return true send data to PHP by AJAX
 				if(confirmAlert == true) {
@@ -595,10 +632,10 @@
 					});
 				}
 			}
-	
+			
 			//if file size id bigger than 200MB and ext == mp3 || mp4
 			//show confirm alert for audio file
-			else if((arrayWorks['fileSize'] >= 200) && (arrayWorks['fileExt']=='mp3' || arrayWorks['fileExt']=='mp4')) {
+			else if((arrayWorks['fileSize'] >= 200*(1048576)) && (arrayWorks['fileExt']=='mp3' || arrayWorks['fileExt']=='mp4')) {
 				let confirmAlert = confirm("Plik jest większy niż 200MB czy napewno chcesz dodać ?");
 				//if confirm return true send data to PHP by AJAX
 				if(confirmAlert == true) {
@@ -614,7 +651,7 @@
 			}
 			//if file size id bigger than 500MB and ext == mp3 || mp4
 			//show confirm alert for audio file
-			else if((arrayWorks['fileSize'] >= 500) && (arrayWorks['fileExt']=='zip')) {
+			else if((arrayWorks['fileSize'] >= 500*(1048576)) && (arrayWorks['fileExt']=='zip')) {
 				let confirmAlert = confirm("Plik jest większy niż 200MB czy napewno chcesz dodać ?");
 				//if confirm return true send data to PHP by AJAX
 				if(confirmAlert == true) {
@@ -629,10 +666,11 @@
 				}
 			}
 			//else file is bigger than 5GB
-			else if(arrayWorks['fileSize'] > 5*1024) {
+			else if(arrayWorks['fileSize'] > 5000*(1048576)) {
 				alert("Plik jest za duży i nie możesz go przesłać !");
 			}
 
+			
 		}
 
 		window.onload = function() {
