@@ -6,11 +6,11 @@
 		delete_user();
 	}
 
-	if(isset($_POST['work_id'])) {
+	else if(isset($_POST['work_id'])) {
 		delete_work();
 	}
 
-	if(isset($_POST['work'])) {
+	else if(isset($_POST['work'])) {
 		add_work();
 	}
 
@@ -43,6 +43,7 @@
 			array_map('unlink', glob("$path/*.*"));
 			rmdir($path);
 		}
+
 	}
 
 
@@ -50,19 +51,20 @@
 		global $con;
 		//get work id from POST
 		$work_id = $_POST['work_id'];
-		
+
+		$counter = 0;
 		for($i=0; $i<sizeof($work_id); $i++) {
 			//get work name
 			$getWorkNameSQL = "SELECT users.Imie, users.Nazwisko, users.Klasa, users.Profil, user_works.file_name FROM user_works INNER JOIN users ON user_works.id_user=users.id WHERE user_works.id='$work_id[$i]'";
 
 			$getWorkNameQuery = mysqli_query($con, $getWorkNameSQL);
 
-			
 			//path
 			$path = "../data/";
 			while($row = mysqli_fetch_array($getWorkNameQuery)) {
 				//path to file
 				$path .= $row['Klasa'].'/'.$row['Profil'].'/'.$row['Imie'].' '.$row['Nazwisko'].'/'.$row['file_name'];
+					
 			}
 
 			//remove work
@@ -70,9 +72,9 @@
 			$removeQuery = mysqli_query($con, $removeSQL);
 
 			//unsent file
-			//unlink($path);
-
+			unlink($path);
 		}
+		//header("Location: user_profile_page.php?user={$work_id['id']}");
 
 	}
 
@@ -91,6 +93,8 @@
 		$fileNameDate = $date.'.'.$arrayWork['fileExt'];
 		//inset work to server
 		move_uploaded_file($arrayWork['fileTmp'],$arrayWork['dir'].$fileNameDate);
+		//set chmod for file
+		chmod($arrayWork['dir'].$fileNameDate, 0777);
 
 		//insert data into data base
 		$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('{$arrayWork['id']}', '$fileNameDate', '{$arrayWork['work_name']}', 'Inne', '{$arrayWork['description']}')";
@@ -102,7 +106,6 @@
 		//append $data to function which append data into .adminLog.txt
 		append_data_into_adminLog($data);
 
-		header("user_profile_page.php?user={$arrayWork['id']}");
 	}
 
 

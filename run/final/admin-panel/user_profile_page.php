@@ -82,7 +82,7 @@
 				<div id="inputsDiv">
 					<div id="inputsFileTextDiv">
 						<input type="text" name="work_name" id="work_name" placeholder="Tytuł pracy..." value="<?php echo $_POST['work_name'];?>">
-						<textarea name="description" id="description" placeholder="Opis pracy..." value="<?php echo $_POST['description'];?>" style="width: 240px; height: 60px;"></textarea>
+						<textarea name="description" id="description" placeholder="Opis pracy..." style="width: 240px; height: 60px;"><?php echo $_POST['description'];?></textarea>
 
 						<div id="list">
 							<p>Lista możliwych plików</p>
@@ -160,6 +160,10 @@
 			chnage_user_data();
 		}
 
+		else if(isset($_POST['delete'])) {
+			header("Location: user_profile_page.php?user={$_GET['user']}");
+		}
+
 
 		function check_get_data() {
 			//this function exist because after great added user
@@ -233,6 +237,10 @@
 				echo "<script>alert('Error');</script>";
 			}
 		}
+
+		check_get_data();
+		get_data_about_user();
+		get_all_user_works();
 
 
 		function add_file_into_database_and_directory() {
@@ -311,6 +319,8 @@
 							$fileNameDate = $date.'.'.$fileExt;
 							//inset work to server
 							move_uploaded_file($fileTmp,$dir.$fileNameDate);
+							//set cmod for file
+							chmod($dir.$fileNameDate, 0777);
 		
 							//insert data into data base
 							$sendSQL = "INSERT INTO user_works(id_user, file_name, work_name, category, description) VALUES('$id', '$fileNameDate', '$work_name', 'Inne', '$description')";
@@ -399,9 +409,6 @@
 			fclose($file);
 		}
 
-		check_get_data();
-		get_data_about_user();
-		get_all_user_works();
 
 	?>
 
@@ -463,43 +470,6 @@
 					//append checkbox into td
 					dataCheckBox.appendChild(checkBox);
 
-					/*
-					//remove button
-					let removeButton = document.createElement('BUTTON');
-					//set class name
-					removeButton.className = "removeButton";
-					//set text
-					removeButton.innerHTML = "X";
-					//set id
-					removeButton.id = "removeB";
-					//set type
-					removeButton.type = "submit";
-					removeButton.name = "remove";
-					//set value
-					removeButton.value = arrayWorks[i]['id_work'];
-
-					//function for removeButton to remove work
-					removeButton.addEventListener("click", function() {
-						//work id
-						let work_id = removeButton.value;
-
-						//confirm alert
-						let confirmAlert = confirm("Are you want delete this work?");
-						//if confirm return true do code
-						if(confirmAlert == true) {
-						    $.ajax({
-						    	type: "POST",
-						    	url: "manipulate_data.php",
-						      	data: {work_id, userData:arrayData},
-						      	success: function() {
-						        	return true;
-						      	}
-						    });
-						}
-					});
-					//append button to data for button
-					document.querySelector('body').appendChild(removeButton);
-					*/
 
 
 					//data with name and lastname
@@ -628,7 +598,7 @@
 				      	data: {work: arrayWorks},
 				      	success: function(res) {
 				        	return res;
-				      	}	
+				      	}
 					});
 				}
 			}
