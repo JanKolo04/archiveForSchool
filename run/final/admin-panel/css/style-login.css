@@ -1,16 +1,47 @@
 body {
+	font-family: Arial, Helvetica, sans-serif;
 	background-color: #e9ebee !important;
 }
 
+/*----------BANER----------*/
+#baner {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	box-shadow: 10px 6px 5px #d9d9d9;
+}
+
+#divLogo {
+	width: 280px;
+	height: 80px;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+#logo {
+	margin-left: 20px;
+}
+
+
+/*----------MAIN-----------*/
+#main {
+	height: 750px;
+	width: 100%;
+	padding-top: 100px;
+}
+
 #holder {
-	height: 350px;
+	height: 380px;
 	width: 450px;
 	margin: auto;
-	margin-top: 100px;
 	border: none;
 	border-radius: 6px;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	background-color: white;
 }
@@ -19,14 +50,17 @@ body {
 	width: 100%;
 	padding: 5px 0px;
 	text-align: center;
+	margin-top: 35px;
 }
 
 #textHolder h1 {
-	margin-top: 5px;
+	font-size: 35px;
 	margin-bottom: 0px;
+	color: #0d6efd;
 }
 
 #inputsHolder {
+	margin-top: 20px;
 	width: 100%;
 	padding: 20px 0px;
 	display: flex;
@@ -34,28 +68,63 @@ body {
 	align-items: center;
 	flex-direction: column;
 }
+#inputsHolder div {
+	padding: 10px 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
 
 #inputsHolder input {
     -webkit-transition: 0.5s;
-    padding: 0px;
+    padding: 0px 5px;
     font-size: 18px;
     height: 40px;
     line-height: 40px;
-    width: 90%;
+    width: 85%;
     border: none;
-    border-bottom: 1px solid #0d6efd;
+    border-bottom: 1px solid #bfbfbf;
     white-space: nowrap;
     overflow: hidden;
     background-color: white;
     color: black;
-    margin: 10px;
+    outline: none;
+    margin: 0px;
+}
+
+#inputsHolder input:focus {
+    border-bottom: 1px solid #0d6efd;
     outline: none;
 }
+
+#passwordHolder input {
+	width: calc(85% - 30px);
+}
+
+i {
+    -webkit-transition: 0.5s;
+    margin: 0px;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    width: 30px;
+    text-align: center;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+#passwordHolder input:focus + i {
+    border-bottom: 1px solid #0d6efd;
+    outline: none;
+}
+
+
 
 #buttonHolder {
 	padding: 10px 30px;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 }
 
@@ -69,3 +138,112 @@ body {
 	margin-top: 20px;
 	background-color: #0d6efd;
 }
+
+
+/*-----------FOOTER---------*/
+#footer {
+	padding-bottom: 40px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-top: 1px solid #bfbfbf;
+}
+
+#infoDiv {
+	width: 50%;
+	height: 114px;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#infoDiv p {
+	margin: 0px;
+	margin-left: 30px;
+}
+
+
+#autorAndIconsDiv {
+	width: 50%;
+	height: 114px;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	flex-direction: column;
+}
+
+#autorDiv {
+	display: flex;
+	justify-content: end;
+	align-items: end;
+	width: 100%;
+}
+
+#autor {
+	margin: 0px;
+	margin-right: 30px;
+}
+
+#footer i {
+	font-size: 19px;
+}
+
+#iconsDiv {
+	padding: 10px 40px;
+	height: 57px;
+	width: 100%;
+	display: flex;
+	justify-content: end;
+	align-items: start;
+}
+
+#iconsDiv img {
+	margin-right: 10px;
+	width: 20px;
+}
+
+
+/*---media footer---*/
+@media screen and (max-width: 455px) {
+	#footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column-reverse;
+		padding-bottom: 20px;
+		padding-top: 10px;
+	}
+
+	#infoDiv {
+		width: 100%;
+		justify-content: center;
+		align-items: start;
+		text-align: center;
+	}
+
+	#autorDiv {
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	#footer p {
+		margin: 5px;
+	}
+
+	#autor {
+		text-align: center;
+	}
+
+	#iconsDiv {
+		padding: 0px 0px;
+		justify-content: center;
+		align-items: start;
+	}
+}
+
+
+
+
+
+
+
+
