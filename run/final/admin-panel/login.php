@@ -3,16 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style-login.css">
 	<title>Login</title>
 </head>
 <body>
 
-	<form method='POST'>
-		<input type='text' name='login' id='login' placeholder='Login...'>
-		<input type='password' name='password' id='passsword' placeholder='Password...'>
+	<div id="holder">
+		<div id="textHolder">
+			<h1>Login</h1>
+		</div>
+		<form method='POST'>
+			<div id="inputsHolder">
+				<input type='text' name='login' id='login' placeholder='Login...'>
+				<input type='password' name='password' id='passsword' placeholder='Password...'>
+			</div>
 
-		<button type='submit' name='loginButton'>Submit</button>
-	</form>
+			<div id="buttonHolder">
+				<button type='submit' name='loginButton' id="button">Submit</button>
+			</div>
+		</form>
+	</div>
 
 	<?php
 
@@ -46,12 +56,12 @@
 							echo "Successfully";
 						}
 						else {
-							echo "Worng password";
+							echo "<script>alert('Wrong password!');</script>";
 						}
 					}
 				}
 				else {
-					echo "Wrong login";
+					echo "<script>alert('Wrong login!');</script>";
 				}
 			}
 		}
