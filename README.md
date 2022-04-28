@@ -56,8 +56,6 @@ function delete_user() {
 
 ## To do
 - [ ] frontend for admin panel
-- [x] add user button in <strong>searchPage.php</strong> table\
-- [x] fix issue with AJAX
 - [x] find solution for unfresh page after delete user
 - [ ] learn how to print document in PHP or JS
 
